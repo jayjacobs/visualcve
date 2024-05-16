@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: docs
 
 website:
   title: "visualcve"
@@ -7,8 +8,10 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
-
+      - href: about.qmd
+        text: About
+      - href: cna_affected.qmd
+        text: cna.affected
 format:
   html:
     theme: cosmo

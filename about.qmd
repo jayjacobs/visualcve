@@ -1,9 +1,15 @@
 ---
 title: "About"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    number_sections: false
+    theme: paper
+    code_folding: none
+    toc_float:
+        collapsed: false
+        smooth_scroll: false
 ---
 
-About this site
-
-```{r}
-1 + 1
-```
+This is created by Jay Jacobs as a "playground" of sorts to visualize the data currently being published in the CVE List. Reach out or open an issue if you have comments or questions. 
