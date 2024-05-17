@@ -28,7 +28,7 @@ suppressPackageStartupMessages({
     library(tidyjson)
     library(ggplot2)
     library(ggrepel)
-    library(gt)
+    library(patchwork)
   })
 })
 
@@ -68,6 +68,8 @@ knitr::opts_chunk$set(
 img_slug <- "cna_metrics"
 ```
 
+# containers.cna.metrics 
+
 ```{r}
 
 mklab <- function (x, bytes = FALSE) {
@@ -89,6 +91,8 @@ mklab <- function (x, bytes = FALSE) {
 
 ```
 
+## Count of CVEs and CNAs use of containers.cna.metrics
+
 ```{r}
 cves <- read_parquet(here("cache/cveparse/cves.parquet")) %>% 
   select(-contains(".x_"))
@@ -105,217 +109,13 @@ cnacount <- cves %>%
   select(cve, cna = cveMetadata.assignerShortName) %>% 
   drop_na() %>%
   count(cna, name="n")
+totalcve <- cves %>% distinct(cve) %>% nrow()
+totalcna <- cves %>% distinct(cveMetadata.assignerShortName) %>% nrow()
+
 
 raw_metrics <- read_parquet(here("cache", "cveparse", "containers.cna.metrics.parquet")) %>% 
   left_join(read_parquet(here("cache", "cveparse", "containers.cna.metrics.scenarios.parquet")), by=c("cve", "metrics_id"))
 
-metrics_count <- raw_metrics %>% 
-  pivot_longer(cols = -c(cve, metrics_id, scenarios_id), names_to="key", values_to = "val", 
-               values_transform = as.character, values_drop_na = TRUE) %>% 
-  left_join(cvecna, by=c("cve")) %>% 
-  mutate(key = str_replace(key, "containers.cna.metrics.", "")) %>% 
-  summarize(.by=key, cves = n_distinct(cve), cnas = n_distinct(cna)) %>% 
-  arrange(key)
-```
-
-
-```{r eval=FALSE}
-cvss_fields <- c("cvssV2_0.environmentalScore",
-                 "cvssV2_0.availabilityRequirement",
-                 "cvssV2_0.integrityRequirement",
-                 "cvssV2_0.confidentialityRequirement",
-                 "cvssV2_0.targetDistribution",
-                 "cvssV2_0.collateralDamagePotential",
-                 "cvssV2_0.temporalScore",
-                 "cvssV2_0.reportConfidence",
-                 "cvssV2_0.remediationLevel",
-                 "cvssV2_0.exploitability",
-                 "cvssV2_0.baseScore",
-                 "cvssV2_0.availabilityImpact",
-                 "cvssV2_0.integrityImpact",
-                 "cvssV2_0.confidentialityImpact",
-                 "cvssV2_0.authentication",
-                 "cvssV2_0.accessComplexity",
-                 "cvssV2_0.accessVector",
-                 "cvssV2_0.vectorString",
-                 "cvssV2_0.version",
-                 "cvssV3_0.environmentalSeverity",
-                 "cvssV3_0.environmentalScore",
-                 "cvssV3_0.modifiedAvailabilityImpact",
-                 "cvssV3_0.modifiedIntegrityImpact",
-                 "cvssV3_0.modifiedConfidentialityImpact",
-                 "cvssV3_0.modifiedScope",
-                 "cvssV3_0.modifiedUserInteraction",
-                 "cvssV3_0.modifiedPrivilegesRequired",
-                 "cvssV3_0.modifiedAttackComplexity",
-                 "cvssV3_0.modifiedAttackVector",
-                 "cvssV3_0.availabilityRequirement",
-                 "cvssV3_0.integrityRequirement",
-                 "cvssV3_0.confidentialityRequirement",
-                 "cvssV3_0.temporalSeverity",
-                 "cvssV3_0.temporalScore",
-                 "cvssV3_0.reportConfidence",
-                 "cvssV3_0.remediationLevel",
-                 "cvssV3_0.exploitCodeMaturity",
-                 "cvssV3_0.baseSeverity",
-                 "cvssV3_0.baseScore",
-                 "cvssV3_0.availabilityImpact",
-                 "cvssV3_0.integrityImpact",
-                 "cvssV3_0.confidentialityImpact",
-                 "cvssV3_0.scope",
-                 "cvssV3_0.userInteraction",
-                 "cvssV3_0.privilegesRequired",
-                 "cvssV3_0.attackComplexity",
-                 "cvssV3_0.attackVector",
-                 "cvssV3_0.vectorString",
-                 "cvssV3_0.version",
-                 "cvssV3_1.environmentalSeverity",
-                 "cvssV3_1.environmentalScore",
-                 "cvssV3_1.modifiedAvailabilityImpact",
-                 "cvssV3_1.modifiedIntegrityImpact",
-                 "cvssV3_1.modifiedConfidentialityImpact",
-                 "cvssV3_1.modifiedScope",
-                 "cvssV3_1.modifiedUserInteraction",
-                 "cvssV3_1.modifiedPrivilegesRequired",
-                 "cvssV3_1.modifiedAttackComplexity",
-                 "cvssV3_1.modifiedAttackVector",
-                 "cvssV3_1.availabilityRequirement",
-                 "cvssV3_1.integrityRequirement",
-                 "cvssV3_1.confidentialityRequirement",
-                 "cvssV3_1.temporalSeverity",
-                 "cvssV3_1.temporalScore",
-                 "cvssV3_1.reportConfidence",
-                 "cvssV3_1.remediationLevel",
-                 "cvssV3_1.exploitCodeMaturity",
-                 "cvssV3_1.baseSeverity",
-                 "cvssV3_1.baseScore",
-                 "cvssV3_1.availabilityImpact",
-                 "cvssV3_1.integrityImpact",
-                 "cvssV3_1.confidentialityImpact",
-                 "cvssV3_1.scope",
-                 "cvssV3_1.userInteraction",
-                 "cvssV3_1.privilegesRequired",
-                 "cvssV3_1.attackComplexity",
-                 "cvssV3_1.attackVector",
-                 "cvssV3_1.vectorString",
-                 "cvssV3_1.version") %>% 
-  enframe(name="nothing", value="key") %>% 
-  select(key) %>% 
-  mutate(key = paste0("containers.cna.metrics.", key)) %>% 
-  mutate(in_schema = TRUE) %>% 
-  full_join(metrics, by="key") %>% 
-  replace_na(list(in_schema = FALSE))
-
-```
-
-
-```{r}
-cves <- read_parquet(here("cache/cveparse/cves.parquet")) %>% 
-  select(-contains(".x_"))
-lastmod <- cves %>% 
-  mutate(updated = as_datetime(gsub("T", " ", cveMetadata.dateUpdated))) |> 
-  arrange(desc(updated)) %>% 
-  slice(1) %>% 
-  pull(updated)
-cvepub <- cves %>% 
-  select(cve, published = cveMetadata.datePublished) %>% drop_na() %>% 
-  mutate(published = as.Date(str_extract(published, "\\d{4}-\\d{2}-\\d{2}")))
-cvemonth <- cvepub %>% 
-  mutate(month = floor_date(published, unit="month")) %>% 
-  count(month)
-cvecna <- cves %>% 
-  select(cve, cna = cveMetadata.assignerShortName) %>% 
-  drop_na()
-cnacount <- cves %>% 
-  select(cve, cna = cveMetadata.assignerShortName) %>% 
-  drop_na() %>%
-  count(cna, name="n")
-
-affdata <- read_parquet(here("cache/cveparse/containers.cna.affected.parquet"))
-
-cleanaff <- affdata %>%
-  mutate(across(where(is.character), function(x) gsub("^n/a$", NA_character_, x))) %>%
-  filter(if_any(-c(cve, affected_id), ~ !is.na(.))) %>%
-  gather(cat, val, -cve, -affected_id) %>%
-  drop_na() %>%
-  distinct(cve, cat) %>%
-  count(cat, name="cves")
-
-aff_file <- tibble(src = list.files(here("cache", "cveparse"), pattern="^containers\\.cna\\.affected")) %>% 
-  mutate(sortfield = gsub(".parquet", "", src)) %>% 
-  filter(sortfield != "containers.cna.affected") %>% 
-  arrange(sortfield) 
-
-for (curfile in aff_file$src) {
-  one <- read_parquet(here("cache", "cveparse", curfile))
-  affdata <- affdata %>% full_join(one)
-}
-fdata0 <- affdata %>% 
-  mutate(containers.cna.affected = "yes") %>% 
-  mutate(across(where(is.character), function(x) gsub("^n/a$", NA_character_, x))) %>% 
-  filter(if_any(-c(cve, affected_id), ~ !is.na(.))) %>% 
-  gather(cat, val, -cve, -affected_id) %>% 
-  drop_na() %>% 
-  distinct(cve, cat)
-fdata <- fdata0 %>% 
-  count(cat, name="cves") %>%
-  filter(str_detect(cat, "^containers.cna.affected")) %>% 
-  mutate(name = gsub("containers.cna.", "", cat)) %>% 
-  select(name, cves) %>% 
-  bind_rows(affdata %>% filter(!is.na(versions_id)) %>% 
-              summarize(name="affected.versions", cves=n_distinct(cve))) %>% 
-  bind_rows(affdata %>% filter(!is.na(changes_id)) %>% 
-              summarize(name="affected.versions.changes", cves=n_distinct(cve)))
-fdata_cna <- fdata0 %>% 
-  left_join(cvecna, by="cve") %>% 
-  distinct(cat, cna) %>% 
-  count(cat, name="cnas") %>% 
-  mutate(name = gsub("containers.cna.", "", cat)) %>% 
-  select(name, cnas) %>%
-  mutate(name = case_when(name == "versions_id" ~ "affected.versions",
-                          name == "changes_id" ~ "affected.versions.changes",
-                          TRUE ~ name)) %>% 
-  filter(str_detect(name, "^affected")) %>% 
-  arrange(name)
-
-toshare <- varlist %>% 
-  filter(str_detect(name, "^containers.cna.affected")) %>% 
-  mutate(name = gsub("containers.cna.", "", name)) %>% 
-  full_join(expected, by="name") %>% 
-  left_join(fdata, by="name") %>% 
-  left_join(fdata_cna, by="name") %>% 
-  select(name, count=n, cves, cnas, type, expected)
-
-# CPE  Updated:  04/13/2024; 12:47:58 AM -0400
-
-totalcve <- cves %>% distinct(cve) %>% nrow()
-totalcna <- cves %>% distinct(cveMetadata.assignerShortName) %>% nrow()
-gtable <- toshare %>% 
-  mutate(`CVE\nPercent` = cves / totalcve,
-         `CNA\nPercent` = cnas / totalcna) %>% 
-  select(`JSON Field` = name, 
-         `CVEs` = cves,
-         `CVE\nPercent`,
-         `CNAs` = cnas,
-         `CNA\nPercent`,
-         # `Instances` = count,
-         `JSON Type\nDiscovered` = type,
-         `JSON Schema` = expected) %>% 
-  replace_na(list(`JSON Schema` = " "))
-
-
-knitr::kable(gtable, format = "html", 
-             caption = paste(cves %>% distinct(cve) %>% nrow() %>% comma, 
-                     "CVEs from", comma(totalcna), "CNAs as of ", 
-                     as.Date(max(cves$cveMetadata.datePublished, na.rm = TRUE))))
-  # fmt_number(columns = c(CVEs, CNAs), decimals=0, suffixing = FALSE) |> 
-  # fmt_percent(columns = c(`CVE\nPercent`, `CNA\nPercent`), decimals = 1)
-
-```
-
-```{r eval=FALSE}
-# could try to validate the vector string, but finding a regex is challenging
-# and I don't have the motivation to write one 
 metrics <- raw_metrics %>% 
   select(cve, metrics_id, ends_with(c("vectorString", "version", "baseScore"))) %>% 
   distinct() %>% 
@@ -329,15 +129,28 @@ metrics <- raw_metrics %>%
                                  TRUE ~ "unknown")) %>% 
   pivot_wider(id_cols = c(cve, metrics_id, key_version), names_from = key_name, values_from = val)
 
-# could derive one.
-one <- metrics %>% 
-  distinct(cve, key_version, vectorString) %>% 
-  mutate(id = row_number()) %>% 
-  separate_rows(vectorString, sep="/") %>% 
-  separate(vectorString, into=c("key", "val"), sep=":") %>% 
-  summarize(.by=c(key_version, key), val = paste(sort(unique(val)), collapse=""))
+
+metrics_count <- raw_metrics %>% 
+  pivot_longer(cols = -c(cve, metrics_id, scenarios_id), names_to="key", values_to = "val", 
+               values_transform = as.character, values_drop_na = TRUE) %>% 
+  left_join(cvecna, by=c("cve")) %>% 
+  mutate(key = str_replace(key, "containers.cna.", "")) %>% 
+  summarize(.by=key, cves = n_distinct(cve), cnas = n_distinct(cna)) %>% 
+  mutate(dots = str_count(key, "\\.")) %>% 
+  arrange(dots, key) %>% 
+  select(-dots)
+
+knitr::kable(metrics_count, format = "html", 
+             caption = paste(cves %>% distinct(cve) %>% nrow() %>% comma, 
+                     "CVEs from", comma(totalcna), "CNAs as of ", 
+                     as.Date(max(cves$cveMetadata.datePublished, na.rm = TRUE))))
+
 ```
 
+
+## Percent of Published CVEs with CVSS information by month
+
+Each dot in the plot below is a month and is showing the percent of CVEs published in that month that had at least one complete combination of a CVSS vector string and base score published in the CVE record. 
 
 ```{r}
 metrics <- raw_metrics %>% 
@@ -366,10 +179,6 @@ toplot <- metrics %>%
   mutate(colfill = ifelse(pct > 0, tab("red"), tab("blue"))) %>% 
   filter(month >= as.Date("2012-01-01"))
 
-# 
-# gg <- ggplot(toplot, aes(month, pct)) +
-#   geom_point() +
-
 gg <- ggplot(toplot, aes(month, pct, color=colfill)) + 
   geom_point() + 
   scale_color_identity() +
@@ -377,7 +186,7 @@ gg <- ggplot(toplot, aes(month, pct, color=colfill)) +
                      breaks=seq(0,1,0.2), 
                      expand=expansion(mult=c(0,0.01))) +
   scale_x_date("CVE Published (monthly)", date_breaks = "1 year", date_labels = "%Y") +
-  labs(title = paste("Percent of Published CVEs with CVSS vectors+scores (all CNAs)")) +
+  labs(title = paste("Percent of Published CVEs with CVSS vectors + base score (all CNAs)")) +
   theme(plot.title = element_text(family=mainfont, face="italic", size=11))
 
 gg
@@ -385,7 +194,7 @@ gg
 
 ## Which CNAs are published more CVSS Vectors? 
 
-This looks at the percent of CVEs with a CVSS record from each CNA and compares against the total number of CVEs from that CNA. 
+This looks at the percent of CVEs with at least one valid CVSS record from each CNA and compares against the total number of CVEs from that CNA. 
 
 ```{r}
 toplot <- metrics %>% 
@@ -414,8 +223,8 @@ gg <- ggplot(toplot, aes(total, pct, label=cna)) +
 gg
 ```
 
-
-```{r fig.cap="cvss_by_published_monthly_without_mitre"}
+## Completeness of CVSS data without MITRE as CNA 
+```{r fig.alt="cvss_by_published_monthly_without_mitre"}
 
 toplot <- metrics %>% 
   mutate(month = floor_date(published, unit="month")) %>% 
@@ -434,14 +243,72 @@ gg <- ggplot(toplot, aes(month, pct, color=colfill)) +
                      breaks=seq(0,1,0.2), 
                      expand=expansion(mult=c(0,0.01))) +
   scale_x_date("CVE Published (monthly)", date_breaks = "1 year", date_labels = "%Y") +
-  labs(title = paste("Percent of Published CVEs with CVSS vectors+scores (without MITRE)")) +
+  labs(title = paste("Percent of Published CVEs with CVSS vectors + base score (without MITRE)")) +
   theme(plot.title = element_text(family=mainfont, face="italic", size=11))
 
 gg
 ```
 
+## Last year of published CVEs: 
+
 ```{r}
+toplot <- metrics %>% 
+  filter(published >= today() %m-% years(1)) %>% 
+  count(cna, has_cvss) %>% 
+  spread(has_cvss, n, fill=0) %>% 
+  mutate(total = no + yes, pct = yes / total) %>%
+  mutate(colfill = ifelse(pct > 0, tab("red"), tab("blue")))
+
+txtlab <- toplot %>% filter(yes > 0 & total > 100) %>% 
+  mutate(pos = ifelse(pct > 0.5, "Over Half", "Under Half"))
+good <- toplot %>% 
+  filter(total > 100) %>% 
+  filter(pct > 0.5) %>% 
+  arrange(pct, total) %>%
+  mutate(txt = paste0(yes, "/", total, " (", percent(pct, 0.1), ")")) %>% 
+  mutate(cna = factor(cna, levels=cna, ordered=TRUE))
+
+gg1 <- ggplot(good, aes(pct, cna, label=txt)) +
+  geom_col() +
+  geom_text(size=8/.pt, color="white", family=mainfont, hjust="right",
+            nudge_x = -0.01) + 
+  scale_x_continuous("Percent of CVEs with valid CVSS",
+                     expand=c(0,0), label=label_percent(1), limits=c(0,1)) +
+  labs(title = paste("CNAs with valid CVSS information")) +
+  theme(plot.title = element_text(family=mainfont, face="italic", size=11),
+        axis.title.y = element_blank(),
+        axis.line.y = element_line(color="gray40", linewidth=0.5))
+
+bad <- toplot %>% 
+  # filter(total > 100) %>% 
+  filter(pct <= 0.5) %>% 
+  top_n(n = nrow(good), total) %>% 
+  drop_na() %>% 
+  arrange(pct, total) %>%
+  mutate(txt = paste0(yes, "/", total, " (", percent(pct, 0.1), ")")) %>% 
+  mutate(cna = factor(cna, levels=cna, ordered=TRUE))
+
+gg2 <- ggplot(bad, aes(pct, cna, label=txt)) +
+  geom_col() +
+  geom_text(size=8/.pt, color="gray40", family=mainfont, hjust="left",
+            nudge_x = 0.01) + 
+  scale_x_continuous("Percent of CVEs with valid CVSS",
+                     expand=c(0,0), label=label_percent(1), limits=c(0,1)) +
+  labs(title = paste("CNAs missing CVSS information")) +
+  theme(plot.title = element_text(family=mainfont, face="italic", size=11),
+        axis.title.y = element_blank(),
+        axis.line.y = element_line(color="gray40", linewidth=0.5))
+
+
+
+gg1 + gg2 + plot_layout(nrow=1)
+
+```
+
+
+```{r eval=FALSE}
 # validation
+# missing 4.0 validation
 version_regex <- c("2.0" = "^((AV:[NAL]|AC:[LMH]|Au:[MSN]|[CIA]:[NPC]|E:(U|POC|F|H|ND)|RL:(OF|TF|W|U|ND)|RC:(UC|UR|C|ND)|CDP:(N|L|LM|MH|H|ND)|TD:(N|L|M|H|ND)|[CIA]R:(L|M|H|ND))/)*(AV:[NAL]|AC:[LMH]|Au:[MSN]|[CIA]:[NPC]|E:(U|POC|F|H|ND)|RL:(OF|TF|W|U|ND)|RC:(UC|UR|C|ND)|CDP:(N|L|LM|MH|H|ND)|TD:(N|L|M|H|ND)|[CIA]R:(L|M|H|ND))$",
                    "3.0" = "^CVSS:3[.]0/((AV:[NALP]|AC:[LH]|PR:[UNLH]|UI:[NR]|S:[UC]|[CIA]:[NLH]|E:[XUPFH]|RL:[XOTWU]|RC:[XURC]|[CIA]R:[XLMH]|MAV:[XNALP]|MAC:[XLH]|MPR:[XUNLH]|MUI:[XNR]|MS:[XUC]|M[CIA]:[XNLH])/)*(AV:[NALP]|AC:[LH]|PR:[UNLH]|UI:[NR]|S:[UC]|[CIA]:[NLH]|E:[XUPFH]|RL:[XOTWU]|RC:[XURC]|[CIA]R:[XLMH]|MAV:[XNALP]|MAC:[XLH]|MPR:[XUNLH]|MUI:[XNR]|MS:[XUC]|M[CIA]:[XNLH])$",
                    "3.1" = "^CVSS:3[.]1/((AV:[NALP]|AC:[LH]|PR:[NLH]|UI:[NR]|S:[UC]|[CIA]:[NLH]|E:[XUPFH]|RL:[XOTWU]|RC:[XURC]|[CIA]R:[XLMH]|MAV:[XNALP]|MAC:[XLH]|MPR:[XNLH]|MUI:[XNR]|MS:[XUC]|M[CIA]:[XNLH])/)*(AV:[NALP]|AC:[LH]|PR:[NLH]|UI:[NR]|S:[UC]|[CIA]:[NLH]|E:[XUPFH]|RL:[XOTWU]|RC:[XURC]|[CIA]R:[XLMH]|MAV:[XNALP]|MAC:[XLH]|MPR:[XNLH]|MUI:[XNR]|MS:[XUC]|M[CIA]:[XNLH])$") 
@@ -472,14 +339,30 @@ count_valid <- metrics %>%
 
 count_valid
 ```
+## Proportion of CVSS versions over time
 
 
-```{r fig.cap = "cves_published_with_cvss_version"}
+```{r fig.alt = "cves_published_with_cvss_version"}
 
-toplot <- metrics %>% 
+fancy_metrics <- raw_metrics %>% 
+  select(cve, metrics_id, ends_with(c("vectorString", "version", "baseScore"))) %>% 
+  distinct() %>% 
+  pivot_longer(cols = -c(cve, metrics_id), names_to="key", values_to = "val", 
+               values_transform = as.character, values_drop_na = TRUE) %>% 
+  mutate(key = gsub("containers.cna.metrics.", "", key)) %>% 
+  separate(key, into=c("key_version", "key_name"), sep="\\.") %>% 
+  mutate(key_version = case_when(key_version == "cvssV3_1" ~ "3.1",
+                                 key_version == "cvssV3_0" ~ "3.0",
+                                 key_version == "cvssV2_0" ~ "2.0",
+                                 TRUE ~ "unknown")) %>% 
+  pivot_wider(id_cols = c(cve, metrics_id, key_version), names_from = key_name, values_from = val) %>% 
+  full_join(cvepub, by="cve") %>% 
+  full_join(cvecna, by="cve")
+
+toplot <- fancy_metrics %>% 
   filter(!is.na(vectorString)) %>% 
   mutate(month = floor_date(published, unit="month")) %>%
-  filter(month >= as.Date("2017-01-01")) %>% 
+  filter(month >= as.Date("2018-01-01")) %>% 
   distinct(cve, key_version, month) %>% 
   mutate(one = 1) %>% 
   spread(key_version, one, fill=0) %>% 
@@ -493,7 +376,8 @@ toplot <- metrics %>%
 gg <- ggplot(toplot, aes(month,pct, group=cat, color=cat, label=cat)) +
   geom_line(alpha=1/4) +
   geom_point(alpha=1/2) +
-  geomtextpath::geom_labelsmooth(size=8/.pt, family=mainfont, textsmoothing = 50) +
+  geomtextpath::geom_labelsmooth(size=8/.pt, family=mainfont, text_smoothing = 50, vjust=0.2, hjust=0.7,
+                                 method = 'loess', formula = 'y ~ x') +
   scale_color_manual(values=c("2.0"=tab("red"), "3.0"=tab("seablue"), 
                               "3.1"=tab("blue"), "CVEs Published" = "gray60")) + 
   theme(legend.position = "none") +
@@ -503,15 +387,16 @@ gg
 ```
 
 
+## Proportion of CVSS versions over time without MITRE as CNA 
 
-```{r fig.cap = "cves_published_with_cvss_version_no_mitre"}
+```{r fig.alt = "cves_published_with_cvss_version_no_mitre"}
 cvemonth_nomitre <- cves %>% 
   mutate(published = as.Date(str_extract(cveMetadata.datePublished, "\\d{4}-\\d{2}-\\d{2}"))) %>% 
   filter(cveMetadata.assignerShortName != "mitre") %>% 
   mutate(month = floor_date(published, unit="month")) %>% 
   count(month)
 
-toplot <- metrics %>% 
+toplot <- fancy_metrics %>% 
   filter(cna != "mitre") %>% 
   filter(!is.na(vectorString)) %>% 
   mutate(month = floor_date(published, unit="month")) %>%

@@ -97,11 +97,11 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./cna_affected.html" aria-current="page"> 
+    <a class="nav-link" href="./cna_affected.html"> 
 <span class="menu-text">Affected</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./metrics.html"> 
+    <a class="nav-link active" href="./metrics.html" aria-current="page"> 
 <span class="menu-text">Metrics(CVSS)</span></a>
   </li>  
 </ul>
@@ -120,17 +120,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#detailed-view-of-affected-products-container.cna.affected" id="toc-detailed-view-of-affected-products-container.cna.affected" class="nav-link active" data-scroll-target="#detailed-view-of-affected-products-container.cna.affected">Detailed view of Affected Products (container.cna.affected)</a>
+  <li><a href="#containers.cna.metrics" id="toc-containers.cna.metrics" class="nav-link active" data-scroll-target="#containers.cna.metrics">containers.cna.metrics</a>
   <ul class="collapse">
-  <li><a href="#affected-vendor-product-version-andor-package-name-or-repository." id="toc-affected-vendor-product-version-andor-package-name-or-repository." class="nav-link" data-scroll-target="#affected-vendor-product-version-andor-package-name-or-repository.">Affected vendor, product, version and/or package name or repository.</a></li>
-  <li><a href="#are-the-vendor-and-product-defined-in-the-cpe-dictionary" id="toc-are-the-vendor-and-product-defined-in-the-cpe-dictionary" class="nav-link" data-scroll-target="#are-the-vendor-and-product-defined-in-the-cpe-dictionary">Are the vendor and product defined in the CPE dictionary?</a></li>
-  <li><a href="#when-are-cves-published-with-vendor-product-and-version-vpv" id="toc-when-are-cves-published-with-vendor-product-and-version-vpv" class="nav-link" data-scroll-target="#when-are-cves-published-with-vendor-product-and-version-vpv">When are CVEs published with vendor, product and version (VPV)?</a></li>
-  <li><a href="#which-cnas-are-published-more-complete-vpv-values" id="toc-which-cnas-are-published-more-complete-vpv-values" class="nav-link" data-scroll-target="#which-cnas-are-published-more-complete-vpv-values">Which CNAs are published more complete VPV values?</a></li>
-  <li><a href="#timing-of-complete-vpv-records-without-cves-published-by-mitre" id="toc-timing-of-complete-vpv-records-without-cves-published-by-mitre" class="nav-link" data-scroll-target="#timing-of-complete-vpv-records-without-cves-published-by-mitre">Timing of complete VPV records without CVEs published by MITRE</a></li>
-  </ul></li>
-  <li><a href="#collection-url" id="toc-collection-url" class="nav-link" data-scroll-target="#collection-url">collection URL</a>
-  <ul class="collapse">
-  <li><a href="#affected.cpes" id="toc-affected.cpes" class="nav-link" data-scroll-target="#affected.cpes">affected.cpes</a></li>
+  <li><a href="#count-of-cves-and-cnas-use-of-containers.cna.metrics" id="toc-count-of-cves-and-cnas-use-of-containers.cna.metrics" class="nav-link" data-scroll-target="#count-of-cves-and-cnas-use-of-containers.cna.metrics">Count of CVEs and CNAs use of containers.cna.metrics</a></li>
+  <li><a href="#percent-of-published-cves-with-cvss-information-by-month" id="toc-percent-of-published-cves-with-cvss-information-by-month" class="nav-link" data-scroll-target="#percent-of-published-cves-with-cvss-information-by-month">Percent of Published CVEs with CVSS information by month</a></li>
+  <li><a href="#which-cnas-are-published-more-cvss-vectors" id="toc-which-cnas-are-published-more-cvss-vectors" class="nav-link" data-scroll-target="#which-cnas-are-published-more-cvss-vectors">Which CNAs are published more CVSS Vectors?</a></li>
+  <li><a href="#completeness-of-cvss-data-without-mitre-as-cna" id="toc-completeness-of-cvss-data-without-mitre-as-cna" class="nav-link" data-scroll-target="#completeness-of-cvss-data-without-mitre-as-cna">Completeness of CVSS data without MITRE as CNA</a></li>
+  <li><a href="#last-year-of-published-cves" id="toc-last-year-of-published-cves" class="nav-link" data-scroll-target="#last-year-of-published-cves">Last year of published CVEs:</a></li>
+  <li><a href="#proportion-of-cvss-versions-over-time" id="toc-proportion-of-cvss-versions-over-time" class="nav-link" data-scroll-target="#proportion-of-cvss-versions-over-time">Proportion of CVSS versions over time</a></li>
+  <li><a href="#proportion-of-cvss-versions-over-time-without-mitre-as-cna" id="toc-proportion-of-cvss-versions-over-time-without-mitre-as-cna" class="nav-link" data-scroll-target="#proportion-of-cvss-versions-over-time-without-mitre-as-cna">Proportion of CVSS versions over time without MITRE as CNA</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -141,18 +139,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="detailed-view-of-affected-products-container.cna.affected" class="level1">
-<h1>Detailed view of Affected Products (container.cna.affected)</h1>
-<p>This view is specifically focused on <code>container.cna.affected</code>. The table below shortened all of the variables so the <code>container.cna.</code> portion is truncated.</p>
-<ul>
-<li><code>JSON Field</code> is the compound name of the JSON data element</li>
-<li><code>CVEs</code> count of unique CVE identifiers with the <code>JSON Field</code></li>
-<li><code>CVE Percent</code> percent of total CVEs</li>
-<li><code>CNAs</code> count of unique CNA short names providing the <code>JSON Field</code></li>
-<li><code>CNA Percent</code> percent of total CVEs</li>
-<li><code>JSON Type Discovered</code> the type of json data present in the data</li>
-<li><code>JSON Schema</code> what the JSON schema defines the data to be, if this is not present there is no definition of the `JSON Field” in the JSON schema.</li>
-</ul>
+<section id="containers.cna.metrics" class="level1">
+<h1>containers.cna.metrics</h1>
+<section id="count-of-cves-and-cnas-use-of-containers.cna.metrics" class="level2">
+<h2 class="anchored" data-anchor-id="count-of-cves-and-cnas-use-of-containers.cna.metrics">Count of CVEs and CNAs use of containers.cna.metrics</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -160,249 +150,416 @@ ul.task-list li input[type="checkbox"] {
 <caption>250,429 CVEs from 336 CNAs as of 2024-05-17</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">JSON Field</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">CVEs</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">CVE Percent</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">CNAs</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">CNA Percent</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">JSON Type Discovered</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">JSON Schema</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">key</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">cves</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">cnas</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">affected</td>
-<td style="text-align: right;">236350</td>
-<td style="text-align: left;">94.4%</td>
-<td style="text-align: right;">333</td>
-<td style="text-align: left;">99.1%</td>
-<td style="text-align: left;">array</td>
-<td style="text-align: left;">array of product</td>
+<td style="text-align: left;">metrics.format</td>
+<td style="text-align: right;">18755</td>
+<td style="text-align: right;">245</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">affected.collectionURL</td>
-<td style="text-align: right;">5598</td>
-<td style="text-align: left;">2.2%</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: left;">11.6%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">uriType</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">affected.collection_url</td>
+<td style="text-align: left;">metrics.cvssV2_0.accessComplexity</td>
+<td style="text-align: right;">34</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: left;">0.0%</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.3%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">affected.cpes</td>
-<td style="text-align: right;">4188</td>
-<td style="text-align: left;">1.7%</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">1.5%</td>
-<td style="text-align: left;">array</td>
-<td style="text-align: left;">array of strings</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">affected.defaultStatus</td>
-<td style="text-align: right;">22716</td>
-<td style="text-align: left;">9.1%</td>
-<td style="text-align: right;">274</td>
-<td style="text-align: left;">81.5%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">status ("affected", "unaffected", "unknown")</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">affected.modules</td>
-<td style="text-align: right;">1568</td>
-<td style="text-align: left;">0.6%</td>
-<td style="text-align: right;">77</td>
-<td style="text-align: left;">22.9%</td>
-<td style="text-align: left;">array</td>
-<td style="text-align: left;">array of strings</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">affected.packageName</td>
-<td style="text-align: right;">4595</td>
-<td style="text-align: left;">1.8%</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: left;">15.8%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">string</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">affected.platforms</td>
-<td style="text-align: right;">6217</td>
-<td style="text-align: left;">2.5%</td>
-<td style="text-align: right;">151</td>
-<td style="text-align: left;">44.9%</td>
-<td style="text-align: left;">array</td>
-<td style="text-align: left;">array of objects</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">affected.product</td>
-<td style="text-align: right;">102276</td>
-<td style="text-align: left;">40.8%</td>
-<td style="text-align: right;">332</td>
-<td style="text-align: left;">98.8%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">string</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">affected.programFiles</td>
-<td style="text-align: right;">63</td>
-<td style="text-align: left;">0.0%</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: left;">3.9%</td>
-<td style="text-align: left;">array</td>
-<td style="text-align: left;">array of strings</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">affected.programRoutines</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">array</td>
-<td style="text-align: left;">array of objects</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">affected.programRoutines.name</td>
-<td style="text-align: right;">100</td>
-<td style="text-align: left;">0.0%</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">2.1%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">string</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">affected.repo</td>
-<td style="text-align: right;">1611</td>
-<td style="text-align: left;">0.6%</td>
-<td style="text-align: right;">59</td>
-<td style="text-align: left;">17.6%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">uriType</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">affected.vendor</td>
-<td style="text-align: right;">87702</td>
-<td style="text-align: left;">35.0%</td>
-<td style="text-align: right;">327</td>
-<td style="text-align: left;">97.3%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">string</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">affected.versions</td>
-<td style="text-align: right;">236214</td>
-<td style="text-align: left;">94.3%</td>
-<td style="text-align: right;">333</td>
-<td style="text-align: left;">99.1%</td>
-<td style="text-align: left;">array</td>
-<td style="text-align: left;">array of objects</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">affected.versions.changes</td>
-<td style="text-align: right;">2937</td>
-<td style="text-align: left;">1.2%</td>
-<td style="text-align: right;">45</td>
-<td style="text-align: left;">13.4%</td>
-<td style="text-align: left;">array</td>
-<td style="text-align: left;">array of objects</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">affected.versions.changes.at</td>
-<td style="text-align: right;">2937</td>
-<td style="text-align: left;">1.2%</td>
-<td style="text-align: right;">45</td>
-<td style="text-align: left;">13.4%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">array of objects</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">affected.versions.changes.status</td>
-<td style="text-align: right;">2937</td>
-<td style="text-align: left;">1.2%</td>
-<td style="text-align: right;">45</td>
-<td style="text-align: left;">13.4%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">array of objects</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">affected.versions.greaterThanOrEqual</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">0.0%</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.3%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">affected.versions.lessThan</td>
-<td style="text-align: right;">25045</td>
-<td style="text-align: left;">10.0%</td>
-<td style="text-align: right;">240</td>
-<td style="text-align: left;">71.4%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">string</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">affected.versions.lessThanOrEqual</td>
-<td style="text-align: right;">15724</td>
-<td style="text-align: left;">6.3%</td>
-<td style="text-align: right;">194</td>
-<td style="text-align: left;">57.7%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">string</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">affected.versions.repo</td>
+<td style="text-align: left;">metrics.cvssV2_0.accessVector</td>
+<td style="text-align: right;">34</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: left;">0.0%</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.3%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">affected.versions.status</td>
-<td style="text-align: right;">236214</td>
-<td style="text-align: left;">94.3%</td>
-<td style="text-align: right;">333</td>
-<td style="text-align: left;">99.1%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">status ("affected", "unaffected", "unknown")</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">affected.versions.version</td>
-<td style="text-align: right;">95957</td>
-<td style="text-align: left;">38.3%</td>
-<td style="text-align: right;">332</td>
-<td style="text-align: left;">98.8%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">string</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">affected.versions.versionType</td>
-<td style="text-align: right;">39111</td>
-<td style="text-align: left;">15.6%</td>
-<td style="text-align: right;">273</td>
-<td style="text-align: left;">81.2%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">string</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">affected.x_redhatStatus</td>
+<td style="text-align: left;">metrics.cvssV2_0.authentication</td>
+<td style="text-align: right;">34</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: left;">0.0%</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.3%</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV2_0.availabilityImpact</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV2_0.baseScore</td>
+<td style="text-align: right;">3258</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV2_0.confidentialityImpact</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV2_0.integrityImpact</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV2_0.vectorString</td>
+<td style="text-align: right;">3258</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV2_0.version</td>
+<td style="text-align: right;">3258</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_0.attackComplexity</td>
+<td style="text-align: right;">11255</td>
+<td style="text-align: right;">48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_0.attackVector</td>
+<td style="text-align: right;">11255</td>
+<td style="text-align: right;">48</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_0.availabilityImpact</td>
+<td style="text-align: right;">11255</td>
+<td style="text-align: right;">48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_0.baseScore</td>
+<td style="text-align: right;">15643</td>
+<td style="text-align: right;">51</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_0.baseSeverity</td>
+<td style="text-align: right;">15643</td>
+<td style="text-align: right;">51</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_0.confidentialityImpact</td>
+<td style="text-align: right;">11255</td>
+<td style="text-align: right;">48</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_0.exploitCodeMaturity</td>
+<td style="text-align: right;">2314</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_0.integrityImpact</td>
+<td style="text-align: right;">11255</td>
+<td style="text-align: right;">48</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_0.privilegesRequired</td>
+<td style="text-align: right;">11255</td>
+<td style="text-align: right;">48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_0.remediationLevel</td>
+<td style="text-align: right;">2314</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_0.reportConfidence</td>
+<td style="text-align: right;">2314</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_0.scope</td>
+<td style="text-align: right;">11255</td>
+<td style="text-align: right;">48</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_0.temporalScore</td>
+<td style="text-align: right;">2314</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_0.temporalSeverity</td>
+<td style="text-align: right;">2314</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_0.userInteraction</td>
+<td style="text-align: right;">11255</td>
+<td style="text-align: right;">48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_0.vectorString</td>
+<td style="text-align: right;">15643</td>
+<td style="text-align: right;">51</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_0.version</td>
+<td style="text-align: right;">15643</td>
+<td style="text-align: right;">51</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_1.attackComplexity</td>
+<td style="text-align: right;">33524</td>
+<td style="text-align: right;">265</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_1.attackVector</td>
+<td style="text-align: right;">33524</td>
+<td style="text-align: right;">265</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_1.availabilityImpact</td>
+<td style="text-align: right;">33524</td>
+<td style="text-align: right;">265</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_1.availabilityRequirement</td>
+<td style="text-align: right;">607</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_1.baseScore</td>
+<td style="text-align: right;">43500</td>
+<td style="text-align: right;">269</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_1.baseSeverity</td>
+<td style="text-align: right;">43500</td>
+<td style="text-align: right;">269</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_1.confidentialityImpact</td>
+<td style="text-align: right;">33524</td>
+<td style="text-align: right;">265</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_1.confidentialityRequirement</td>
+<td style="text-align: right;">607</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_1.environmentalScore</td>
+<td style="text-align: right;">607</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_1.environmentalSeverity</td>
+<td style="text-align: right;">607</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_1.exploitCodeMaturity</td>
+<td style="text-align: right;">1127</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_1.integrityImpact</td>
+<td style="text-align: right;">33524</td>
+<td style="text-align: right;">265</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_1.integrityRequirement</td>
+<td style="text-align: right;">607</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_1.modifiedAttackComplexity</td>
+<td style="text-align: right;">607</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_1.modifiedAttackVector</td>
+<td style="text-align: right;">607</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_1.modifiedAvailabilityImpact</td>
+<td style="text-align: right;">607</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_1.modifiedConfidentialityImpact</td>
+<td style="text-align: right;">607</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_1.modifiedIntegrityImpact</td>
+<td style="text-align: right;">607</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_1.modifiedPrivilegesRequired</td>
+<td style="text-align: right;">607</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_1.modifiedScope</td>
+<td style="text-align: right;">607</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_1.modifiedUserInteraction</td>
+<td style="text-align: right;">607</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_1.privilegesRequired</td>
+<td style="text-align: right;">33524</td>
+<td style="text-align: right;">265</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_1.remediationLevel</td>
+<td style="text-align: right;">1127</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_1.reportConfidence</td>
+<td style="text-align: right;">1127</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_1.scope</td>
+<td style="text-align: right;">33524</td>
+<td style="text-align: right;">265</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_1.temporalScore</td>
+<td style="text-align: right;">1127</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_1.temporalSeverity</td>
+<td style="text-align: right;">1127</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_1.userInteraction</td>
+<td style="text-align: right;">33524</td>
+<td style="text-align: right;">265</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV3_1.vectorString</td>
+<td style="text-align: right;">43500</td>
+<td style="text-align: right;">269</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV3_1.version</td>
+<td style="text-align: right;">43500</td>
+<td style="text-align: right;">269</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV4_0.Automatable</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV4_0.Recovery</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV4_0.Safety</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV4_0.attackComplexity</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV4_0.attackRequirements</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV4_0.attackVector</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV4_0.baseScore</td>
+<td style="text-align: right;">157</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV4_0.baseSeverity</td>
+<td style="text-align: right;">157</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV4_0.privilegesRequired</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV4_0.providerUrgency</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV4_0.subAvailabilityImpact</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV4_0.subConfidentialityImpact</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV4_0.subIntegrityImpact</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV4_0.userInteraction</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV4_0.valueDensity</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV4_0.vectorString</td>
+<td style="text-align: right;">157</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV4_0.version</td>
+<td style="text-align: right;">157</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV4_0.vulnAvailabilityImpact</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV4_0.vulnConfidentialityImpact</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.cvssV4_0.vulnIntegrityImpact</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.cvssV4_0.vulnerabilityResponseEffort</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.other.type</td>
+<td style="text-align: right;">1235</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metrics.scenarios.lang</td>
+<td style="text-align: right;">16555</td>
+<td style="text-align: right;">236</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metrics.scenarios.value</td>
+<td style="text-align: right;">16555</td>
+<td style="text-align: right;">236</td>
 </tr>
 </tbody>
 </table>
@@ -411,137 +568,76 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<section id="affected-vendor-product-version-andor-package-name-or-repository." class="level2">
-<h2 class="anchored" data-anchor-id="affected-vendor-product-version-andor-package-name-or-repository.">Affected vendor, product, version and/or package name or repository.</h2>
-<p>These fields represent the minimum necessary to identify the vulnerable product(s) or software. The table below identifies How many CVEs and CNAs have non-null values in the field. One thing to note: the “version” is represented by a JSON object and this code looks for anything specified in the “versions” object while ignoring the <code>containers.cna.affected.versions.status</code> since almost every record had that value with nothing else specified in this section.</p>
+</section>
+<section id="percent-of-published-cves-with-cvss-information-by-month" class="level2">
+<h2 class="anchored" data-anchor-id="percent-of-published-cves-with-cvss-information-by-month">Percent of Published CVEs with CVSS information by month</h2>
+<p>Each dot in the plot below is a month and is showing the percent of CVEs published in that month that had at least one complete combination of a CVSS vector string and base score published in the CVE record.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cna_affected_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="metrics_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="are-the-vendor-and-product-defined-in-the-cpe-dictionary" class="level2">
-<h2 class="anchored" data-anchor-id="are-the-vendor-and-product-defined-in-the-cpe-dictionary">Are the vendor and product defined in the CPE dictionary?</h2>
-<p>This grabs the CPE dictionary from <a href="https://nvd.nist.gov/feeds/xml/cpe/dictionary/official-cpe-dictionary_v2.3.xml.gz">NVD</a> and will first check the value provided “as is” against the same value in the CPE dictionary. Second, it does a case-insensitive match against the defined values in the CPE.</p>
-<p>CPE Dict 2.3 has 21,699 unique vendors and 134,714 unique combinations of vendor and product.</p>
+<section id="which-cnas-are-published-more-cvss-vectors" class="level2">
+<h2 class="anchored" data-anchor-id="which-cnas-are-published-more-cvss-vectors">Which CNAs are published more CVSS Vectors?</h2>
+<p>This looks at the percent of CVEs with at least one valid CVSS record from each CNA and compares against the total number of CVEs from that CNA.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cna_affected_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="metrics_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="when-are-cves-published-with-vendor-product-and-version-vpv" class="level2">
-<h2 class="anchored" data-anchor-id="when-are-cves-published-with-vendor-product-and-version-vpv">When are CVEs published with vendor, product and version (VPV)?</h2>
-<p>This next plot treats a “complete” record if any of the “affected” records has a value in the <code>vendor</code> AND <code>product</code> AND <code>versions</code>. It is not inspecting those fields for quality, just that something in present. Again, the <code>containers.cna.affected.versions.status</code> is being ignored.</p>
+<section id="completeness-of-cvss-data-without-mitre-as-cna" class="level2">
+<h2 class="anchored" data-anchor-id="completeness-of-cvss-data-without-mitre-as-cna">Completeness of CVSS data without MITRE as CNA</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cna_affected_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="metrics_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" alt="cvss_by_published_monthly_without_mitre" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="which-cnas-are-published-more-complete-vpv-values" class="level2">
-<h2 class="anchored" data-anchor-id="which-cnas-are-published-more-complete-vpv-values">Which CNAs are published more complete VPV values?</h2>
-<p>This looks at the percent of CVEs with a complete VPV record from each CNA and compares against the total number of CVEs from that CNA.</p>
-<p>Take note just how many CNAs are across the bottom (or the lack of CNAs at the bottom). This indicates that almost every CNA has been able to produce a complete VPV record.</p>
-<p><code>mitre</code> as a CNA really sticks out here.</p>
+<section id="last-year-of-published-cves" class="level2">
+<h2 class="anchored" data-anchor-id="last-year-of-published-cves">Last year of published CVEs:</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cna_affected_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="metrics_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="timing-of-complete-vpv-records-without-cves-published-by-mitre" class="level2">
-<h2 class="anchored" data-anchor-id="timing-of-complete-vpv-records-without-cves-published-by-mitre">Timing of complete VPV records without CVEs published by MITRE</h2>
+<section id="proportion-of-cvss-versions-over-time" class="level2">
+<h2 class="anchored" data-anchor-id="proportion-of-cvss-versions-over-time">Proportion of CVSS versions over time</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cna_affected_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="metrics_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" alt="cves_published_with_cvss_version" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-</section>
-<section id="collection-url" class="level1">
-<h1>collection URL</h1>
+<section id="proportion-of-cvss-versions-over-time-without-mitre-as-cna" class="level2">
+<h2 class="anchored" data-anchor-id="proportion-of-cvss-versions-over-time-without-mitre-as-cna">Proportion of CVSS versions over time without MITRE as CNA</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cna_affected_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="cna_affected_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="cna_affected_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="cna_affected_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<section id="affected.cpes" class="level2">
-<h2 class="anchored" data-anchor-id="affected.cpes">affected.cpes</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="cna_affected_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="cna_affected_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="cna_affected_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="metrics_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" alt="cves_published_with_cvss_version_no_mitre" width="672"></p>
 </figure>
 </div>
 </div>
