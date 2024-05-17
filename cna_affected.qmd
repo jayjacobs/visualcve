@@ -215,8 +215,8 @@ toshare <- varlist %>%
 totalcve <- cves %>% distinct(cve) %>% nrow()
 totalcna <- cves %>% distinct(cveMetadata.assignerShortName) %>% nrow()
 gtable <- toshare %>% 
-  mutate(`CVE\nPercent` = cves / totalcve,
-         `CNA\nPercent` = cnas / totalcna) %>% 
+  mutate(`CVE\nPercent` = percent(cves / totalcve, 0.1),
+         `CNA\nPercent` = percent(cnas / totalcna, 0.1)) %>% 
   select(`JSON Field` = name, 
          `CVEs` = cves,
          `CVE\nPercent`,
@@ -300,9 +300,6 @@ gg <- ggplot(tocna, aes(cat, id, fill=filler, label=txt)) +
         axis.title.y = element_blank(),
         axis.title.x = element_blank())
 gg
- # rez <- savepic(gg, here::here("figs", "cna_affected", "vpv_completeness"), 
- #        height = 3, width = 5, open = FALSE, caption=FALSE, dpi=300)
-
 ```
 
 
