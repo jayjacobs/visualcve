@@ -11,7 +11,9 @@ website:
       - href: about.qmd
         text: About
       - href: cna_affected.qmd
-        text: cna.affected
+        text: Affected
+      - href: metrics.qmd
+        text: Metrics(CVSS)
 format:
   html:
     theme: cosmo
