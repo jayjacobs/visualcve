@@ -1,5 +1,4 @@
 ---
-title: "visualcve"
 output:
   html_document:
     toc: true
@@ -98,7 +97,7 @@ lastmod <- as.character(as.Date(max(cves$cveMetadata.datePublished, na.rm = TRUE
 ```
 
 
-# CVE Exploratory Data Analysis
+# Visual Analysis of the CVE List: `r lastmod`
 
 This exploratory analysis is focused on the data completeness and quality of the primary source for CVE data: https://github.com/CVEProject/cvelistV5.  This page is an automated pass through the JSON data. 
 

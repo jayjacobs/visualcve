@@ -108,32 +108,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#cve-exploratory-data-analysis" id="toc-cve-exploratory-data-analysis" class="nav-link active" data-scroll-target="#cve-exploratory-data-analysis">CVE Exploratory Data Analysis</a></li>
+  <li><a href="#visual-analysis-of-the-cve-list-2024-05-17" id="toc-visual-analysis-of-the-cve-list-2024-05-17" class="nav-link active" data-scroll-target="#visual-analysis-of-the-cve-list-2024-05-17">Visual Analysis of the CVE List: 2024-05-17</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">visualcve</h1>
-</div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
-
-<section id="cve-exploratory-data-analysis" class="level1">
-<h1>CVE Exploratory Data Analysis</h1>
+<section id="visual-analysis-of-the-cve-list-2024-05-17" class="level1">
+<h1>Visual Analysis of the CVE List: 2024-05-17</h1>
 <p>This exploratory analysis is focused on the data completeness and quality of the primary source for CVE data: https://github.com/CVEProject/cvelistV5. This page is an automated pass through the JSON data.</p>
 <p>Last data pull was on 2024-05-17 and pulled 250,429 CVEs from 336 CNAs.</p>
 <p>Each line in the table below represents a unique combinations of field and JSON type. For example, some fields may show up in the JSON as both an array and a string (e.g.&nbsp;<code>containers.cna.source.defect</code>) and will therefore show up twice in the listing below. The code will also do it’s best to count instances of objects and arrays, but the objects were a lot more difficult, you will notice <code>NA</code> in many of the count fields where the JSON type was an object.</p>
