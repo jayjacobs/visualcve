@@ -8,12 +8,12 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: about.qmd
-        text: About
       - href: cna_affected.qmd
         text: Affected
       - href: metrics.qmd
         text: Metrics(CVSS)
+      - href: about.qmd
+        text: About
 format:
   html:
     theme: cosmo

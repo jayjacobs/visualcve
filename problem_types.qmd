@@ -1,0 +1,432 @@
+---
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    number_sections: false
+    theme: paper
+    code_folding: none
+    toc_float:
+        collapsed: false
+        smooth_scroll: false
+---
+
+```{r setup, echo=FALSE}
+suppressPackageStartupMessages({
+  suppressWarnings({
+    library(dplyr)
+    library(tibble)
+    library(tidyr)
+    library(readr)
+    library(stringr)
+    library(here)
+    library(scales)
+    library(log4r)
+    library(lubridate)
+    library(purrr)
+    library(arrow)
+    library(tidyjson)
+    library(ggplot2)
+    library(ggrepel)
+    library(gt)
+    library(xml2)
+    library(patchwork)
+  })
+})
+
+mainfont <- "Source Sans Pro"
+tab <- function (x = c("blue", "orange", "red", "seablue", "green", 
+                       "olive", "purple", "pink", "brown", "gray")) {
+  tableau <- c(blue = "#4E79A7", orange = "#F28E2B", red = "#E15759", seablue = "#76B7B2", 
+               green = "#59A14F", olive = "#EDC948", purple = "#B07AA1", pink = "#FF9DA7", 
+               brown = "#9C755F", gray = "#BAB0AC")
+  as.vector(tableau[x])
+}
+
+theme_set(theme_minimal(base_family=mainfont) +
+            theme(panel.grid = element_line(color="gray95"),
+                  plot.caption = element_text(size=6, face = "italic", color="gray60"),
+                  text = element_text(family=mainfont),
+                  legend.title = element_blank(),
+                  legend.position="bottom"))
+update_geom_defaults('col', list(fill=tab('blue')))
+update_geom_defaults('bar', list(fill=tab('blue')))
+update_geom_defaults('text', list(family=mainfont, size=8/.pt))
+update_geom_defaults('label', list(family=mainfont, size=8/.pt, label.size=NA))
+# update_geom_defaults('point', list(shape=21, size=2, fill=tab('blue'), color='white'))
+update_geom_defaults('point', list(size=0.5, color=tab('blue')))
+update_geom_defaults('line', list(color=tab('blue'), size=0.85))
+
+knitr::opts_chunk$set(
+  cache = FALSE,
+  message = FALSE,
+  warning = FALSE, 
+  dev = c("png", "cairo_pdf"),
+  echo = FALSE,
+  fig.retina = 2,
+  fig.width = 7,
+  fig.height = 3.5
+)
+
+```
+
+```{r}
+
+mklab <- function (x, bytes = FALSE) {
+    brate <- tibble(cut = c(10^seq(3, 24, 3), Inf), suffix = c("0", 
+        "K", "M", "B", "T", "q", "Q", "s", "S"))
+    if (bytes) {
+        brate <- tibble(cut = c(1024^seq(8), Inf), suffix = c("0", 
+            "kB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"))
+    }
+    pickup <- tibble(x = x) %>% mutate(one = cut(x, breaks = c(-Inf, 
+        brate$cut), labels = brate$suffix, right = FALSE)) %>% 
+        mutate(two = x/sapply(.data$one, function(y) lag(brate$cut)[y])) %>% 
+        mutate(three = ifelse(.data$two < 10, as.character(round(.data$two, 
+            1)), as.character(round(.data$two, 0)))) %>% mutate(three = ifelse(is.na(.data$three), 
+        as.character(round(.data$x, 0)), paste0(.data$three, 
+            .data$one))) %>% mutate(four = ifelse(x < 1, x, .data$three))
+    pickup$four
+}
+
+```
+
+```{r}
+cves <- read_parquet(here("cache/cveparse/cves.parquet")) %>% 
+  select(-contains(".x_"))
+cvepub <- cves %>% 
+  select(cve, published = cveMetadata.datePublished) %>% drop_na() %>% 
+  mutate(published = as.Date(str_extract(published, "\\d{4}-\\d{2}-\\d{2}")))
+cvemonth <- cvepub %>% 
+  mutate(month = floor_date(published, unit="month")) %>% 
+  count(month)
+cvecna <- cves %>% 
+  select(cve, cna = cveMetadata.assignerShortName) %>% 
+  drop_na()
+cnacount <- cves %>% 
+  select(cve, cna = cveMetadata.assignerShortName) %>% 
+  drop_na() %>%
+  count(cna, name="n")
+```
+
+# Problem types
+
+```{r}
+raw_ptype <- read_parquet(here("cache", "cveparse", "containers.cna.problemTypes.parquet")) %>% 
+  left_join(read_parquet(here("cache", "cveparse", "containers.cna.problemTypes.descriptions.parquet")), 
+            by=c("cve", "problemTypes_id")) %>% 
+  mutate(across(where(is.character), function(x) gsub("^n/a$", NA_character_, x)))
+
+cleaned <- raw_ptype %>% 
+  rename_with(~ gsub("containers.cna.problemTypes.descriptions.", "", .x, fixed = TRUE))
+
+fortable <- cleaned %>% 
+  gather(cat, val, -cve) %>% 
+  filter(!cat %in% c("problemTypes_id", "descriptions_id")) %>% 
+  drop_na() %>% 
+  mutate(strlen = nchar(cat)) %>% 
+  left_join(cvecna, by="cve") %>% 
+  mutate(cat = paste0("problemTypes.", cat)) %>% 
+  arrange(strlen, cat) %>% 
+  summarize(.by=cat, cves = n_distinct(cve), cnas = n_distinct(cna)) 
+
+knitr::kable(fortable, format = "html", 
+             caption = paste(cves %>% distinct(cve) %>% nrow() %>% comma, 
+                     "CVEs from", comma(totalcna), "CNAs as of ", 
+                     as.Date(max(cves$cveMetadata.datePublished, na.rm = TRUE))))
+
+```
+
+## Types of problemTypes
+
+```{r}
+# type is interesting.
+toplot <- cleaned %>% 
+  left_join(cvecna, by="cve") %>% 
+  summarize(.by=type, cves = n_distinct(cve), cnas = n_distinct(cna)) %>% 
+  arrange(-cves) %>% 
+  replace_na(list(type = "<undefined>")) %>% 
+  mutate(type = factor(type, levels=type, ordered=TRUE))
+
+only_one <- toplot %>% 
+  filter(cnas <= 2) %>% 
+  pull(type) %>% 
+  as.character()
+toplot2 <- cleaned %>% 
+  left_join(cvecna, by="cve") %>% 
+  filter(type %in% only_one) %>% 
+  summarize(.by=type, cna = paste(unique(cna), collapse=", ")) %>% 
+  replace_na(list(type = "<undefined>")) %>% 
+  mutate(type = factor(type, levels=levels(toplot$type), ordered=TRUE)) %>% 
+  right_join(toplot, by="type") %>% 
+  arrange(type) %>% 
+  replace_na(list(cna = "<too many>")) %>% 
+  select(type, cves, cnas, cna)
+
+knitr::kable(toplot2, format = "html", 
+             caption = paste("problemType.type values and counts"))
+```
+
+## Looking for CWE through regex
+
+I used a regex "cwe[-_.]\\d+" to detect a CWE ID in any of the `description` or the two `cweId` and `cweid` fields. The following table is a count of the CVEs with one or more CWEs found in those fields where the type is specified as shown.
+
+```{r}
+toplot <- cleaned %>% 
+  select(cve, description, lang, type, cweId, cweid) %>% 
+  mutate(in_desc = str_detect(tolower(description), "cwe[-_.]\\d+"),
+         in_cweId = str_detect(tolower(cweId), "cwe[-_.]\\d+"),
+         in_cweid = str_detect(tolower(cweid), "cwe[-_.]\\d+")) %>% 
+  replace_na(list(in_desc=FALSE, in_cweId=FALSE, in_cweid=FALSE)) %>% 
+  mutate(anycwe = in_desc | in_cweId | in_cweid) %>% 
+  # filter(anycwe) %>%
+  left_join(cvecna, by="cve") %>% 
+  summarize(.by=c(type,anycwe), cves = n_distinct(cve)) %>% 
+  mutate(label = ifelse(anycwe, "CWE Found", "No CWE")) %>% 
+  select(type, label, cves) %>% 
+  spread(label, cves, fill=0)
+
+knitr::kable(toplot, format = "html", 
+             caption = paste("The elusive CWE ID"))
+
+```
+
+## Language 
+
+```{r}
+toplot <- cleaned %>% 
+  gather(cat, val, -cve) %>% 
+  filter(!cat %in% c("problemTypes_id", "descriptions_id")) %>% 
+  drop_na() %>% 
+  mutate(strlen = nchar(cat)) %>% 
+  # left_join(cvecna, by="cve") %>% 
+  mutate(cat = paste0("problemTypes.", cat)) %>% 
+  arrange(strlen, cat) %>% 
+  mutate(cat = factor(cat, levels=unique(cat), ordered=TRUE)) %>% 
+  # complete(cve,cat) %>% 
+  mutate(value = !is.na(val)) %>%
+  summarize(.by=c(cve, cat), value = any(value)) %>% 
+  # complete(cve,cat) %>% 
+  # replace_na(list(value=FALSE)) %>% 
+  # count(cat, value)
+  pivot_wider(id_cols = cve, names_from = cat, values_from = value, values_fill = FALSE) %>% 
+  left_join(cvepub, by="cve") %>% 
+  replace_na(list(problemTypes.lang = FALSE, problemTypes.type = FALSE, problemTypes.cweId = FALSE, 
+        problemTypes.cweid = FALSE, problemTypes.description = FALSE)) %>% 
+  count(problemTypes.lang, problemTypes.type, problemTypes.cweId, 
+        problemTypes.cweid, problemTypes.description)
+
+```
+
+```{r}
+toplot <- cleaned %>% 
+  count(description, lang, type, cweId, cweid, name="instances", sort=TRUE) %>% 
+  mutate(in_desc = str_detect(tolower(description), "cwe[-_.]\\d+"),
+         in_cweId = str_detect(tolower(cweId), "cwe[-_.]\\d+"),
+         in_cweid = str_detect(tolower(cweid), "cwe[-_.]\\d+")) %>% 
+  replace_na(list(in_desc=FALSE, in_cweId=FALSE, in_cweid=FALSE)) %>% 
+  mutate(in_cweId = in_cweId | in_cweid) %>% 
+  count(in_desc, in_cweId, wt=instances, sort=TRUE)
+```
+
+## containers.cna.problemTypes.descriptions.type
+
+```{r}
+cleaned %>% 
+  left_join(cvecna, by="cve") %>% 
+  summarize(.by=type, cves = n_distinct(cve), cnas = n_distinct(cna)) %>% 
+  arrange(-cves)
+
+```
+
+containers.cna.problemTypes.descriptions.description
+
+```{r}
+cleaned %>% 
+  left_join(cvecna, by="cve") %>% 
+  summarize(.by=description, cves = n_distinct(cve)) %>% 
+  arrange(-cves)
+
+```
+
+```{r}
+cleaned %>% 
+  left_join(cvecna, by="cve") %>% 
+  summarize(.by=c(type, description), cves = n_distinct(cve)) %>% 
+  arrange(-cves) 
+
+```
+
+```{r}
+cwe <- cleaned %>% 
+  mutate(cweId = ifelse(is.na(cweId) & !is.na(cweid), cweid, cweId)) %>% 
+  select(cve, cwe=cweId) %>% 
+  drop_na()
+```
+
+```{r}
+zipfile <- tempfile(fileext = ".xml.zip")
+download.file("https://cwe.mitre.org/data/xml/cwec_latest.xml.zip", zipfile)
+outdir <- tempdir()
+rez <- unzip(zipfile, exdir = outdir)
+rawcwe <- read_xml(rez)
+allcwe <- lapply(xml_children(rawcwe), function(cwecat) {
+  cat("Name:", xml_name(cwecat), "\n")
+  allsubcwe <- map_dfr(xml_children(cwecat), function(subcwe) {
+    basedata <- tibble(toplevel = xml_name(cwecat))
+
+    basedata <- basedata %>% 
+      bind_cols(xml_attrs(subcwe) %>% enframe() %>% 
+                  spread(name, value))
+    # cat("------------", basedata$ID, "\n")
+    # print(glimpse(basedata))
+    for (weak in xml_children(subcwe)) {
+      if(xml_name(weak) == "Related_Weaknesses") {
+        related <- map_dfr(xml_children(weak), function(subweak) {
+          xml_attrs(subweak) %>% enframe() %>% 
+            spread(name, value) 
+        }) %>% janitor::clean_names()
+        basedata <- basedata %>% bind_cols(tibble(Releated_Weaknesses = related))
+      } else if (xml_name(weak) == "Relationships") {
+        relations <- map_dfr(xml_children(weak), function(subweak) {
+          xml_attrs(subweak) %>% enframe() %>% 
+            spread(name, value) %>% 
+            mutate(xmlname = xml_name(subweak))
+        }) %>% janitor::clean_names()
+        basedata <- basedata %>% bind_cols(tibble(Relationships = relations))
+      } else {
+        if(length(xml_attrs(weak)) > 0) {
+          basedata <- basedata %>% 
+            bind_cols(xml_attrs(weak) %>% enframe() %>% 
+                        mutate(name = paste0(xml_name(weak), ".", name)) %>% 
+                        spread(name, value))
+        }
+        if(nchar(xml_text(weak)) > 0) {
+          textval <- xml_text(weak)
+          names(textval) <- xml_name(weak)
+          basedata <- basedata %>% 
+            bind_cols(textval %>% enframe() %>% spread(name, value))
+        }
+      }
+    }
+    basedata
+  }) %>% janitor::clean_names()
+  allsubcwe
+}) 
+weakness <- allcwe[[1]] %>% select(-any_of("related_weaknesses"))
+related_weakness <- allcwe[[1]] %>% 
+  select(id, releated_weaknesses) %>% 
+  unnest(releated_weaknesses) %>% 
+  filter(!is.na(cwe_id))
+category <- allcwe[[2]]  %>% select(-any_of("relationships"))
+category_relation <- allcwe[[2]] %>% 
+  select(id, relationships) %>% 
+  unnest(relationships) %>%
+  left_join(category %>% select(toplevel, id, name, status), by="id") %>% 
+  distinct()
+
+views <- allcwe[[3]]
+external_ref <- allcwe[[4]]
+
+cwe_map <- weakness %>% select(toplevel, id, name, status, abstraction) %>% 
+  bind_rows(category %>% select(toplevel, id, name, status)) %>% 
+  bind_rows(views %>% select(toplevel, id, name, status)) %>% 
+  distinct() %>% 
+  mutate(toplevel = case_when(toplevel == "Weaknesses" ~ "Weakness",
+                              toplevel == "Categories" ~ "Category",
+                              toplevel == "Views" ~ "View")) %>% 
+  mutate(txt = ifelse(!is.na(abstraction), abstraction, toplevel))
+
+cwe_count <- cwe %>% 
+  mutate(id = str_extract(cwe, "\\d+")) %>% 
+  left_join(cwe_map, by="id") %>% 
+  count(cve, toplevel) %>% 
+  mutate(txt = paste0(toplevel, "(", n, ")")) %>% 
+  summarize(.by=cve, x = paste(sort(txt), collapse=",")) %>% 
+  count(x, name="cves", sort=TRUE) %>% 
+  mutate(pct = percent(cves/sum(cves), 0.1))
+cwe_count
+```
+
+
+```{r}
+toplot <- cwe %>% 
+  mutate(id = str_extract(cwe, "\\d+")) %>% 
+  left_join(cwe_map, by="id") %>% 
+  distinct(cve, toplevel=txt) %>% 
+  count(toplevel, name="instances") %>% 
+  arrange(instances) %>% 
+  mutate(toplevel = factor(toplevel, levels=toplevel, ordered=TRUE)) %>% 
+  mutate(txt = paste0(comma(instances), " (", percent(instances/sum(instances), 0.1), ")"))
+
+gg <- ggplot(toplot, aes(instances, toplevel, label=txt)) +
+  geom_col() +
+  ggfittext::geom_bar_text(size=8, family=mainfont) +
+  labs(subtitle = "CVE.org") +
+  scale_y_discrete("CWE Entity Type/\nAbstraction") +
+  scale_x_continuous("Number of Occurances in CVE List (cve.org)", expand=c(0,0), labels=mklab)
+savepic(gg, here::here("figs", img_slug, "cwe_in_practice"), 
+        height = 2, width = 7, open = FALSE, caption=FALSE, dpi=300) %>%
+  knitr::include_graphics()
+```
+
+![cwes_used_in_cvelist](figs/cna_problem_types/cwe_in_practice.png)
+
+
+```{r}
+nvd_file <- here("../cvedata/cache/cveexport/nvd/2024/03/nvdapi_weaknesses-2024-03-21.parquet")
+if(file.exists(nvd_file)) {
+  nvdbase <- read_parquet(nvd_file)
+  toplot2 <- nvdbase %>% 
+    mutate(id = str_extract(value, "\\d+")) %>% 
+    left_join(cwe_map, by="id") %>% 
+    distinct(cve, toplevel=txt) %>% 
+    drop_na() %>% 
+    count(toplevel, name="instances") %>% 
+    arrange(instances) %>% 
+    mutate(toplevel = factor(toplevel, levels=toplevel, ordered=TRUE)) %>% 
+    mutate(txt = paste0(comma(instances), " (", percent(instances/sum(instances), 0.1), ")"))
+  
+  gg2 <- ggplot(toplot2, aes(instances, toplevel, label=txt)) +
+    geom_col() +
+    ggfittext::geom_bar_text(size=8, family=mainfont) +
+    labs(subtitle = "NVD") +
+    scale_y_discrete("CWE Entity Type/\nAbstraction") +
+    scale_x_continuous("Number of Occurances in NVD", expand=c(0,0), label=mklab)
+  savepic(gg2, here::here("figs", img_slug, "cwe_in_NVD"), 
+          height = 5, width = 7, open = FALSE, caption=FALSE, dpi=300) 
+} else {
+  cat("No Local NVD file found, that's okay\n")
+}
+    
+```
+
+![cwes_used_in_nvd](figs/cna_problem_types/cwe_in_NVD.png)
+```{r}
+foo <- category_relation %>% 
+  filter(view_id == "1400") %>% 
+  rename(cat_id = id, id = cwe_id) %>% 
+  select(cat_id, id, name)
+
+cwe2cat <- cwe %>% 
+  mutate(id = str_extract(cwe, "\\d+")) %>% 
+  left_join(foo, by="id")  %>%
+  count(cat_id, name, sort=TRUE, name="instances") %>% 
+  arrange(instances) %>% 
+  mutate(name = gsub("Comprehensive Categorization: ", "", name)) %>% 
+  replace_na(list(name = "<Invalid CWE>")) %>%
+  mutate(name = factor(name, levels=name, ordered=TRUE)) %>% 
+  mutate(txt = paste0(comma(instances), " (", percent(instances/sum(instances), 0.1), ")"))
+
+gg <- ggplot(cwe2cat, aes(instances, name, label=txt)) +
+  geom_col() +
+  ggfittext::geom_bar_text(size=7, min.size = 6, family=mainfont, outside = TRUE) +
+  labs(subtitle = "CVE List (cve.org)") +
+  scale_y_discrete("Category 1400: Comprehensive Categorization") +
+  scale_x_continuous("Number of Occurances in CVEList", expand=c(0,0), label=mklab)
+savepic(gg, here::here("figs", params$img_slug, "view1400_categorization"), 
+        height = 5, width = 7, open = FALSE, caption=FALSE, dpi=300) %>%
+  knitr::include_graphics()
+```
+
+  
