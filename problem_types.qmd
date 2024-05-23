@@ -107,6 +107,9 @@ cnacount <- cves %>%
   select(cve, cna = cveMetadata.assignerShortName) %>% 
   drop_na() %>%
   count(cna, name="n")
+totalcve <- cves %>% distinct(cve) %>% nrow()
+totalcna <- cves %>% distinct(cveMetadata.assignerShortName) %>% nrow()
+
 ```
 
 # Problem types
@@ -179,7 +182,7 @@ toplot <- cleaned %>%
          in_cweid = str_detect(tolower(cweid), "cwe[-_.]\\d+")) %>% 
   replace_na(list(in_desc=FALSE, in_cweId=FALSE, in_cweid=FALSE)) %>% 
   mutate(anycwe = in_desc | in_cweId | in_cweid) %>% 
-  # filter(anycwe) %>%
+  filter(anycwe) %>%
   left_join(cvecna, by="cve") %>% 
   summarize(.by=c(type,anycwe), cves = n_distinct(cve)) %>% 
   mutate(label = ifelse(anycwe, "CWE Found", "No CWE")) %>% 
