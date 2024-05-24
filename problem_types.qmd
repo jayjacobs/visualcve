@@ -140,7 +140,7 @@ knitr::kable(fortable, format = "html",
 
 ```
 
-## Types of problemTypes
+## "Type" in problemTypes
 
 ```{r}
 # type is interesting.
@@ -182,7 +182,7 @@ toplot <- cleaned %>%
          in_cweid = str_detect(tolower(cweid), "cwe[-_.]\\d+")) %>% 
   replace_na(list(in_desc=FALSE, in_cweId=FALSE, in_cweid=FALSE)) %>% 
   mutate(anycwe = in_desc | in_cweId | in_cweid) %>% 
-  filter(anycwe) %>%
+  # filter(anycwe) %>%
   left_join(cvecna, by="cve") %>% 
   summarize(.by=c(type,anycwe), cves = n_distinct(cve)) %>% 
   mutate(label = ifelse(anycwe, "CWE Found", "No CWE")) %>% 
@@ -194,7 +194,35 @@ knitr::kable(toplot, format = "html",
 
 ```
 
-## Language 
+Because it's a simple regex we can discover the CWE ID in other places, such as the description.  This is limited to the records where a valid CWE field was found. 
+
+```{r}
+toplot <- cleaned %>% 
+  select(cve, description, lang, type, cweId, cweid) %>% 
+  mutate(in_desc = str_detect(tolower(description), "cwe[-_.]\\d+"),
+         in_cweId = str_detect(tolower(cweId), "cwe[-_.]\\d+"),
+         in_cweid = str_detect(tolower(cweid), "cwe[-_.]\\d+")) %>% 
+  replace_na(list(in_desc=FALSE, in_cweId=FALSE, in_cweid=FALSE)) %>% 
+  mutate(anycwe = in_desc | in_cweId | in_cweid) %>% 
+  filter(anycwe) %>%
+  left_join(cvecna, by="cve") %>% 
+  summarize(.by=c(in_desc, in_cweId, in_cweid), cves = n_distinct(cve), cnas=n_distinct(cna)) %>% 
+  arrange(-cves, -cnas) %>% 
+  rename(`CWE in Description`=in_desc,
+         `CWE in cweId`=in_cweId,
+         `CWE in cweid`=in_cweid)
+
+knitr::kable(toplot, format = "html", 
+             caption = paste("Where are CWEs being found?"))
+
+```
+
+
+
+
+## Record Completeness
+
+Should there always be a "lang" and "type" and "cweId" or what's the best combination?
 
 ```{r}
 toplot <- cleaned %>% 
@@ -216,12 +244,33 @@ toplot <- cleaned %>%
   left_join(cvepub, by="cve") %>% 
   replace_na(list(problemTypes.lang = FALSE, problemTypes.type = FALSE, problemTypes.cweId = FALSE, 
         problemTypes.cweid = FALSE, problemTypes.description = FALSE)) %>% 
-  count(problemTypes.lang, problemTypes.type, problemTypes.cweId, 
-        problemTypes.cweid, problemTypes.description)
+  count(lang=problemTypes.lang, type=problemTypes.type, 
+        cweId=problemTypes.cweId, 
+        description=problemTypes.description, name="count") %>% 
+  arrange(count) %>% 
+  mutate(yval = row_number()) %>% 
+  gather(cat, val, -yval) %>% 
+  mutate(cat = factor(cat, levels=c("count", "lang", "type", "cweId", "description"), ordered=TRUE)) %>% 
+  mutate(filler = ifelse(val == 1 & cat != "count", tab("blue"), "white"),
+         val = case_when(val == 1 & cat != "count" ~ "X",
+                         val == 0 & cat != "count" ~ "",
+                         TRUE ~ comma(as.numeric(val))))
+
+gg <- ggplot(toplot, aes(cat, yval, label=val, fill=filler)) +
+  geom_tile(color="gray95", size=1) +
+  geom_text(size=8/.pt, family=mainfont) +
+  scale_fill_identity() +
+  scale_x_discrete(expand=c(0,0), position="top") +
+  scale_y_continuous(expand=c(0,0)) +
+  theme(axis.text.y = element_blank(),
+        axis.title = element_blank())
+
+gg
+
 
 ```
 
-```{r}
+```{r eval=FALSE}
 toplot <- cleaned %>% 
   count(description, lang, type, cweId, cweid, name="instances", sort=TRUE) %>% 
   mutate(in_desc = str_detect(tolower(description), "cwe[-_.]\\d+"),
@@ -232,40 +281,7 @@ toplot <- cleaned %>%
   count(in_desc, in_cweId, wt=instances, sort=TRUE)
 ```
 
-## containers.cna.problemTypes.descriptions.type
-
-```{r}
-cleaned %>% 
-  left_join(cvecna, by="cve") %>% 
-  summarize(.by=type, cves = n_distinct(cve), cnas = n_distinct(cna)) %>% 
-  arrange(-cves)
-
-```
-
-containers.cna.problemTypes.descriptions.description
-
-```{r}
-cleaned %>% 
-  left_join(cvecna, by="cve") %>% 
-  summarize(.by=description, cves = n_distinct(cve)) %>% 
-  arrange(-cves)
-
-```
-
-```{r}
-cleaned %>% 
-  left_join(cvecna, by="cve") %>% 
-  summarize(.by=c(type, description), cves = n_distinct(cve)) %>% 
-  arrange(-cves) 
-
-```
-
-```{r}
-cwe <- cleaned %>% 
-  mutate(cweId = ifelse(is.na(cweId) & !is.na(cweid), cweid, cweId)) %>% 
-  select(cve, cwe=cweId) %>% 
-  drop_na()
-```
+# CWE ID
 
 ```{r}
 zipfile <- tempfile(fileext = ".xml.zip")
@@ -274,7 +290,7 @@ outdir <- tempdir()
 rez <- unzip(zipfile, exdir = outdir)
 rawcwe <- read_xml(rez)
 allcwe <- lapply(xml_children(rawcwe), function(cwecat) {
-  cat("Name:", xml_name(cwecat), "\n")
+  # cat("Name:", xml_name(cwecat), "\n")
   allsubcwe <- map_dfr(xml_children(cwecat), function(subcwe) {
     basedata <- tibble(toplevel = xml_name(cwecat))
 
@@ -340,96 +356,187 @@ cwe_map <- weakness %>% select(toplevel, id, name, status, abstraction) %>%
                               toplevel == "Views" ~ "View")) %>% 
   mutate(txt = ifelse(!is.na(abstraction), abstraction, toplevel))
 
-cwe_count <- cwe %>% 
-  mutate(id = str_extract(cwe, "\\d+")) %>% 
-  left_join(cwe_map, by="id") %>% 
-  count(cve, toplevel) %>% 
-  mutate(txt = paste0(toplevel, "(", n, ")")) %>% 
-  summarize(.by=cve, x = paste(sort(txt), collapse=",")) %>% 
-  count(x, name="cves", sort=TRUE) %>% 
-  mutate(pct = percent(cves/sum(cves), 0.1))
-cwe_count
+# cwe_count <- cwe %>% 
+#   mutate(id = str_extract(cwe, "\\d+")) %>% 
+#   left_join(cwe_map, by="id") %>% 
+#   count(cve, toplevel) %>% 
+#   mutate(txt = paste0(toplevel, "(", n, ")")) %>% 
+#   summarize(.by=cve, x = paste(sort(txt), collapse=",")) %>% 
+#   count(x, name="cves", sort=TRUE) %>% 
+#   mutate(pct = percent(cves/sum(cves), 0.1))
+# cwe_count
 ```
 
 
-```{r}
-toplot <- cwe %>% 
-  mutate(id = str_extract(cwe, "\\d+")) %>% 
-  left_join(cwe_map, by="id") %>% 
-  distinct(cve, toplevel=txt) %>% 
-  count(toplevel, name="instances") %>% 
-  arrange(instances) %>% 
-  mutate(toplevel = factor(toplevel, levels=toplevel, ordered=TRUE)) %>% 
-  mutate(txt = paste0(comma(instances), " (", percent(instances/sum(instances), 0.1), ")"))
+## Number off CWEs in CVE records
 
-gg <- ggplot(toplot, aes(instances, toplevel, label=txt)) +
+This section is aggregating any identification of CWE ID in any of the three common fields. 
+
+Note that seven CVEs had five (5) unique CWEs in a single CVE record. 
+
+```{r fig.width=7, fig.height=2}
+toplot <- cleaned %>% 
+  select(cve, description, lang, type, cweId, cweid) %>% 
+  mutate(in_desc = str_extract(tolower(description), "cwe[-_.]\\d+"),
+         in_cweId = str_extract(tolower(cweId), "cwe[-_.]\\d+"),
+         in_cweid = str_extract(tolower(cweid), "cwe[-_.]\\d+")) %>% 
+  filter(!(is.na(in_desc) & is.na(in_cweId) & is.na(in_cweid))) %>% 
+  mutate(cwe = case_when(!is.na(in_cweId) ~ toupper(in_cweId),
+                         !is.na(in_cweid) ~ toupper(in_cweid),
+                         !is.na(in_desc) ~ toupper(in_desc))) %>% 
+  filter(!is.na(cwe)) %>% 
+  distinct(cve, cwe) %>% 
+  count(cve, name="cwes") %>% 
+  count(cwes, name="cves") %>% 
+  mutate(cwes = factor(cwes, levels=rev(sort(unique(cwes))), ordered=TRUE)) %>% 
+  mutate(txt = paste(comma(cves), "CVEs"))
+
+
+gg <- ggplot(toplot, aes(cves, cwes, label=txt)) +
+  geom_vline(xintercept=0, color="gray90", size=0.25) +
+  geom_col(fill=tab("blue")) +
+  ggfittext::geom_bar_text(size=8) +
+  scale_y_discrete("Number of unique\nCWEs in CVE record", expand=c(0,0)) +
+  scale_x_continuous("Count of CVEs", expand=c(0,0)) +
+  theme(axis.text.x = element_blank(),
+        panel.grid = element_blank())
+gg
+```
+
+CWE's have different level of Abstractions as well as views and categories. CWE recommends only assigning "Base" CWEs to vulnerabilities. 
+
+```{r}
+toplot <- cleaned %>% 
+  select(cve, description, lang, type, cweId, cweid) %>% 
+  mutate(in_desc = str_extract(tolower(description), "cwe[-_.]\\d+"),
+         in_cweId = str_extract(tolower(cweId), "cwe[-_.]\\d+"),
+         in_cweid = str_extract(tolower(cweid), "cwe[-_.]\\d+")) %>% 
+  filter(!(is.na(in_desc) & is.na(in_cweId) & is.na(in_cweid))) %>% 
+  mutate(cwe = case_when(!is.na(in_cweId) ~ toupper(in_cweId),
+                         !is.na(in_cweid) ~ toupper(in_cweid),
+                         !is.na(in_desc) ~ toupper(in_desc))) %>% 
+  filter(!is.na(cwe)) %>% 
+  distinct(cve, cwe) %>% 
+  mutate(id = gsub("CWE-", "", cwe)) %>% 
+  # left_join(cvecna, by="cve") %>% 
+  left_join(cwe_map, by=c("id")) %>% 
+  mutate(year = as.numeric(substr(cve, 5, 8))) %>% 
+  filter(!is.na(txt)) %>% 
+  count(year, txt) %>% 
+  filter(year >= 2017) %>% 
+  mutate(.by=year, pct = n/sum(n))
+
+toplot2 <- toplot %>% count(txt, wt=n) %>% 
+  mutate(pct = n/sum(n)) %>% 
+  arrange(pct) %>% 
+  mutate(txt = factor(txt, levels=txt, ordered=TRUE),
+         lab = percent(pct, 0.1))
+
+toplot3 <- toplot %>% 
+  mutate(txt = factor(txt, levels=levels(toplot2$txt), ordered=TRUE))
+
+colmap <- rev(ggthemes::tableau_color_pal()(length(levels(toplot2$txt))))
+names(colmap) <- levels(toplot2$txt)
+
+gg1 <- ggplot(toplot2, aes(pct, txt, fill=txt, label=lab)) +
   geom_col() +
-  ggfittext::geom_bar_text(size=8, family=mainfont) +
-  labs(subtitle = "CVE.org") +
-  scale_y_discrete("CWE Entity Type/\nAbstraction") +
-  scale_x_continuous("Number of Occurances in CVE List (cve.org)", expand=c(0,0), labels=mklab)
-savepic(gg, here::here("figs", img_slug, "cwe_in_practice"), 
-        height = 2, width = 7, open = FALSE, caption=FALSE, dpi=300) %>%
-  knitr::include_graphics()
-```
-
-![cwes_used_in_cvelist](figs/cna_problem_types/cwe_in_practice.png)
-
-
-```{r}
-nvd_file <- here("../cvedata/cache/cveexport/nvd/2024/03/nvdapi_weaknesses-2024-03-21.parquet")
-if(file.exists(nvd_file)) {
-  nvdbase <- read_parquet(nvd_file)
-  toplot2 <- nvdbase %>% 
-    mutate(id = str_extract(value, "\\d+")) %>% 
-    left_join(cwe_map, by="id") %>% 
-    distinct(cve, toplevel=txt) %>% 
-    drop_na() %>% 
-    count(toplevel, name="instances") %>% 
-    arrange(instances) %>% 
-    mutate(toplevel = factor(toplevel, levels=toplevel, ordered=TRUE)) %>% 
-    mutate(txt = paste0(comma(instances), " (", percent(instances/sum(instances), 0.1), ")"))
+  ggfittext::geom_bar_text(family=mainfont, size=9) +
+  scale_fill_manual(values=colmap) +
+  scale_y_discrete("CWE Abstraction", expand=c(0,0)) +
+  scale_x_continuous("Percent of CWE values", expand=c(0,0), label=label_percent(1))
+  #theme(axis.title.y = element_blank())
   
-  gg2 <- ggplot(toplot2, aes(instances, toplevel, label=txt)) +
-    geom_col() +
-    ggfittext::geom_bar_text(size=8, family=mainfont) +
-    labs(subtitle = "NVD") +
-    scale_y_discrete("CWE Entity Type/\nAbstraction") +
-    scale_x_continuous("Number of Occurances in NVD", expand=c(0,0), label=mklab)
-  savepic(gg2, here::here("figs", img_slug, "cwe_in_NVD"), 
-          height = 5, width = 7, open = FALSE, caption=FALSE, dpi=300) 
-} else {
-  cat("No Local NVD file found, that's okay\n")
-}
-    
+  
+gg2 <- ggplot(toplot3, aes(year, pct, group=txt, fill=txt)) +
+  geom_col(position="stack") +
+  scale_fill_manual(values=colmap) +
+  scale_x_continuous("CVE Year", expand=c(0,0), breaks=seq(2017,2030)) +
+  scale_y_continuous("Percent of CWE values", expand=c(0,0), label=label_percent(1))
+
+gg1 + gg2 + plot_layout(nrow=1, guides = "collect") &
+    scale_fill_manual(values=colmap)
+
 ```
 
-![cwes_used_in_nvd](figs/cna_problem_types/cwe_in_NVD.png)
-```{r}
-foo <- category_relation %>% 
+## top CWEs
+
+```{r fig.height=9}
+toplot <- cleaned %>% 
+  select(cve, description, lang, type, cweId, cweid) %>% 
+  mutate(in_desc = str_extract(tolower(description), "cwe[-_.]\\d+"),
+         in_cweId = str_extract(tolower(cweId), "cwe[-_.]\\d+"),
+         in_cweid = str_extract(tolower(cweid), "cwe[-_.]\\d+")) %>% 
+  filter(!(is.na(in_desc) & is.na(in_cweId) & is.na(in_cweid))) %>% 
+  mutate(cwe = case_when(!is.na(in_cweId) ~ toupper(in_cweId),
+                         !is.na(in_cweid) ~ toupper(in_cweid),
+                         !is.na(in_desc) ~ toupper(in_desc))) %>% 
+  filter(!is.na(cwe)) %>% 
+  distinct(cve, cwe) %>% 
+  mutate(id = gsub("CWE-", "", cwe)) %>% 
+  # left_join(cvecna, by="cve") %>% 
+  left_join(cwe_map, by=c("id")) %>% 
+  filter(!is.na(name)) %>% 
+  mutate(txt = paste0(cwe, ": ", str_trunc(name, width=40, side = "right"))) %>% 
+  count(txt) %>% 
+  arrange(n) %>% 
+  mutate(txt = factor(txt, levels=txt, ordered=TRUE)) %>% 
+  mutate(pct = n/sum(n),
+         lab = paste0(n, " (", percent(pct, 0.1), ")")) %>% 
+  top_n(50, wt=n)
+
+gg <- ggplot(toplot, aes(pct, txt, label=lab)) +
+  geom_col(color=NA) +
+  ggfittext::geom_bar_text(size=7, min.size = 5, family=mainfont, outside=TRUE) +
+  scale_x_continuous("Percent of CWEs", expand=c(0,0)) +
+  theme(axis.title.y = element_blank(),
+        axis.line.y = element_line(color="gray60", size=0.5),
+        panel.grid = element_blank())
+gg
+```
+
+
+We can get a better idea of what these are by using the "Comprehensive Categorization" in category 1400. It maps every CWE up to a one of twenty-two high-level categories. 
+
+```{r fig.height=6}
+toplot <- cleaned %>% 
+  select(cve, description, lang, type, cweId, cweid) %>% 
+  mutate(in_desc = str_extract(tolower(description), "cwe[-_.]\\d+"),
+         in_cweId = str_extract(tolower(cweId), "cwe[-_.]\\d+"),
+         in_cweid = str_extract(tolower(cweid), "cwe[-_.]\\d+")) %>% 
+  filter(!(is.na(in_desc) & is.na(in_cweId) & is.na(in_cweid))) %>% 
+  mutate(cwe = case_when(!is.na(in_cweId) ~ toupper(in_cweId),
+                         !is.na(in_cweid) ~ toupper(in_cweid),
+                         !is.na(in_desc) ~ toupper(in_desc))) %>% 
+  filter(!is.na(cwe)) %>% 
+  distinct(cve, cwe) %>% 
+  mutate(id = gsub("CWE-", "", cwe))
+  # left_join(cvecna, by="cve") %>% 
+
+toplot <- category_relation %>% 
   filter(view_id == "1400") %>% 
   rename(cat_id = id, id = cwe_id) %>% 
-  select(cat_id, id, name)
-
-cwe2cat <- cwe %>% 
-  mutate(id = str_extract(cwe, "\\d+")) %>% 
-  left_join(foo, by="id")  %>%
-  count(cat_id, name, sort=TRUE, name="instances") %>% 
-  arrange(instances) %>% 
+  select(cat_id, id, name) %>% 
   mutate(name = gsub("Comprehensive Categorization: ", "", name)) %>% 
-  replace_na(list(name = "<Invalid CWE>")) %>%
+  right_join(toplot, by="id") %>% 
+  filter(!is.na(name)) %>% 
+  # summarize(.by=cve, name = paste(sort(unique(name)), collapse=", ")) %>% 
+  count(name, sort=TRUE) %>% 
+  arrange(n) %>% 
   mutate(name = factor(name, levels=name, ordered=TRUE)) %>% 
-  mutate(txt = paste0(comma(instances), " (", percent(instances/sum(instances), 0.1), ")"))
+  mutate(pct = n/sum(n),
+         lab = paste0(n, " (", percent(pct, 0.1), ")")) %>% 
+  top_n(50, wt=n)
 
-gg <- ggplot(cwe2cat, aes(instances, name, label=txt)) +
-  geom_col() +
-  ggfittext::geom_bar_text(size=7, min.size = 6, family=mainfont, outside = TRUE) +
-  labs(subtitle = "CVE List (cve.org)") +
-  scale_y_discrete("Category 1400: Comprehensive Categorization") +
-  scale_x_continuous("Number of Occurances in CVEList", expand=c(0,0), label=mklab)
-savepic(gg, here::here("figs", params$img_slug, "view1400_categorization"), 
-        height = 5, width = 7, open = FALSE, caption=FALSE, dpi=300) %>%
-  knitr::include_graphics()
+gg <- ggplot(toplot, aes(pct, name, label=lab)) +
+  geom_col(color=NA) +
+  ggfittext::geom_bar_text(size=7, min.size = 4, family=mainfont, outside=TRUE) +
+  scale_x_continuous("Percent of CWEs", expand=c(0,0)) +
+  theme(axis.title.y = element_blank(),
+        axis.line.y = element_line(color="gray60", size=0.5),
+        panel.grid = element_blank())
+gg
+
+
 ```
 
   

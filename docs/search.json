@@ -26,5 +26,61 @@
     "title": "containers.cna.metrics",
     "section": "",
     "text": "This looks at the percent of CVEs with at least one valid CVSS record from each CNA and compares against the total number of CVEs from that CNA."
+  },
+  {
+    "objectID": "problem_types.html",
+    "href": "problem_types.html",
+    "title": "Problem types",
+    "section": "",
+    "text": "251,589 CVEs from 336 CNAs as of 2024-05-23\n\n\ncat\ncves\ncnas\n\n\n\n\nproblemTypes.lang\n233026\n327\n\n\nproblemTypes.type\n227387\n321\n\n\nproblemTypes.cweId\n49658\n299\n\n\nproblemTypes.cweid\n15\n1\n\n\nproblemTypes.description\n98617\n326\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nproblemType.type values and counts\n\n\ntype\ncves\ncnas\ncna\n\n\n\n\ntext\n173329\n161\n&lt;too many&gt;\n\n\nCWE\n50519\n298\n&lt;too many&gt;\n\n\n&lt;undefined&gt;\n6173\n73\n&lt;too many&gt;\n\n\nImpact\n3345\n1\nmicrosoft\n\n\ncwe\n326\n2\ncisco, OX\n\n\ncvw\n46\n1\nSplunk\n\n\nRCE (Remote Code Execution)\n15\n1\natlassian\n\n\nBASM (Broken Authentication & Session Management)\n2\n1\natlassian\n\n\nImproper Authorization\n2\n1\natlassian\n\n\nInjection\n2\n1\natlassian\n\n\nSecurity Misconfiguration\n1\n1\natlassian\n\n\nproblem_type\n1\n1\napple\n\n\nInformation Disclosure\n1\n1\natlassian\n\n\nOther\n1\n1\natlassian\n\n\nStored XSS\n1\n1\natlassian\n\n\n\n\n\n\n\n\n\n\n\nI used a regex “cwe[-_.]\\d+” to detect a CWE ID in any of the description or the two cweId and cweid fields. The following table is a count of the CVEs with one or more CWEs found in those fields where the type is specified as shown.\n\n\n\n\nThe elusive CWE ID\n\n\ntype\nCWE Found\nNo CWE\n\n\n\n\nBASM (Broken Authentication & Session Management)\n0\n2\n\n\ncvw\n46\n0\n\n\ncwe\n326\n0\n\n\nCWE\n50519\n0\n\n\nImpact\n0\n3345\n\n\nImproper Authorization\n0\n2\n\n\nInformation Disclosure\n0\n1\n\n\nInjection\n0\n2\n\n\nOther\n0\n1\n\n\nproblem_type\n0\n1\n\n\nRCE (Remote Code Execution)\n0\n15\n\n\nSecurity Misconfiguration\n0\n1\n\n\nStored XSS\n0\n1\n\n\ntext\n1\n173328\n\n\nNA\n3056\n3117\n\n\n\n\n\n\n\n\nBecause it’s a simple regex we can discover the CWE ID in other places, such as the description. This is limited to the records where a valid CWE field was found.\n\n\n\n\nWhere are CWEs being found?\n\n\nCWE in Description\nCWE in cweId\nCWE in cweid\ncves\ncnas\n\n\n\n\nTRUE\nTRUE\nFALSE\n47963\n296\n\n\nTRUE\nFALSE\nFALSE\n4275\n22\n\n\nFALSE\nTRUE\nFALSE\n1695\n16\n\n\nFALSE\nFALSE\nTRUE\n15\n1\n\n\n\n\n\n\n\n\n\n\n\nShould there always be a “lang” and “type” and “cweId” or what’s the best combination?"
+  },
+  {
+    "objectID": "problem_types.html#types-of-problemtypes",
+    "href": "problem_types.html#types-of-problemtypes",
+    "title": "Problem types",
+    "section": "",
+    "text": "problemType.type values and counts\n\n\ntype\ncves\ncnas\ncna\n\n\n\n\ntext\n173329\n161\n&lt;too many&gt;\n\n\nCWE\n50519\n298\n&lt;too many&gt;\n\n\n&lt;undefined&gt;\n6173\n73\n&lt;too many&gt;\n\n\nImpact\n3345\n1\nmicrosoft\n\n\ncwe\n326\n2\ncisco, OX\n\n\ncvw\n46\n1\nSplunk\n\n\nRCE (Remote Code Execution)\n15\n1\natlassian\n\n\nBASM (Broken Authentication & Session Management)\n2\n1\natlassian\n\n\nImproper Authorization\n2\n1\natlassian\n\n\nInjection\n2\n1\natlassian\n\n\nSecurity Misconfiguration\n1\n1\natlassian\n\n\nproblem_type\n1\n1\napple\n\n\nInformation Disclosure\n1\n1\natlassian\n\n\nOther\n1\n1\natlassian\n\n\nStored XSS\n1\n1\natlassian"
+  },
+  {
+    "objectID": "problem_types.html#looking-for-cwe-through-regex",
+    "href": "problem_types.html#looking-for-cwe-through-regex",
+    "title": "Problem types",
+    "section": "",
+    "text": "I used a regex “cwe[-_.]\\d+” to detect a CWE ID in any of the description or the two cweId and cweid fields. The following table is a count of the CVEs with one or more CWEs found in those fields where the type is specified as shown.\n\n\n\n\nThe elusive CWE ID\n\n\ntype\nCWE Found\nNo CWE\n\n\n\n\nBASM (Broken Authentication & Session Management)\n0\n2\n\n\ncvw\n46\n0\n\n\ncwe\n326\n0\n\n\nCWE\n50519\n0\n\n\nImpact\n0\n3345\n\n\nImproper Authorization\n0\n2\n\n\nInformation Disclosure\n0\n1\n\n\nInjection\n0\n2\n\n\nOther\n0\n1\n\n\nproblem_type\n0\n1\n\n\nRCE (Remote Code Execution)\n0\n15\n\n\nSecurity Misconfiguration\n0\n1\n\n\nStored XSS\n0\n1\n\n\ntext\n1\n173328\n\n\nNA\n3056\n3117\n\n\n\n\n\n\n\n\nBecause it’s a simple regex we can discover the CWE ID in other places, such as the description. This is limited to the records where a valid CWE field was found.\n\n\n\n\nWhere are CWEs being found?\n\n\nCWE in Description\nCWE in cweId\nCWE in cweid\ncves\ncnas\n\n\n\n\nTRUE\nTRUE\nFALSE\n47963\n296\n\n\nTRUE\nFALSE\nFALSE\n4275\n22\n\n\nFALSE\nTRUE\nFALSE\n1695\n16\n\n\nFALSE\nFALSE\nTRUE\n15\n1"
+  },
+  {
+    "objectID": "problem_types.html#containers.cna.problemtypes.descriptions.type",
+    "href": "problem_types.html#containers.cna.problemtypes.descriptions.type",
+    "title": "Problem types",
+    "section": "",
+    "text": "# A tibble: 15 × 3\n   type                                                cves  cnas\n   &lt;chr&gt;                                              &lt;int&gt; &lt;int&gt;\n 1 text                                              173329   161\n 2 CWE                                                50519   298\n 3 &lt;NA&gt;                                                6173    73\n 4 Impact                                              3345     1\n 5 cwe                                                  326     2\n 6 cvw                                                   46     1\n 7 RCE (Remote Code Execution)                           15     1\n 8 BASM (Broken Authentication & Session Management)      2     1\n 9 Improper Authorization                                 2     1\n10 Injection                                              2     1\n11 Security Misconfiguration                              1     1\n12 problem_type                                           1     1\n13 Information Disclosure                                 1     1\n14 Other                                                  1     1\n15 Stored XSS                                             1     1\n\n\ncontainers.cna.problemTypes.descriptions.description\n\n\n# A tibble: 12,947 × 2\n   description                                                              cves\n   &lt;chr&gt;                                                                   &lt;int&gt;\n 1 &lt;NA&gt;                                                                   134409\n 2 CWE-79 Improper Neutralization of Input During Web Page Generation ('…   3862\n 3 Elevation of Privilege                                                   2447\n 4 Remote Code Execution                                                    2430\n 5 CWE-352 Cross-Site Request Forgery (CSRF)                                2115\n 6 Elevation of privilege                                                   1850\n 7 CWE-89 SQL Injection                                                     1811\n 8 Information Disclosure                                                   1713\n 9 Information disclosure                                                   1545\n10 CWE-79 Cross-site Scripting (XSS)                                        1478\n# ℹ 12,937 more rows\n\n\n\n\n# A tibble: 13,661 × 3\n   type  description                                                        cves\n   &lt;chr&gt; &lt;chr&gt;                                                             &lt;int&gt;\n 1 text  &lt;NA&gt;                                                             134380\n 2 CWE   CWE-79 Improper Neutralization of Input During Web Page Generat…   3001\n 3 CWE   CWE-89 SQL Injection                                               1810\n 4 CWE   CWE-352 Cross-Site Request Forgery (CSRF)                          1778\n 5 text  Elevation of privilege                                             1628\n 6 CWE   CWE-79 Cross-site Scripting (XSS)                                  1478\n 7 text  Elevation of Privilege                                             1333\n 8 text  Information disclosure                                             1315\n 9 text  Remote Code Execution                                              1296\n10 text  Information Disclosure                                             1277\n# ℹ 13,651 more rows\n\n\n\n\nName: Weaknesses \nName: Categories \nName: Views \nName: External_References \n\n\n# A tibble: 9 × 3\n  x                        cves pct  \n  &lt;chr&gt;                   &lt;int&gt; &lt;chr&gt;\n1 Weakness(1)             47714 96.1%\n2 Weakness(2)              1176 2.4% \n3 Category(1)               635 1.3% \n4 Weakness(3)                97 0.2% \n5 Category(1),Weakness(1)    22 0.0% \n6 Weakness(4)                13 0.0% \n7 Weakness(5)                 7 0.0% \n8 View(1)                     6 0.0% \n9 Category(1),Weakness(2)     3 0.0%"
+  },
+  {
+    "objectID": "problem_types.html#type-in-problemtypes",
+    "href": "problem_types.html#type-in-problemtypes",
+    "title": "Problem types",
+    "section": "",
+    "text": "problemType.type values and counts\n\n\ntype\ncves\ncnas\ncna\n\n\n\n\ntext\n173329\n161\n&lt;too many&gt;\n\n\nCWE\n50519\n298\n&lt;too many&gt;\n\n\n&lt;undefined&gt;\n6173\n73\n&lt;too many&gt;\n\n\nImpact\n3345\n1\nmicrosoft\n\n\ncwe\n326\n2\ncisco, OX\n\n\ncvw\n46\n1\nSplunk\n\n\nRCE (Remote Code Execution)\n15\n1\natlassian\n\n\nBASM (Broken Authentication & Session Management)\n2\n1\natlassian\n\n\nImproper Authorization\n2\n1\natlassian\n\n\nInjection\n2\n1\natlassian\n\n\nSecurity Misconfiguration\n1\n1\natlassian\n\n\nproblem_type\n1\n1\napple\n\n\nInformation Disclosure\n1\n1\natlassian\n\n\nOther\n1\n1\natlassian\n\n\nStored XSS\n1\n1\natlassian"
+  },
+  {
+    "objectID": "problem_types.html#record-completeness",
+    "href": "problem_types.html#record-completeness",
+    "title": "Problem types",
+    "section": "",
+    "text": "Should there always be a “lang” and “type” and “cweId” or what’s the best combination?"
+  },
+  {
+    "objectID": "problem_types.html#number-off-cwes-in-cve-records",
+    "href": "problem_types.html#number-off-cwes-in-cve-records",
+    "title": "Problem types",
+    "section": "Number off CWEs in CVE records",
+    "text": "Number off CWEs in CVE records\nThis section is aggregating any identification of CWE ID in any of the three common fields.\nNote that seven CVEs had five (5) unique CWEs in a single CVE record.\n\n\n\n\n\n\n\n\n\nCWE’s have different level of Abstractions as well as views and categories. CWE recommends only assigning “Base” CWEs to vulnerabilities."
+  },
+  {
+    "objectID": "problem_types.html#top-cwes",
+    "href": "problem_types.html#top-cwes",
+    "title": "Problem types",
+    "section": "top CWEs",
+    "text": "top CWEs\n\n\n\n\n\n\n\n\n\nWe can get a better idea of what these are by using the “Comprehensive Categorization” in category 1400. It maps every CWE up to a one of twenty-two high-level categories."
   }
 ]

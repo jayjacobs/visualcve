@@ -12,6 +12,8 @@ website:
         text: Affected
       - href: metrics.qmd
         text: Metrics(CVSS)
+      - href: problem_types.qmd
+        text: ProblemTypes
       - href: about.qmd
         text: About
 format:
