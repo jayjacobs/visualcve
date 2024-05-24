@@ -180,3 +180,70 @@ knitr::kable(gtable, format = "html")
 
 ```
 
+
+```{r eval=FALSE}
+cves <- read_parquet(here("cache/cveparse/cves.parquet")) %>% 
+  select(-contains(".x_"))
+cnapub <- cves %>% 
+  mutate(published = as.Date(str_extract(cveMetadata.datePublished, "\\d{4}-\\d{2}-\\d{2}"))) %>% 
+  select(cve, cna = cveMetadata.assignerShortName, published) %>% 
+  drop_na() %>% 
+  mutate(month = floor_date(published, unit="month"))
+
+toplot <- cnapub %>% 
+  filter(published >= as.Date("2017-01-01")) %>% 
+  count(cna, month) %>% 
+  arrange(month, -n) %>% 
+  mutate(.by=month, pct = n/sum(n), csum = cumsum(pct), crit = lag(csum) < 0.8) %>% 
+  replace_na(list(crit=TRUE)) %>% 
+  filter(crit) %>% 
+  summarize(.by=month, n=n(), max = max(csum)) %>% 
+  arrange(month) %>% 
+  mutate(col = as.numeric(month))
+
+colmap <- rainbow(nrow(toplot))
+names(colmap) <- toplot$month
+gg <- ggplot(toplot, aes(n, max, color=month)) + 
+  geom_point() +
+  geom_smooth(method="lm") 
+  theme(legend.position="none")
+
+# percent of cnas to reach 80% of CVEs
+```
+
+
+```{r}
+cves <- read_parquet(here("cache/cveparse/cves.parquet")) %>% 
+  select(-contains(".x_"))
+cnapub <- cves %>% 
+  mutate(published = as.Date(str_extract(cveMetadata.datePublished, "\\d{4}-\\d{2}-\\d{2}"))) %>% 
+  select(cve, cna = cveMetadata.assignerShortName, published) %>% 
+  drop_na() %>% 
+  mutate(month = floor_date(published, unit="month"))
+
+datestep <- seq(max(cnapub$published), as.Date("2017-01-01"), by="-1 week")
+toplot <- map_dfr(datestep, function(x) {
+  cnapub %>% 
+    filter(published <= x,
+           published > (x %m-% years(1))) %>%
+    count(cna, sort=TRUE) %>% 
+    mutate(pct = n/sum(n), 
+           csum = cumsum(pct), 
+           pct70 = lag(csum) < 0.7,
+           pct80 = lag(csum) < 0.8,
+           pct90 = lag(csum) < 0.9) %>% 
+    replace_na(list(pct70=TRUE, pct80=TRUE, pct90=TRUE)) %>% 
+    summarize(pct70=sum(pct70), pct80=sum(pct80), pct90=sum(pct90)) %>% 
+    mutate(date = x) 
+}) %>% 
+  gather(cat, val, -date) %>%
+  mutate(txt = paste0(gsub("pct", "", cat), "% of CVEs"))
+gg <- ggplot(toplot, aes(date, val, group=txt, color=txt, label=txt)) +
+  geomtextpath::geom_textline(text_smoothing=50, size=8/.pt, family=mainfont) +
+  scale_y_continuous("Number of CNAs to reach...", limits=c(0,NA),
+                     expand=expansion(mult=c(0,0.02))) +
+  scale_x_date("12-month sliding window from Date") +
+  theme(legend.position="none")
+gg
+```
+
