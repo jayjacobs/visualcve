@@ -108,7 +108,6 @@ as both an array and a string (e.g. `containers.cna.source.defect`) and will the
 
 Note that the JSON allows for custom fields that start with "x_", but all of those have been removed since most the 5.0 records contain the full version 4 format of the data in `x_legacyV4Record`. This reduced a lot of the processing required. 
 
-```{r}
 ```{r cache=FALSE}
 #load the varlist generated during collect_json 
 varlist <- read_parquet(here("cache", "cveparse", "variables.parquet")) 
@@ -211,6 +210,7 @@ gg <- ggplot(toplot, aes(n, max, color=month)) +
 # percent of cnas to reach 80% of CVEs
 ```
 
+## CNAs as proportion of CVEs
 
 ```{r}
 cves <- read_parquet(here("cache/cveparse/cves.parquet")) %>% 

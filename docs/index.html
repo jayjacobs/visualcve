@@ -124,7 +124,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#visual-analysis-of-the-cve-list-2024-05-23" id="toc-visual-analysis-of-the-cve-list-2024-05-23" class="nav-link active" data-scroll-target="#visual-analysis-of-the-cve-list-2024-05-23">Visual Analysis of the CVE List: 2024-05-23</a></li>
+  <li><a href="#visual-analysis-of-the-cve-list-2024-06-04" id="toc-visual-analysis-of-the-cve-list-2024-06-04" class="nav-link active" data-scroll-target="#visual-analysis-of-the-cve-list-2024-06-04">Visual Analysis of the CVE List: 2024-06-04</a>
+  <ul class="collapse">
+  <li><a href="#cnas-as-proportion-of-cves" id="toc-cnas-as-proportion-of-cves" class="nav-link" data-scroll-target="#cnas-as-proportion-of-cves">CNAs as proportion of CVEs</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -134,10 +137,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="visual-analysis-of-the-cve-list-2024-05-23" class="level1">
-<h1>Visual Analysis of the CVE List: 2024-05-23</h1>
+<section id="visual-analysis-of-the-cve-list-2024-06-04" class="level1">
+<h1>Visual Analysis of the CVE List: 2024-06-04</h1>
 <p>This exploratory analysis is focused on the data completeness and quality of the primary source for CVE data: https://github.com/CVEProject/cvelistV5. This page is an automated pass through the JSON data.</p>
-<p>Last data pull was on 2024-05-23 and pulled 251,589 CVEs from 336 CNAs.</p>
+<p>Last data pull was on 2024-06-04 and pulled 252,652 CVEs from 337 CNAs.</p>
 <p>Each line in the table below represents a unique combinations of field and JSON type. For example, some fields may show up in the JSON as both an array and a string (e.g.&nbsp;<code>containers.cna.source.defect</code>) and will therefore show up twice in the listing below. The code will also do it’s best to count instances of objects and arrays, but the objects were a lot more difficult, you will notice <code>NA</code> in many of the count fields where the JSON type was an object.</p>
 <p>Note that the JSON allows for custom fields that start with “x_”, but all of those have been removed since most the 5.0 records contain the full version 4 format of the data in <code>x_legacyV4Record</code>. This reduced a lot of the processing required.</p>
 <div class="cell">
@@ -157,441 +160,847 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;">containers</td>
 <td style="text-align: left;">object</td>
-<td style="text-align: right;">251589</td>
+<td style="text-align: right;">252652</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">containers.adp</td>
+<td style="text-align: left;">array</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.adp.affected</td>
+<td style="text-align: left;">array</td>
+<td style="text-align: right;">3207</td>
+<td style="text-align: right;">3207</td>
+<td style="text-align: right;">146</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.adp.affected.cpes</td>
+<td style="text-align: left;">array</td>
+<td style="text-align: right;">8240</td>
+<td style="text-align: right;">3207</td>
+<td style="text-align: right;">146</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.adp.affected.defaultStatus</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">8240</td>
+<td style="text-align: right;">3207</td>
+<td style="text-align: right;">146</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.adp.affected.product</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">8240</td>
+<td style="text-align: right;">3207</td>
+<td style="text-align: right;">146</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.adp.affected.vendor</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">8240</td>
+<td style="text-align: right;">3207</td>
+<td style="text-align: right;">146</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.adp.affected.versions</td>
+<td style="text-align: left;">array</td>
+<td style="text-align: right;">8240</td>
+<td style="text-align: right;">3207</td>
+<td style="text-align: right;">146</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">...ainers.adp.affected.versions.lessThan</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">1285</td>
+<td style="text-align: right;">727</td>
+<td style="text-align: right;">83</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">...adp.affected.versions.lessThanOrEqual</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">1961</td>
+<td style="text-align: right;">826</td>
+<td style="text-align: right;">69</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.adp.affected.versions.status</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">9067</td>
+<td style="text-align: right;">3207</td>
+<td style="text-align: right;">146</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.adp.affected.versions.version</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">9067</td>
+<td style="text-align: right;">3205</td>
+<td style="text-align: right;">146</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">...ers.adp.affected.versions.versionType</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">3246</td>
+<td style="text-align: right;">1503</td>
+<td style="text-align: right;">112</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.adp.metrics</td>
+<td style="text-align: left;">array</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.adp.metrics.cvssV3_1</td>
+<td style="text-align: left;">object</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">...adp.metrics.cvssV3_1.attackComplexity</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">...ers.adp.metrics.cvssV3_1.attackVector</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">...p.metrics.cvssV3_1.availabilityImpact</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">...ainers.adp.metrics.cvssV3_1.baseScore</td>
+<td style="text-align: left;">number</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">...ers.adp.metrics.cvssV3_1.baseSeverity</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">...etrics.cvssV3_1.confidentialityImpact</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">....adp.metrics.cvssV3_1.integrityImpact</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">...p.metrics.cvssV3_1.privilegesRequired</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.adp.metrics.cvssV3_1.scope</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">....adp.metrics.cvssV3_1.userInteraction</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">...ers.adp.metrics.cvssV3_1.vectorString</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.adp.metrics.cvssV3_1.version</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">854</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.adp.metrics.format</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.adp.metrics.other</td>
+<td style="text-align: left;">object</td>
+<td style="text-align: right;">7319</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.adp.metrics.other.content</td>
+<td style="text-align: left;">object</td>
+<td style="text-align: right;">7319</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">...s.adp.metrics.other.content.dateAdded</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.adp.metrics.other.content.id</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">...s.adp.metrics.other.content.namespace</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">...ers.adp.metrics.other.content.options</td>
+<td style="text-align: left;">array</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">...ics.other.content.options.Automatable</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">...cs.other.content.options.Exploitation</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">...ther.content.options.Technical Impact</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">...s.adp.metrics.other.content.reference</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">...ainers.adp.metrics.other.content.role</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">...s.adp.metrics.other.content.timestamp</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">...iners.adp.metrics.other.content.value</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">...ers.adp.metrics.other.content.version</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.adp.metrics.other.type</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">7319</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.adp.metrics.scenarios</td>
+<td style="text-align: left;">array</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.adp.metrics.scenarios.lang</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.adp.metrics.scenarios.value</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.adp.problemTypes</td>
+<td style="text-align: left;">array</td>
+<td style="text-align: right;">946</td>
+<td style="text-align: right;">946</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.adp.problemTypes.descriptions</td>
+<td style="text-align: left;">array</td>
+<td style="text-align: right;">982</td>
+<td style="text-align: right;">946</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">...s.adp.problemTypes.descriptions.cweId</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">975</td>
+<td style="text-align: right;">942</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">...problemTypes.descriptions.description</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">982</td>
+<td style="text-align: right;">945</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">...rs.adp.problemTypes.descriptions.lang</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">982</td>
+<td style="text-align: right;">946</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">...rs.adp.problemTypes.descriptions.type</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">982</td>
+<td style="text-align: right;">946</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.adp.providerMetadata</td>
+<td style="text-align: left;">object</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">...ners.adp.providerMetadata.dateUpdated</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.adp.providerMetadata.orgId</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">...ainers.adp.providerMetadata.shortName</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.adp.timeline</td>
+<td style="text-align: left;">array</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.adp.timeline.lang</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.adp.timeline.time</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.adp.timeline.value</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.adp.title</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">7260</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">containers.cna</td>
 <td style="text-align: left;">object</td>
-<td style="text-align: right;">251589</td>
+<td style="text-align: right;">252652</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.affected</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">237497</td>
-<td style="text-align: right;">237497</td>
-<td style="text-align: right;">333</td>
+<td style="text-align: right;">238430</td>
+<td style="text-align: right;">238430</td>
+<td style="text-align: right;">334</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.affected.collectionURL</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">9335</td>
-<td style="text-align: right;">5601</td>
+<td style="text-align: right;">9543</td>
+<td style="text-align: right;">5729</td>
 <td style="text-align: right;">40</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">containers.cna.affected.collection_url</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">containers.cna.affected.cpes</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">49452</td>
-<td style="text-align: right;">4198</td>
+<td style="text-align: right;">51166</td>
+<td style="text-align: right;">4303</td>
 <td style="text-align: right;">6</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">containers.cna.affected.defaultStatus</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">44190</td>
-<td style="text-align: right;">23657</td>
-<td style="text-align: right;">274</td>
+<td style="text-align: right;">45126</td>
+<td style="text-align: right;">24307</td>
+<td style="text-align: right;">276</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">containers.cna.affected.modules</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">2046</td>
-<td style="text-align: right;">1575</td>
-<td style="text-align: right;">78</td>
+<td style="text-align: right;">2065</td>
+<td style="text-align: right;">1590</td>
+<td style="text-align: right;">79</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">containers.cna.affected.packageName</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">8743</td>
-<td style="text-align: right;">4598</td>
-<td style="text-align: right;">54</td>
+<td style="text-align: right;">8967</td>
+<td style="text-align: right;">4743</td>
+<td style="text-align: right;">55</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">containers.cna.affected.platforms</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">49366</td>
-<td style="text-align: right;">6228</td>
+<td style="text-align: right;">51004</td>
+<td style="text-align: right;">6335</td>
 <td style="text-align: right;">152</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">containers.cna.affected.product</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">331228</td>
-<td style="text-align: right;">103324</td>
-<td style="text-align: right;">332</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">containers.cna.affected.programFiles</td>
-<td style="text-align: left;">array</td>
-<td style="text-align: right;">64</td>
-<td style="text-align: right;">63</td>
-<td style="text-align: right;">13</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">containers.cna.affected.programRoutines</td>
-<td style="text-align: left;">array</td>
-<td style="text-align: right;">119</td>
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">7</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">...ers.cna.affected.programRoutines.name</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: right;">860</td>
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">containers.cna.affected.repo</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: right;">4223</td>
-<td style="text-align: right;">2364</td>
-<td style="text-align: right;">60</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">containers.cna.affected.vendor</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: right;">331217</td>
-<td style="text-align: right;">88747</td>
-<td style="text-align: right;">327</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">containers.cna.affected.versions</td>
-<td style="text-align: left;">array</td>
-<td style="text-align: right;">329013</td>
-<td style="text-align: right;">237367</td>
+<td style="text-align: right;">333564</td>
+<td style="text-align: right;">104139</td>
 <td style="text-align: right;">333</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">containers.cna.affected.programFiles</td>
+<td style="text-align: left;">array</td>
+<td style="text-align: right;">4023</td>
+<td style="text-align: right;">2042</td>
+<td style="text-align: right;">16</td>
+</tr>
 <tr class="even">
+<td style="text-align: left;">containers.cna.affected.programRoutines</td>
+<td style="text-align: left;">array</td>
+<td style="text-align: right;">121</td>
+<td style="text-align: right;">102</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">...ers.cna.affected.programRoutines.name</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">863</td>
+<td style="text-align: right;">102</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.cna.affected.repo</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">4560</td>
+<td style="text-align: right;">2544</td>
+<td style="text-align: right;">62</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.cna.affected.vendor</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">333551</td>
+<td style="text-align: right;">89556</td>
+<td style="text-align: right;">328</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">containers.cna.affected.versions</td>
+<td style="text-align: left;">array</td>
+<td style="text-align: right;">331353</td>
+<td style="text-align: right;">238302</td>
+<td style="text-align: right;">334</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">containers.cna.affected.versions.changes</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">3822</td>
-<td style="text-align: right;">2939</td>
-<td style="text-align: right;">46</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">...ners.cna.affected.versions.changes.at</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: right;">3988</td>
-<td style="text-align: right;">2939</td>
+<td style="text-align: right;">3910</td>
+<td style="text-align: right;">3027</td>
 <td style="text-align: right;">46</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">....cna.affected.versions.changes.status</td>
+<td style="text-align: left;">...ners.cna.affected.versions.changes.at</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">3988</td>
-<td style="text-align: right;">2939</td>
+<td style="text-align: right;">4076</td>
+<td style="text-align: right;">3027</td>
 <td style="text-align: right;">46</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">....cna.affected.versions.changes.status</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">4076</td>
+<td style="text-align: right;">3027</td>
+<td style="text-align: right;">46</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">....affected.versions.greaterThanOrEqual</td>
 <td style="text-align: left;">string</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">...ainers.cna.affected.versions.lessThan</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">103728</td>
-<td style="text-align: right;">25851</td>
-<td style="text-align: right;">240</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">...cna.affected.versions.lessThanOrEqual</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: right;">31755</td>
-<td style="text-align: right;">16578</td>
-<td style="text-align: right;">194</td>
+<td style="text-align: right;">106309</td>
+<td style="text-align: right;">26189</td>
+<td style="text-align: right;">243</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">...cna.affected.versions.lessThanOrEqual</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">32778</td>
+<td style="text-align: right;">17058</td>
+<td style="text-align: right;">195</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">containers.cna.affected.versions.repo</td>
 <td style="text-align: left;">string</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">containers.cna.affected.versions.status</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">560858</td>
-<td style="text-align: right;">237367</td>
+<td style="text-align: right;">563929</td>
+<td style="text-align: right;">238302</td>
+<td style="text-align: right;">334</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">containers.cna.affected.versions.version</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">563929</td>
+<td style="text-align: right;">97725</td>
 <td style="text-align: right;">333</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">containers.cna.affected.versions.version</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: right;">560858</td>
-<td style="text-align: right;">97011</td>
-<td style="text-align: right;">332</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">...ers.cna.affected.versions.versionType</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">135492</td>
-<td style="text-align: right;">40039</td>
-<td style="text-align: right;">273</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">containers.cna.affected.x_redhatStatus</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
+<td style="text-align: right;">139108</td>
+<td style="text-align: right;">40713</td>
+<td style="text-align: right;">276</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.configurations</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">534</td>
-<td style="text-align: right;">534</td>
-<td style="text-align: right;">42</td>
+<td style="text-align: right;">536</td>
+<td style="text-align: right;">536</td>
+<td style="text-align: right;">43</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.configurations.lang</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">540</td>
-<td style="text-align: right;">534</td>
-<td style="text-align: right;">42</td>
+<td style="text-align: right;">542</td>
+<td style="text-align: right;">536</td>
+<td style="text-align: right;">43</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...rs.cna.configurations.supportingMedia</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">159</td>
-<td style="text-align: right;">158</td>
-<td style="text-align: right;">29</td>
+<td style="text-align: right;">161</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">30</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...configurations.supportingMedia.base64</td>
 <td style="text-align: left;">logical</td>
-<td style="text-align: right;">159</td>
+<td style="text-align: right;">161</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...a.configurations.supportingMedia.type</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">159</td>
-<td style="text-align: right;">158</td>
-<td style="text-align: right;">29</td>
+<td style="text-align: right;">161</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">30</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">....configurations.supportingMedia.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">159</td>
-<td style="text-align: right;">158</td>
-<td style="text-align: right;">29</td>
+<td style="text-align: right;">161</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">30</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.configurations.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">540</td>
-<td style="text-align: right;">534</td>
-<td style="text-align: right;">42</td>
+<td style="text-align: right;">542</td>
+<td style="text-align: right;">536</td>
+<td style="text-align: right;">43</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.credits</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">23661</td>
-<td style="text-align: right;">23661</td>
-<td style="text-align: right;">224</td>
+<td style="text-align: right;">24097</td>
+<td style="text-align: right;">24097</td>
+<td style="text-align: right;">227</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.credits.lang</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">26506</td>
-<td style="text-align: right;">23661</td>
-<td style="text-align: right;">224</td>
+<td style="text-align: right;">26966</td>
+<td style="text-align: right;">24097</td>
+<td style="text-align: right;">227</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.credits.type</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">17264</td>
-<td style="text-align: right;">14784</td>
-<td style="text-align: right;">177</td>
+<td style="text-align: right;">17694</td>
+<td style="text-align: right;">15190</td>
+<td style="text-align: right;">181</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.credits.user</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">6847</td>
-<td style="text-align: right;">6406</td>
+<td style="text-align: right;">6971</td>
+<td style="text-align: right;">6533</td>
 <td style="text-align: right;">138</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.credits.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">26506</td>
-<td style="text-align: right;">23660</td>
-<td style="text-align: right;">224</td>
+<td style="text-align: right;">26966</td>
+<td style="text-align: right;">24096</td>
+<td style="text-align: right;">227</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.dateAssigned</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">1979</td>
-<td style="text-align: right;">1979</td>
+<td style="text-align: right;">1996</td>
+<td style="text-align: right;">1996</td>
 <td style="text-align: right;">10</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.datePublic</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">126393</td>
-<td style="text-align: right;">126393</td>
-<td style="text-align: right;">251</td>
+<td style="text-align: right;">126563</td>
+<td style="text-align: right;">126563</td>
+<td style="text-align: right;">252</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.descriptions</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">237497</td>
-<td style="text-align: right;">237497</td>
-<td style="text-align: right;">333</td>
+<td style="text-align: right;">238430</td>
+<td style="text-align: right;">238430</td>
+<td style="text-align: right;">334</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.descriptions.lang</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">240886</td>
-<td style="text-align: right;">237497</td>
-<td style="text-align: right;">333</td>
+<td style="text-align: right;">241883</td>
+<td style="text-align: right;">238430</td>
+<td style="text-align: right;">334</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...ners.cna.descriptions.supportingMedia</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">12457</td>
-<td style="text-align: right;">12457</td>
-<td style="text-align: right;">238</td>
+<td style="text-align: right;">12731</td>
+<td style="text-align: right;">12731</td>
+<td style="text-align: right;">240</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...a.descriptions.supportingMedia.base64</td>
 <td style="text-align: left;">logical</td>
-<td style="text-align: right;">12457</td>
+<td style="text-align: right;">12731</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...cna.descriptions.supportingMedia.type</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">12457</td>
-<td style="text-align: right;">12457</td>
-<td style="text-align: right;">238</td>
+<td style="text-align: right;">12731</td>
+<td style="text-align: right;">12731</td>
+<td style="text-align: right;">240</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...na.descriptions.supportingMedia.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">12457</td>
-<td style="text-align: right;">12457</td>
-<td style="text-align: right;">238</td>
+<td style="text-align: right;">12731</td>
+<td style="text-align: right;">12731</td>
+<td style="text-align: right;">240</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.descriptions.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">240886</td>
-<td style="text-align: right;">237497</td>
-<td style="text-align: right;">333</td>
+<td style="text-align: right;">241883</td>
+<td style="text-align: right;">238430</td>
+<td style="text-align: right;">334</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.exploits</td>
 <td style="text-align: left;">array</td>
 <td style="text-align: right;">3208</td>
 <td style="text-align: right;">3208</td>
-<td style="text-align: right;">29</td>
+<td style="text-align: right;">30</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.exploits.lang</td>
 <td style="text-align: left;">string</td>
 <td style="text-align: right;">3209</td>
 <td style="text-align: right;">3208</td>
-<td style="text-align: right;">29</td>
+<td style="text-align: right;">30</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.exploits.supportingMedia</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">166</td>
-<td style="text-align: right;">166</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">13</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...s.cna.exploits.supportingMedia.base64</td>
 <td style="text-align: left;">logical</td>
-<td style="text-align: right;">166</td>
+<td style="text-align: right;">167</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...ers.cna.exploits.supportingMedia.type</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">166</td>
-<td style="text-align: right;">166</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">13</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...rs.cna.exploits.supportingMedia.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">166</td>
-<td style="text-align: right;">166</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">13</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.exploits.value</td>
 <td style="text-align: left;">string</td>
 <td style="text-align: right;">3209</td>
 <td style="text-align: right;">3208</td>
-<td style="text-align: right;">29</td>
+<td style="text-align: right;">30</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.impacts</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">5734</td>
-<td style="text-align: right;">5734</td>
-<td style="text-align: right;">187</td>
+<td style="text-align: right;">5893</td>
+<td style="text-align: right;">5893</td>
+<td style="text-align: right;">190</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.impacts.capecId</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">5629</td>
-<td style="text-align: right;">5490</td>
-<td style="text-align: right;">183</td>
+<td style="text-align: right;">5791</td>
+<td style="text-align: right;">5650</td>
+<td style="text-align: right;">186</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.impacts.descriptions</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">5879</td>
-<td style="text-align: right;">5734</td>
-<td style="text-align: right;">187</td>
+<td style="text-align: right;">6040</td>
+<td style="text-align: right;">5893</td>
+<td style="text-align: right;">190</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.impacts.descriptions.lang</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">5879</td>
-<td style="text-align: right;">5734</td>
-<td style="text-align: right;">187</td>
+<td style="text-align: right;">6040</td>
+<td style="text-align: right;">5893</td>
+<td style="text-align: right;">190</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...ainers.cna.impacts.descriptions.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">5879</td>
-<td style="text-align: right;">5734</td>
-<td style="text-align: right;">187</td>
+<td style="text-align: right;">6040</td>
+<td style="text-align: right;">5893</td>
+<td style="text-align: right;">190</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.metrics</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">56880</td>
-<td style="text-align: right;">56880</td>
-<td style="text-align: right;">280</td>
+<td style="text-align: right;">57550</td>
+<td style="text-align: right;">57550</td>
+<td style="text-align: right;">282</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.metrics.cvssV2_0</td>
 <td style="text-align: left;">object</td>
-<td style="text-align: right;">3321</td>
+<td style="text-align: right;">3385</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -626,8 +1035,8 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td style="text-align: left;">...ainers.cna.metrics.cvssV2_0.baseScore</td>
 <td style="text-align: left;">number</td>
-<td style="text-align: right;">3321</td>
-<td style="text-align: right;">3321</td>
+<td style="text-align: right;">3385</td>
+<td style="text-align: right;">3385</td>
 <td style="text-align: right;">3</td>
 </tr>
 <tr class="odd">
@@ -647,64 +1056,64 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;">...ers.cna.metrics.cvssV2_0.vectorString</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">3321</td>
-<td style="text-align: right;">3321</td>
+<td style="text-align: right;">3385</td>
+<td style="text-align: right;">3385</td>
 <td style="text-align: right;">3</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.metrics.cvssV2_0.version</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">3321</td>
-<td style="text-align: right;">3321</td>
+<td style="text-align: right;">3385</td>
+<td style="text-align: right;">3385</td>
 <td style="text-align: right;">3</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.metrics.cvssV3_0</td>
 <td style="text-align: left;">object</td>
-<td style="text-align: right;">15725</td>
+<td style="text-align: right;">15833</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...cna.metrics.cvssV3_0.attackComplexity</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">11262</td>
-<td style="text-align: right;">11262</td>
+<td style="text-align: right;">11272</td>
+<td style="text-align: right;">11272</td>
 <td style="text-align: right;">48</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...ers.cna.metrics.cvssV3_0.attackVector</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">11262</td>
-<td style="text-align: right;">11262</td>
+<td style="text-align: right;">11272</td>
+<td style="text-align: right;">11272</td>
 <td style="text-align: right;">48</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...a.metrics.cvssV3_0.availabilityImpact</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">11262</td>
-<td style="text-align: right;">11262</td>
+<td style="text-align: right;">11272</td>
+<td style="text-align: right;">11272</td>
 <td style="text-align: right;">48</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...ainers.cna.metrics.cvssV3_0.baseScore</td>
 <td style="text-align: left;">number</td>
-<td style="text-align: right;">15725</td>
-<td style="text-align: right;">15725</td>
+<td style="text-align: right;">15833</td>
+<td style="text-align: right;">15833</td>
 <td style="text-align: right;">51</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...ers.cna.metrics.cvssV3_0.baseSeverity</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">15725</td>
-<td style="text-align: right;">15725</td>
+<td style="text-align: right;">15833</td>
+<td style="text-align: right;">15833</td>
 <td style="text-align: right;">51</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...etrics.cvssV3_0.confidentialityImpact</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">11262</td>
-<td style="text-align: right;">11262</td>
+<td style="text-align: right;">11272</td>
+<td style="text-align: right;">11272</td>
 <td style="text-align: right;">48</td>
 </tr>
 <tr class="even">
@@ -717,15 +1126,15 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;">....cna.metrics.cvssV3_0.integrityImpact</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">11262</td>
-<td style="text-align: right;">11262</td>
+<td style="text-align: right;">11272</td>
+<td style="text-align: right;">11272</td>
 <td style="text-align: right;">48</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...a.metrics.cvssV3_0.privilegesRequired</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">11262</td>
-<td style="text-align: right;">11262</td>
+<td style="text-align: right;">11272</td>
+<td style="text-align: right;">11272</td>
 <td style="text-align: right;">48</td>
 </tr>
 <tr class="odd">
@@ -745,8 +1154,8 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;">containers.cna.metrics.cvssV3_0.scope</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">11262</td>
-<td style="text-align: right;">11262</td>
+<td style="text-align: right;">11272</td>
+<td style="text-align: right;">11272</td>
 <td style="text-align: right;">48</td>
 </tr>
 <tr class="even">
@@ -766,51 +1175,51 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td style="text-align: left;">....cna.metrics.cvssV3_0.userInteraction</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">11262</td>
-<td style="text-align: right;">11262</td>
+<td style="text-align: right;">11272</td>
+<td style="text-align: right;">11272</td>
 <td style="text-align: right;">48</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...ers.cna.metrics.cvssV3_0.vectorString</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">15725</td>
-<td style="text-align: right;">15725</td>
+<td style="text-align: right;">15833</td>
+<td style="text-align: right;">15833</td>
 <td style="text-align: right;">51</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.metrics.cvssV3_0.version</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">15725</td>
-<td style="text-align: right;">15725</td>
+<td style="text-align: right;">15833</td>
+<td style="text-align: right;">15833</td>
 <td style="text-align: right;">51</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.metrics.cvssV3_1</td>
 <td style="text-align: left;">object</td>
-<td style="text-align: right;">43774</td>
+<td style="text-align: right;">44376</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...cna.metrics.cvssV3_1.attackComplexity</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">33639</td>
-<td style="text-align: right;">33616</td>
-<td style="text-align: right;">265</td>
+<td style="text-align: right;">33996</td>
+<td style="text-align: right;">33973</td>
+<td style="text-align: right;">267</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...ers.cna.metrics.cvssV3_1.attackVector</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">33639</td>
-<td style="text-align: right;">33616</td>
-<td style="text-align: right;">265</td>
+<td style="text-align: right;">33996</td>
+<td style="text-align: right;">33973</td>
+<td style="text-align: right;">267</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...a.metrics.cvssV3_1.availabilityImpact</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">33639</td>
-<td style="text-align: right;">33616</td>
-<td style="text-align: right;">265</td>
+<td style="text-align: right;">33996</td>
+<td style="text-align: right;">33973</td>
+<td style="text-align: right;">267</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...rics.cvssV3_1.availabilityRequirement</td>
@@ -822,23 +1231,23 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td style="text-align: left;">...ainers.cna.metrics.cvssV3_1.baseScore</td>
 <td style="text-align: left;">number</td>
-<td style="text-align: right;">43774</td>
-<td style="text-align: right;">43751</td>
-<td style="text-align: right;">269</td>
+<td style="text-align: right;">44376</td>
+<td style="text-align: right;">44353</td>
+<td style="text-align: right;">271</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...ers.cna.metrics.cvssV3_1.baseSeverity</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">43774</td>
-<td style="text-align: right;">43751</td>
-<td style="text-align: right;">269</td>
+<td style="text-align: right;">44376</td>
+<td style="text-align: right;">44353</td>
+<td style="text-align: right;">271</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...etrics.cvssV3_1.confidentialityImpact</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">33639</td>
-<td style="text-align: right;">33616</td>
-<td style="text-align: right;">265</td>
+<td style="text-align: right;">33996</td>
+<td style="text-align: right;">33973</td>
+<td style="text-align: right;">267</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...s.cvssV3_1.confidentialityRequirement</td>
@@ -871,9 +1280,9 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;">....cna.metrics.cvssV3_1.integrityImpact</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">33639</td>
-<td style="text-align: right;">33616</td>
-<td style="text-align: right;">265</td>
+<td style="text-align: right;">33996</td>
+<td style="text-align: right;">33973</td>
+<td style="text-align: right;">267</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...metrics.cvssV3_1.integrityRequirement</td>
@@ -941,9 +1350,9 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;">...a.metrics.cvssV3_1.privilegesRequired</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">33639</td>
-<td style="text-align: right;">33616</td>
-<td style="text-align: right;">265</td>
+<td style="text-align: right;">33996</td>
+<td style="text-align: right;">33973</td>
+<td style="text-align: right;">267</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...cna.metrics.cvssV3_1.remediationLevel</td>
@@ -962,9 +1371,9 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td style="text-align: left;">containers.cna.metrics.cvssV3_1.scope</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">33639</td>
-<td style="text-align: right;">33616</td>
-<td style="text-align: right;">265</td>
+<td style="text-align: right;">33996</td>
+<td style="text-align: right;">33973</td>
+<td style="text-align: right;">267</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...rs.cna.metrics.cvssV3_1.temporalScore</td>
@@ -983,196 +1392,196 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;">....cna.metrics.cvssV3_1.userInteraction</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">33639</td>
-<td style="text-align: right;">33616</td>
-<td style="text-align: right;">265</td>
+<td style="text-align: right;">33996</td>
+<td style="text-align: right;">33973</td>
+<td style="text-align: right;">267</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...ers.cna.metrics.cvssV3_1.vectorString</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">43774</td>
-<td style="text-align: right;">43751</td>
-<td style="text-align: right;">269</td>
+<td style="text-align: right;">44376</td>
+<td style="text-align: right;">44353</td>
+<td style="text-align: right;">271</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.metrics.cvssV3_1.version</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">43774</td>
-<td style="text-align: right;">43751</td>
-<td style="text-align: right;">269</td>
+<td style="text-align: right;">44376</td>
+<td style="text-align: right;">44353</td>
+<td style="text-align: right;">271</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.metrics.cvssV4_0</td>
 <td style="text-align: left;">object</td>
-<td style="text-align: right;">233</td>
+<td style="text-align: right;">360</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...ners.cna.metrics.cvssV4_0.Automatable</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.metrics.cvssV4_0.Recovery</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.metrics.cvssV4_0.Safety</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...cna.metrics.cvssV4_0.attackComplexity</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...a.metrics.cvssV4_0.attackRequirements</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...ers.cna.metrics.cvssV4_0.attackVector</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...ainers.cna.metrics.cvssV4_0.baseScore</td>
 <td style="text-align: left;">number</td>
-<td style="text-align: right;">233</td>
-<td style="text-align: right;">233</td>
-<td style="text-align: right;">13</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">23</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...ers.cna.metrics.cvssV4_0.baseSeverity</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">233</td>
-<td style="text-align: right;">233</td>
-<td style="text-align: right;">13</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">23</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...a.metrics.cvssV4_0.privilegesRequired</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">....cna.metrics.cvssV4_0.providerUrgency</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...etrics.cvssV4_0.subAvailabilityImpact</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...ics.cvssV4_0.subConfidentialityImpact</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...a.metrics.cvssV4_0.subIntegrityImpact</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">....cna.metrics.cvssV4_0.userInteraction</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...ers.cna.metrics.cvssV4_0.valueDensity</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...ers.cna.metrics.cvssV4_0.vectorString</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">233</td>
-<td style="text-align: right;">233</td>
-<td style="text-align: right;">13</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">23</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.metrics.cvssV4_0.version</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">233</td>
-<td style="text-align: right;">233</td>
-<td style="text-align: right;">13</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">23</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...trics.cvssV4_0.vulnAvailabilityImpact</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...cs.cvssV4_0.vulnConfidentialityImpact</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">....metrics.cvssV4_0.vulnIntegrityImpact</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">....cvssV4_0.vulnerabilityResponseEffort</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.metrics.format</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">18933</td>
-<td style="text-align: right;">18842</td>
-<td style="text-align: right;">245</td>
+<td style="text-align: right;">19374</td>
+<td style="text-align: right;">19247</td>
+<td style="text-align: right;">248</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.metrics.other</td>
 <td style="text-align: left;">object</td>
-<td style="text-align: right;">1236</td>
+<td style="text-align: right;">1240</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.metrics.other.content</td>
 <td style="text-align: left;">object</td>
-<td style="text-align: right;">1236</td>
+<td style="text-align: right;">1240</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -1291,7 +1700,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;">...s.cna.metrics.other.content.namespace</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">460</td>
+<td style="text-align: right;">463</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -1326,7 +1735,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td style="text-align: left;">...ainers.cna.metrics.other.content.text</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">358</td>
+<td style="text-align: right;">359</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -1347,7 +1756,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;">...iners.cna.metrics.other.content.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">504</td>
+<td style="text-align: right;">507</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -1375,51 +1784,51 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;">containers.cna.metrics.other.type</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">1236</td>
-<td style="text-align: right;">1236</td>
+<td style="text-align: right;">1240</td>
+<td style="text-align: right;">1240</td>
 <td style="text-align: right;">12</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.metrics.scenarios</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">16721</td>
-<td style="text-align: right;">16630</td>
-<td style="text-align: right;">236</td>
+<td style="text-align: right;">17120</td>
+<td style="text-align: right;">16993</td>
+<td style="text-align: right;">239</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.metrics.scenarios.lang</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">16722</td>
-<td style="text-align: right;">16630</td>
-<td style="text-align: right;">236</td>
+<td style="text-align: right;">17121</td>
+<td style="text-align: right;">16993</td>
+<td style="text-align: right;">239</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.metrics.scenarios.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">16722</td>
-<td style="text-align: right;">16630</td>
-<td style="text-align: right;">236</td>
+<td style="text-align: right;">17121</td>
+<td style="text-align: right;">16993</td>
+<td style="text-align: right;">239</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.problemTypes</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">233026</td>
-<td style="text-align: right;">233026</td>
-<td style="text-align: right;">327</td>
+<td style="text-align: right;">233769</td>
+<td style="text-align: right;">233769</td>
+<td style="text-align: right;">328</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.problemTypes.descriptions</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">234871</td>
-<td style="text-align: right;">233026</td>
-<td style="text-align: right;">327</td>
+<td style="text-align: right;">235625</td>
+<td style="text-align: right;">233769</td>
+<td style="text-align: right;">328</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...s.cna.problemTypes.descriptions.cweId</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">51123</td>
-<td style="text-align: right;">49658</td>
-<td style="text-align: right;">299</td>
+<td style="text-align: right;">52429</td>
+<td style="text-align: right;">50954</td>
+<td style="text-align: right;">300</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...s.cna.problemTypes.descriptions.cweid</td>
@@ -1431,64 +1840,64 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;">...problemTypes.descriptions.description</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">235386</td>
-<td style="text-align: right;">98617</td>
-<td style="text-align: right;">326</td>
+<td style="text-align: right;">236140</td>
+<td style="text-align: right;">99256</td>
+<td style="text-align: right;">327</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...rs.cna.problemTypes.descriptions.lang</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">235386</td>
-<td style="text-align: right;">233026</td>
-<td style="text-align: right;">327</td>
+<td style="text-align: right;">236140</td>
+<td style="text-align: right;">233769</td>
+<td style="text-align: right;">328</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...rs.cna.problemTypes.descriptions.type</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">229198</td>
-<td style="text-align: right;">227387</td>
-<td style="text-align: right;">321</td>
+<td style="text-align: right;">229803</td>
+<td style="text-align: right;">227981</td>
+<td style="text-align: right;">322</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.providerMetadata</td>
 <td style="text-align: left;">object</td>
-<td style="text-align: right;">251589</td>
+<td style="text-align: right;">252652</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...ners.cna.providerMetadata.dateUpdated</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">251587</td>
-<td style="text-align: right;">251587</td>
-<td style="text-align: right;">336</td>
+<td style="text-align: right;">252650</td>
+<td style="text-align: right;">252650</td>
+<td style="text-align: right;">337</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.providerMetadata.orgId</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">251589</td>
-<td style="text-align: right;">251589</td>
-<td style="text-align: right;">336</td>
+<td style="text-align: right;">252652</td>
+<td style="text-align: right;">252652</td>
+<td style="text-align: right;">337</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...ainers.cna.providerMetadata.shortName</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">251577</td>
-<td style="text-align: right;">251577</td>
-<td style="text-align: right;">336</td>
+<td style="text-align: right;">252640</td>
+<td style="text-align: right;">252640</td>
+<td style="text-align: right;">337</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.references</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">237497</td>
-<td style="text-align: right;">237497</td>
-<td style="text-align: right;">333</td>
+<td style="text-align: right;">238430</td>
+<td style="text-align: right;">238430</td>
+<td style="text-align: right;">334</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.references.name</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">510191</td>
-<td style="text-align: right;">122867</td>
+<td style="text-align: right;">510285</td>
+<td style="text-align: right;">122952</td>
 <td style="text-align: right;">128</td>
 </tr>
 <tr class="even">
@@ -1501,140 +1910,140 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;">containers.cna.references.tags</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">807913</td>
-<td style="text-align: right;">205472</td>
-<td style="text-align: right;">261</td>
+<td style="text-align: right;">808270</td>
+<td style="text-align: right;">205703</td>
+<td style="text-align: right;">262</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.references.url</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">886398</td>
-<td style="text-align: right;">237497</td>
-<td style="text-align: right;">333</td>
+<td style="text-align: right;">888178</td>
+<td style="text-align: right;">238430</td>
+<td style="text-align: right;">334</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.rejectedReasons</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">14092</td>
-<td style="text-align: right;">14092</td>
-<td style="text-align: right;">143</td>
+<td style="text-align: right;">14222</td>
+<td style="text-align: right;">14222</td>
+<td style="text-align: right;">145</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.rejectedReasons.lang</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">14092</td>
-<td style="text-align: right;">14092</td>
-<td style="text-align: right;">143</td>
+<td style="text-align: right;">14222</td>
+<td style="text-align: right;">14222</td>
+<td style="text-align: right;">145</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...s.cna.rejectedReasons.supportingMedia</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">128</td>
-<td style="text-align: right;">128</td>
-<td style="text-align: right;">23</td>
+<td style="text-align: right;">139</td>
+<td style="text-align: right;">139</td>
+<td style="text-align: right;">25</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...ejectedReasons.supportingMedia.base64</td>
 <td style="text-align: left;">logical</td>
-<td style="text-align: right;">128</td>
+<td style="text-align: right;">139</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">....rejectedReasons.supportingMedia.type</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">128</td>
-<td style="text-align: right;">128</td>
-<td style="text-align: right;">23</td>
+<td style="text-align: right;">139</td>
+<td style="text-align: right;">139</td>
+<td style="text-align: right;">25</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...rejectedReasons.supportingMedia.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">128</td>
-<td style="text-align: right;">128</td>
-<td style="text-align: right;">23</td>
+<td style="text-align: right;">139</td>
+<td style="text-align: right;">139</td>
+<td style="text-align: right;">25</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.rejectedReasons.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">14092</td>
-<td style="text-align: right;">14092</td>
-<td style="text-align: right;">143</td>
+<td style="text-align: right;">14222</td>
+<td style="text-align: right;">14222</td>
+<td style="text-align: right;">145</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.replacedBy</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">5</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">6</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.solutions</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">7908</td>
-<td style="text-align: right;">7908</td>
-<td style="text-align: right;">132</td>
+<td style="text-align: right;">8051</td>
+<td style="text-align: right;">8051</td>
+<td style="text-align: right;">133</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.solutions.lang</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">7996</td>
-<td style="text-align: right;">7908</td>
-<td style="text-align: right;">132</td>
+<td style="text-align: right;">8139</td>
+<td style="text-align: right;">8051</td>
+<td style="text-align: right;">133</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.solutions.supportingMedia</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">4383</td>
-<td style="text-align: right;">4341</td>
-<td style="text-align: right;">97</td>
+<td style="text-align: right;">4521</td>
+<td style="text-align: right;">4479</td>
+<td style="text-align: right;">98</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">....cna.solutions.supportingMedia.base64</td>
 <td style="text-align: left;">logical</td>
-<td style="text-align: right;">4383</td>
+<td style="text-align: right;">4521</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...rs.cna.solutions.supportingMedia.type</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">4383</td>
-<td style="text-align: right;">4341</td>
-<td style="text-align: right;">97</td>
+<td style="text-align: right;">4521</td>
+<td style="text-align: right;">4479</td>
+<td style="text-align: right;">98</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...s.cna.solutions.supportingMedia.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">4383</td>
-<td style="text-align: right;">4341</td>
-<td style="text-align: right;">97</td>
+<td style="text-align: right;">4521</td>
+<td style="text-align: right;">4479</td>
+<td style="text-align: right;">98</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.solutions.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">7996</td>
-<td style="text-align: right;">7908</td>
-<td style="text-align: right;">132</td>
+<td style="text-align: right;">8139</td>
+<td style="text-align: right;">8051</td>
+<td style="text-align: right;">133</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.source</td>
 <td style="text-align: left;">object</td>
-<td style="text-align: right;">35557</td>
+<td style="text-align: right;">35899</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.source.advisory</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">13618</td>
-<td style="text-align: right;">13618</td>
-<td style="text-align: right;">85</td>
+<td style="text-align: right;">13699</td>
+<td style="text-align: right;">13699</td>
+<td style="text-align: right;">87</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.source.defect</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">4787</td>
+<td style="text-align: right;">4803</td>
 <td style="text-align: right;">17</td>
 <td style="text-align: right;">1</td>
 </tr>
@@ -1648,16 +2057,16 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td style="text-align: left;">containers.cna.source.defects</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">311</td>
-<td style="text-align: right;">311</td>
+<td style="text-align: right;">310</td>
+<td style="text-align: right;">310</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.source.discovery</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">34588</td>
-<td style="text-align: right;">34588</td>
-<td style="text-align: right;">277</td>
+<td style="text-align: right;">34913</td>
+<td style="text-align: right;">34913</td>
+<td style="text-align: right;">278</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.source.found_during</td>
@@ -1669,23 +2078,23 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;">containers.cna.source.lang</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">856</td>
-<td style="text-align: right;">856</td>
+<td style="text-align: right;">873</td>
+<td style="text-align: right;">873</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.source.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">856</td>
-<td style="text-align: right;">856</td>
+<td style="text-align: right;">873</td>
+<td style="text-align: right;">873</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.tags</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">1618</td>
-<td style="text-align: right;">1618</td>
-<td style="text-align: right;">30</td>
+<td style="text-align: right;">1550</td>
+<td style="text-align: right;">1550</td>
+<td style="text-align: right;">31</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.taxonomyMappings</td>
@@ -1739,85 +2148,85 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: left;">containers.cna.timeline</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">6541</td>
-<td style="text-align: right;">6541</td>
-<td style="text-align: right;">24</td>
+<td style="text-align: right;">6714</td>
+<td style="text-align: right;">6714</td>
+<td style="text-align: right;">25</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.timeline.lang</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">17091</td>
-<td style="text-align: right;">6541</td>
-<td style="text-align: right;">24</td>
+<td style="text-align: right;">17416</td>
+<td style="text-align: right;">6714</td>
+<td style="text-align: right;">25</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.timeline.time</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">17091</td>
-<td style="text-align: right;">6541</td>
-<td style="text-align: right;">24</td>
+<td style="text-align: right;">17416</td>
+<td style="text-align: right;">6714</td>
+<td style="text-align: right;">25</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.timeline.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">17091</td>
-<td style="text-align: right;">6541</td>
-<td style="text-align: right;">24</td>
+<td style="text-align: right;">17416</td>
+<td style="text-align: right;">6714</td>
+<td style="text-align: right;">25</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.title</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">43031</td>
-<td style="text-align: right;">43031</td>
-<td style="text-align: right;">262</td>
+<td style="text-align: right;">43791</td>
+<td style="text-align: right;">43791</td>
+<td style="text-align: right;">263</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.workarounds</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">1927</td>
-<td style="text-align: right;">1927</td>
+<td style="text-align: right;">1917</td>
+<td style="text-align: right;">1917</td>
 <td style="text-align: right;">92</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">containers.cna.workarounds.lang</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">1977</td>
-<td style="text-align: right;">1927</td>
+<td style="text-align: right;">1967</td>
+<td style="text-align: right;">1917</td>
 <td style="text-align: right;">92</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">...iners.cna.workarounds.supportingMedia</td>
 <td style="text-align: left;">array</td>
-<td style="text-align: right;">438</td>
-<td style="text-align: right;">435</td>
+<td style="text-align: right;">444</td>
+<td style="text-align: right;">441</td>
 <td style="text-align: right;">57</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...na.workarounds.supportingMedia.base64</td>
 <td style="text-align: left;">logical</td>
-<td style="text-align: right;">438</td>
+<td style="text-align: right;">444</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">....cna.workarounds.supportingMedia.type</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">438</td>
-<td style="text-align: right;">435</td>
+<td style="text-align: right;">444</td>
+<td style="text-align: right;">441</td>
 <td style="text-align: right;">57</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">...cna.workarounds.supportingMedia.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">438</td>
-<td style="text-align: right;">435</td>
+<td style="text-align: right;">444</td>
+<td style="text-align: right;">441</td>
 <td style="text-align: right;">57</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">containers.cna.workarounds.value</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">1977</td>
-<td style="text-align: right;">1926</td>
+<td style="text-align: right;">1967</td>
+<td style="text-align: right;">1916</td>
 <td style="text-align: right;">92</td>
 </tr>
 <tr class="odd">
@@ -1830,7 +2239,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td style="text-align: left;">containers.cna.x_generator</td>
 <td style="text-align: left;">object</td>
-<td style="text-align: right;">21481</td>
+<td style="text-align: right;">21923</td>
 <td style="text-align: right;">2389</td>
 <td style="text-align: right;">6</td>
 </tr>
@@ -1844,155 +2253,148 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td style="text-align: left;">containers.cna.x_legacyV4Record</td>
 <td style="text-align: left;">object</td>
-<td style="text-align: right;">175760</td>
+<td style="text-align: right;">175669</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">containers.cna.x_redHatCweChain</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">containers.cna.x_redhatCweChain</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">444</td>
-<td style="text-align: right;">444</td>
+<td style="text-align: right;">449</td>
+<td style="text-align: right;">449</td>
 <td style="text-align: right;">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">cveMetadata</td>
 <td style="text-align: left;">object</td>
-<td style="text-align: right;">251589</td>
+<td style="text-align: right;">252652</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">cveMetadata.assignerOrgId</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">251589</td>
-<td style="text-align: right;">251589</td>
-<td style="text-align: right;">336</td>
+<td style="text-align: right;">252652</td>
+<td style="text-align: right;">252652</td>
+<td style="text-align: right;">337</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">cveMetadata.assignerShortName</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">251584</td>
-<td style="text-align: right;">251584</td>
-<td style="text-align: right;">335</td>
+<td style="text-align: right;">252647</td>
+<td style="text-align: right;">252647</td>
+<td style="text-align: right;">336</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">cveMetadata.cveId</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">251589</td>
-<td style="text-align: right;">251589</td>
-<td style="text-align: right;">336</td>
+<td style="text-align: right;">252652</td>
+<td style="text-align: right;">252652</td>
+<td style="text-align: right;">337</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">cveMetadata.datePublished</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">248421</td>
-<td style="text-align: right;">248421</td>
-<td style="text-align: right;">335</td>
+<td style="text-align: right;">249283</td>
+<td style="text-align: right;">249283</td>
+<td style="text-align: right;">336</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">cveMetadata.dateRejected</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">14092</td>
-<td style="text-align: right;">14092</td>
-<td style="text-align: right;">143</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">cveMetadata.dateReserved</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: right;">251305</td>
-<td style="text-align: right;">251305</td>
-<td style="text-align: right;">336</td>
+<td style="text-align: right;">14221</td>
+<td style="text-align: right;">14221</td>
+<td style="text-align: right;">145</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">cveMetadata.dateUpdated</td>
+<td style="text-align: left;">cveMetadata.dateReserved</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">250192</td>
-<td style="text-align: right;">250192</td>
-<td style="text-align: right;">336</td>
+<td style="text-align: right;">252180</td>
+<td style="text-align: right;">252180</td>
+<td style="text-align: right;">337</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">cveMetadata.dateUpdated</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: right;">251257</td>
+<td style="text-align: right;">251257</td>
+<td style="text-align: right;">337</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">cveMetadata.requesterUserId</td>
 <td style="text-align: left;">string</td>
 <td style="text-align: right;">690</td>
 <td style="text-align: right;">690</td>
 <td style="text-align: right;">56</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">cveMetadata.serial</td>
 <td style="text-align: left;">number</td>
 <td style="text-align: right;">53</td>
 <td style="text-align: right;">53</td>
 <td style="text-align: right;">12</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">cveMetadata.state</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">251589</td>
-<td style="text-align: right;">251589</td>
-<td style="text-align: right;">336</td>
+<td style="text-align: right;">252652</td>
+<td style="text-align: right;">252652</td>
+<td style="text-align: right;">337</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">dataType</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">251589</td>
-<td style="text-align: right;">251589</td>
-<td style="text-align: right;">336</td>
+<td style="text-align: right;">252652</td>
+<td style="text-align: right;">252652</td>
+<td style="text-align: right;">337</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">dataVersion</td>
 <td style="text-align: left;">string</td>
-<td style="text-align: right;">251589</td>
-<td style="text-align: right;">251589</td>
-<td style="text-align: right;">336</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">base64</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">158</td>
-<td style="text-align: right;">29</td>
+<td style="text-align: right;">252652</td>
+<td style="text-align: right;">252652</td>
+<td style="text-align: right;">337</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">base64</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">12457</td>
-<td style="text-align: right;">238</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">30</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">base64</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">166</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">12731</td>
+<td style="text-align: right;">240</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">base64</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">128</td>
-<td style="text-align: right;">23</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">13</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">base64</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">4341</td>
-<td style="text-align: right;">97</td>
+<td style="text-align: right;">139</td>
+<td style="text-align: right;">25</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">base64</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">435</td>
+<td style="text-align: right;">4479</td>
+<td style="text-align: right;">98</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">base64</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">441</td>
 <td style="text-align: right;">57</td>
 </tr>
 </tbody>
@@ -2002,17 +2404,20 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<section id="cnas-as-proportion-of-cves" class="level2">
+<h2 class="anchored" data-anchor-id="cnas-as-proportion-of-cves">CNAs as proportion of CVEs</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
