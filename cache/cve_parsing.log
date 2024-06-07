@@ -1,216 +1,223 @@
-DEBUG [2024-06-04 15:18:16] Retrieving /repos/CVEProject/cvelistV5/tarball/main
-DEBUG [2024-06-04 15:19:25] Unbundling the CVE List files
-DEBUG [2024-06-04 15:20:42] Found 252652 JSON files, reading them in...
-DEBUG [2024-06-04 15:28:23] Cleaning up the CVE Files...
-DEBUG [2024-06-04 15:28:58]         : >> NA
-DEBUG [2024-06-04 15:28:58] Setting up backend datastore
-WARN  [2024-06-04 15:33:29]   object curname:  containers
-DEBUG [2024-06-04 15:33:29]   Object:  containers
-DEBUG [2024-06-04 15:33:29]         : >> containers
-WARN  [2024-06-04 15:35:38]   object curname:  cna
-DEBUG [2024-06-04 15:35:38]   Object:  containers.cna
-DEBUG [2024-06-04 15:35:38]         : >> containers.cna
-ERROR [2024-06-04 15:37:52] Multiple data types: containers.cna.x_generator : object, string
-WARN  [2024-06-04 15:40:18]   object curname:  providerMetadata
-DEBUG [2024-06-04 15:40:18]   Object:  containers.cna.providerMetadata
-DEBUG [2024-06-04 15:40:18]         : >> containers.cna.providerMetadata
-WARN  [2024-06-04 15:44:26]   object curname:  source
-DEBUG [2024-06-04 15:44:26]   Object:  containers.cna.source
-DEBUG [2024-06-04 15:44:26]         : >> containers.cna.source
-ERROR [2024-06-04 15:44:43] Multiple data types: containers.cna.source.defect : array, string
-WARN  [2024-06-04 15:45:01]   array curname:  defect
-WARN  [2024-06-04 15:45:01] Skipping:  containers.cna.source.defect
-WARN  [2024-06-04 15:45:01]   array curname:  defects
-DEBUG [2024-06-04 15:45:01]   Array :  containers.cna.source.defects
-DEBUG [2024-06-04 15:45:01]         : >> containers.cna.source.defects
-DEBUG [2024-06-04 15:45:01] containers.cna.source.defects : found array of strings
-WARN  [2024-06-04 15:45:01]   object curname:  x_ConverterErrors
-WARN  [2024-06-04 15:45:01] Skipping x_ name:  containers.cna.x_ConverterErrors
-WARN  [2024-06-04 15:45:01]   object curname:  x_generator
-WARN  [2024-06-04 15:45:01] Skipping:  containers.cna.x_generator
-WARN  [2024-06-04 15:45:01]   object curname:  x_legacyV4Record
-WARN  [2024-06-04 15:45:01] Skipping x_ name:  containers.cna.x_legacyV4Record
-WARN  [2024-06-04 15:45:01]   array curname:  affected
-DEBUG [2024-06-04 15:45:01]   Array :  containers.cna.affected
-DEBUG [2024-06-04 15:46:55]         : >> containers.cna.affected
-WARN  [2024-06-04 15:52:27]   array curname:  cpes
-DEBUG [2024-06-04 15:52:27]   Array :  containers.cna.affected.cpes
-DEBUG [2024-06-04 15:52:52]         : >> containers.cna.affected.cpes
-DEBUG [2024-06-04 15:52:52] containers.cna.affected.cpes : found array of strings
-WARN  [2024-06-04 15:52:52]   array curname:  modules
-DEBUG [2024-06-04 15:52:52]   Array :  containers.cna.affected.modules
-DEBUG [2024-06-04 15:52:54]         : >> containers.cna.affected.modules
-DEBUG [2024-06-04 15:52:54] containers.cna.affected.modules : found array of strings
-WARN  [2024-06-04 15:52:54]   array curname:  platforms
-DEBUG [2024-06-04 15:52:54]   Array :  containers.cna.affected.platforms
-DEBUG [2024-06-04 15:53:18]         : >> containers.cna.affected.platforms
-DEBUG [2024-06-04 15:53:19] containers.cna.affected.platforms : found array of strings
-WARN  [2024-06-04 15:53:19]   array curname:  programFiles
-DEBUG [2024-06-04 15:53:19]   Array :  containers.cna.affected.programFiles
-DEBUG [2024-06-04 15:53:21]         : >> containers.cna.affected.programFiles
-DEBUG [2024-06-04 15:53:21] containers.cna.affected.programFiles : found array of strings
-WARN  [2024-06-04 15:53:21]   array curname:  programRoutines
-DEBUG [2024-06-04 15:53:21]   Array :  containers.cna.affected.programRoutines
-DEBUG [2024-06-04 15:53:22]         : >> containers.cna.affected.programRoutines
-WARN  [2024-06-04 15:53:23]   array curname:  versions
-DEBUG [2024-06-04 15:53:23]   Array :  containers.cna.affected.versions
-DEBUG [2024-06-04 15:56:02]         : >> containers.cna.affected.versions
-WARN  [2024-06-04 16:04:34]   array curname:  changes
-DEBUG [2024-06-04 16:04:34]   Array :  containers.cna.affected.versions.changes
-DEBUG [2024-06-04 16:04:37]         : >> containers.cna.affected.versions.changes
-WARN  [2024-06-04 16:04:45]   array curname:  configurations
-DEBUG [2024-06-04 16:04:45]   Array :  containers.cna.configurations
-DEBUG [2024-06-04 16:04:46]         : >> containers.cna.configurations
-WARN  [2024-06-04 16:04:46]   array curname:  supportingMedia
-DEBUG [2024-06-04 16:04:46]   Array :  containers.cna.configurations.supportingMedia
-DEBUG [2024-06-04 16:04:46]         : >> containers.cna.configurations.supportingMedia
-WARN  [2024-06-04 16:04:46]   array curname:  credits
-DEBUG [2024-06-04 16:04:46]   Array :  containers.cna.credits
-DEBUG [2024-06-04 16:04:56]         : >> containers.cna.credits
-WARN  [2024-06-04 16:05:19]   array curname:  descriptions
-DEBUG [2024-06-04 16:05:19]   Array :  containers.cna.descriptions
-DEBUG [2024-06-04 16:06:58]         : >> containers.cna.descriptions
-WARN  [2024-06-04 16:10:27]   array curname:  supportingMedia
-DEBUG [2024-06-04 16:10:27]   Array :  containers.cna.descriptions.supportingMedia
-DEBUG [2024-06-04 16:10:33]         : >> containers.cna.descriptions.supportingMedia
-WARN  [2024-06-04 16:10:44]   array curname:  exploits
-DEBUG [2024-06-04 16:10:44]   Array :  containers.cna.exploits
-DEBUG [2024-06-04 16:10:46]         : >> containers.cna.exploits
-WARN  [2024-06-04 16:10:49]   array curname:  supportingMedia
-DEBUG [2024-06-04 16:10:49]   Array :  containers.cna.exploits.supportingMedia
-DEBUG [2024-06-04 16:10:49]         : >> containers.cna.exploits.supportingMedia
-WARN  [2024-06-04 16:10:49]   array curname:  impacts
-DEBUG [2024-06-04 16:10:49]   Array :  containers.cna.impacts
-DEBUG [2024-06-04 16:10:52]         : >> containers.cna.impacts
-WARN  [2024-06-04 16:10:57]   array curname:  descriptions
-DEBUG [2024-06-04 16:10:57]   Array :  containers.cna.impacts.descriptions
-DEBUG [2024-06-04 16:11:00]         : >> containers.cna.impacts.descriptions
-WARN  [2024-06-04 16:11:05]   array curname:  metrics
-DEBUG [2024-06-04 16:11:05]   Array :  containers.cna.metrics
-DEBUG [2024-06-04 16:11:31]         : >> containers.cna.metrics
-WARN  [2024-06-04 16:12:29]   object curname:  cvssV2_0
-DEBUG [2024-06-04 16:12:29]   Object:  containers.cna.metrics.cvssV2_0
-DEBUG [2024-06-04 16:12:29]         : >> containers.cna.metrics.cvssV2_0
-WARN  [2024-06-04 16:12:32]   object curname:  cvssV3_0
-DEBUG [2024-06-04 16:12:32]   Object:  containers.cna.metrics.cvssV3_0
-DEBUG [2024-06-04 16:12:32]         : >> containers.cna.metrics.cvssV3_0
-WARN  [2024-06-04 16:12:47]   object curname:  cvssV3_1
-DEBUG [2024-06-04 16:12:47]   Object:  containers.cna.metrics.cvssV3_1
-DEBUG [2024-06-04 16:12:47]         : >> containers.cna.metrics.cvssV3_1
-WARN  [2024-06-04 16:13:29]   object curname:  cvssV4_0
-DEBUG [2024-06-04 16:13:29]   Object:  containers.cna.metrics.cvssV4_0
-DEBUG [2024-06-04 16:13:29]         : >> containers.cna.metrics.cvssV4_0
-WARN  [2024-06-04 16:13:30]   object curname:  other
-DEBUG [2024-06-04 16:13:30]   Object:  containers.cna.metrics.other
-DEBUG [2024-06-04 16:13:30]         : >> containers.cna.metrics.other
-WARN  [2024-06-04 16:13:31]   object curname:  content
-DEBUG [2024-06-04 16:13:31]   Object:  containers.cna.metrics.other.content
-DEBUG [2024-06-04 16:13:31]         : >> containers.cna.metrics.other.content
-ERROR [2024-06-04 16:13:32] Multiple data types: containers.cna.metrics.other.content.version : string, number
-WARN  [2024-06-04 16:13:32] string parsing failed: containers.cna.metrics.other.content
-WARN  [2024-06-04 16:13:32]   object curname:  description
-DEBUG [2024-06-04 16:13:32]   Object:  containers.cna.metrics.other.content.description
-DEBUG [2024-06-04 16:13:32]         : >> containers.cna.metrics.other.content.description
-WARN  [2024-06-04 16:13:33]   array curname:  description_data
-DEBUG [2024-06-04 16:13:33]   Array :  containers.cna.metrics.other.content.description.description_data
-DEBUG [2024-06-04 16:13:33]         : >> containers.cna.metrics.other.content.description.description_data
-WARN  [2024-06-04 16:13:33]   array curname:  scenarios
-DEBUG [2024-06-04 16:13:33]   Array :  containers.cna.metrics.scenarios
-DEBUG [2024-06-04 16:13:40]         : >> containers.cna.metrics.scenarios
-WARN  [2024-06-04 16:13:55]   array curname:  problemTypes
-DEBUG [2024-06-04 16:13:55]   Array :  containers.cna.problemTypes
-DEBUG [2024-06-04 16:15:34]         : >> containers.cna.problemTypes
-WARN  [2024-06-04 16:17:14]   array curname:  descriptions
-DEBUG [2024-06-04 16:17:14]   Array :  containers.cna.problemTypes.descriptions
-DEBUG [2024-06-04 16:18:58]         : >> containers.cna.problemTypes.descriptions
-WARN  [2024-06-04 16:22:23]   array curname:  references
-DEBUG [2024-06-04 16:22:23]   Array :  containers.cna.references
-DEBUG [2024-06-04 16:24:17]         : >> containers.cna.references
-WARN  [2024-06-04 16:38:46]   array curname:  tags
-DEBUG [2024-06-04 16:38:46]   Array :  containers.cna.references.tags
-DEBUG [2024-06-04 16:45:22]         : >> containers.cna.references.tags
-DEBUG [2024-06-04 16:45:25] containers.cna.references.tags : found array of strings
-WARN  [2024-06-04 16:45:26]   array curname:  rejectedReasons
-DEBUG [2024-06-04 16:45:26]   Array :  containers.cna.rejectedReasons
-DEBUG [2024-06-04 16:45:33]         : >> containers.cna.rejectedReasons
-WARN  [2024-06-04 16:45:47]   array curname:  supportingMedia
-DEBUG [2024-06-04 16:45:47]   Array :  containers.cna.rejectedReasons.supportingMedia
-DEBUG [2024-06-04 16:45:48]         : >> containers.cna.rejectedReasons.supportingMedia
-WARN  [2024-06-04 16:45:48]   array curname:  replacedBy
-DEBUG [2024-06-04 16:45:48]   Array :  containers.cna.replacedBy
-DEBUG [2024-06-04 16:45:48]         : >> containers.cna.replacedBy
-DEBUG [2024-06-04 16:45:48] containers.cna.replacedBy : found array of strings
-WARN  [2024-06-04 16:45:48]   array curname:  solutions
-DEBUG [2024-06-04 16:45:48]   Array :  containers.cna.solutions
-DEBUG [2024-06-04 16:45:53]         : >> containers.cna.solutions
-WARN  [2024-06-04 16:46:01]   array curname:  supportingMedia
-DEBUG [2024-06-04 16:46:01]   Array :  containers.cna.solutions.supportingMedia
-DEBUG [2024-06-04 16:46:03]         : >> containers.cna.solutions.supportingMedia
-WARN  [2024-06-04 16:46:08]   array curname:  tags
-DEBUG [2024-06-04 16:46:08]   Array :  containers.cna.tags
-DEBUG [2024-06-04 16:46:09]         : >> containers.cna.tags
-DEBUG [2024-06-04 16:46:09] containers.cna.tags : found array of strings
-WARN  [2024-06-04 16:46:09]   array curname:  taxonomyMappings
-DEBUG [2024-06-04 16:46:09]   Array :  containers.cna.taxonomyMappings
-DEBUG [2024-06-04 16:46:10]         : >> containers.cna.taxonomyMappings
-WARN  [2024-06-04 16:46:10]   array curname:  taxonomyRelations
-DEBUG [2024-06-04 16:46:10]   Array :  containers.cna.taxonomyMappings.taxonomyRelations
-DEBUG [2024-06-04 16:46:10]         : >> containers.cna.taxonomyMappings.taxonomyRelations
-WARN  [2024-06-04 16:46:10]   array curname:  timeline
-DEBUG [2024-06-04 16:46:10]   Array :  containers.cna.timeline
-DEBUG [2024-06-04 16:46:14]         : >> containers.cna.timeline
-WARN  [2024-06-04 16:46:32]   array curname:  workarounds
-DEBUG [2024-06-04 16:46:32]   Array :  containers.cna.workarounds
-DEBUG [2024-06-04 16:46:33]         : >> containers.cna.workarounds
-WARN  [2024-06-04 16:46:35]   array curname:  supportingMedia
-DEBUG [2024-06-04 16:46:35]   Array :  containers.cna.workarounds.supportingMedia
-DEBUG [2024-06-04 16:46:36]         : >> containers.cna.workarounds.supportingMedia
-WARN  [2024-06-04 16:46:36]   array curname:  adp
-DEBUG [2024-06-04 16:46:36]   Array :  containers.adp
-DEBUG [2024-06-04 16:46:40]         : >> containers.adp
-WARN  [2024-06-04 16:46:48]   object curname:  providerMetadata
-DEBUG [2024-06-04 16:46:48]   Object:  containers.adp.providerMetadata
-DEBUG [2024-06-04 16:46:48]         : >> containers.adp.providerMetadata
-WARN  [2024-06-04 16:46:56]   array curname:  affected
-DEBUG [2024-06-04 16:46:56]   Array :  containers.adp.affected
-DEBUG [2024-06-04 16:46:57]         : >> containers.adp.affected
-WARN  [2024-06-04 16:47:06]   array curname:  cpes
-DEBUG [2024-06-04 16:47:06]   Array :  containers.adp.affected.cpes
-DEBUG [2024-06-04 16:47:10]         : >> containers.adp.affected.cpes
-DEBUG [2024-06-04 16:47:10] containers.adp.affected.cpes : found array of strings
-WARN  [2024-06-04 16:47:10]   array curname:  versions
-DEBUG [2024-06-04 16:47:10]   Array :  containers.adp.affected.versions
-DEBUG [2024-06-04 16:47:14]         : >> containers.adp.affected.versions
-WARN  [2024-06-04 16:47:24]   array curname:  metrics
-DEBUG [2024-06-04 16:47:24]   Array :  containers.adp.metrics
-DEBUG [2024-06-04 16:47:27]         : >> containers.adp.metrics
-WARN  [2024-06-04 16:47:36]   object curname:  cvssV3_1
-DEBUG [2024-06-04 16:47:36]   Object:  containers.adp.metrics.cvssV3_1
-DEBUG [2024-06-04 16:47:36]         : >> containers.adp.metrics.cvssV3_1
-WARN  [2024-06-04 16:47:37]   object curname:  other
-DEBUG [2024-06-04 16:47:37]   Object:  containers.adp.metrics.other
-DEBUG [2024-06-04 16:47:37]         : >> containers.adp.metrics.other
-WARN  [2024-06-04 16:47:45]   object curname:  content
-DEBUG [2024-06-04 16:47:45]   Object:  containers.adp.metrics.other.content
-DEBUG [2024-06-04 16:47:45]         : >> containers.adp.metrics.other.content
-WARN  [2024-06-04 16:47:53]   array curname:  options
-DEBUG [2024-06-04 16:47:53]   Array :  containers.adp.metrics.other.content.options
-DEBUG [2024-06-04 16:47:57]         : >> containers.adp.metrics.other.content.options
-WARN  [2024-06-04 16:48:19]   array curname:  scenarios
-DEBUG [2024-06-04 16:48:19]   Array :  containers.adp.metrics.scenarios
-DEBUG [2024-06-04 16:48:19]         : >> containers.adp.metrics.scenarios
-WARN  [2024-06-04 16:48:19]   array curname:  problemTypes
-DEBUG [2024-06-04 16:48:19]   Array :  containers.adp.problemTypes
-DEBUG [2024-06-04 16:48:20]         : >> containers.adp.problemTypes
-WARN  [2024-06-04 16:48:20]   array curname:  descriptions
-DEBUG [2024-06-04 16:48:20]   Array :  containers.adp.problemTypes.descriptions
-DEBUG [2024-06-04 16:48:21]         : >> containers.adp.problemTypes.descriptions
-WARN  [2024-06-04 16:48:22]   array curname:  timeline
-DEBUG [2024-06-04 16:48:22]   Array :  containers.adp.timeline
-DEBUG [2024-06-04 16:48:22]         : >> containers.adp.timeline
-WARN  [2024-06-04 16:48:22]   object curname:  cveMetadata
-DEBUG [2024-06-04 16:48:22]   Object:  cveMetadata
-DEBUG [2024-06-04 16:48:22]         : >> cveMetadata
-DEBUG [2024-06-04 16:53:09] completed parsing of the JSON: 48 records found.
-INFO  [2024-06-04 16:53:14] completed
-INFO  [2024-06-04 16:53:14] Time to parse: 5055.81s (~1.4 hours)
+DEBUG [2024-06-07 15:11:49] Retrieving /repos/CVEProject/cvelistV5/tarball/main
+DEBUG [2024-06-07 15:14:40] Unbundling the CVE List files
+DEBUG [2024-06-07 15:15:03] Found 253014 JSON files, reading them in...
+DEBUG [2024-06-07 15:17:05] Cleaning up the CVE Files...
+DEBUG [2024-06-07 15:17:21]         : >> NA
+DEBUG [2024-06-07 15:17:21] Setting up backend datastore
+WARN  [2024-06-07 15:18:33]   object curname:  containers
+DEBUG [2024-06-07 15:18:33]   Object:  containers
+DEBUG [2024-06-07 15:18:33]         : >> containers
+WARN  [2024-06-07 15:19:08]   object curname:  cna
+DEBUG [2024-06-07 15:19:08]   Object:  containers.cna
+DEBUG [2024-06-07 15:19:08]         : >> containers.cna
+ERROR [2024-06-07 15:19:45] Multiple data types: containers.cna.x_generator : object, string
+WARN  [2024-06-07 15:20:26]   object curname:  providerMetadata
+DEBUG [2024-06-07 15:20:26]   Object:  containers.cna.providerMetadata
+DEBUG [2024-06-07 15:20:26]         : >> containers.cna.providerMetadata
+WARN  [2024-06-07 15:21:32]   object curname:  source
+DEBUG [2024-06-07 15:21:32]   Object:  containers.cna.source
+DEBUG [2024-06-07 15:21:32]         : >> containers.cna.source
+ERROR [2024-06-07 15:21:37] Multiple data types: containers.cna.source.defect : array, string
+WARN  [2024-06-07 15:21:44]   array curname:  defect
+WARN  [2024-06-07 15:21:44] Skipping:  containers.cna.source.defect
+WARN  [2024-06-07 15:21:44]   array curname:  defects
+DEBUG [2024-06-07 15:21:44]   Array :  containers.cna.source.defects
+DEBUG [2024-06-07 15:21:44]         : >> containers.cna.source.defects
+DEBUG [2024-06-07 15:21:44] containers.cna.source.defects : found array of strings
+WARN  [2024-06-07 15:21:44]   object curname:  x_ConverterErrors
+WARN  [2024-06-07 15:21:44] Skipping x_ name:  containers.cna.x_ConverterErrors
+WARN  [2024-06-07 15:21:44]   object curname:  x_generator
+WARN  [2024-06-07 15:21:44] Skipping:  containers.cna.x_generator
+WARN  [2024-06-07 15:21:44]   object curname:  x_legacyV4Record
+WARN  [2024-06-07 15:21:44] Skipping x_ name:  containers.cna.x_legacyV4Record
+WARN  [2024-06-07 15:21:44]   array curname:  affected
+DEBUG [2024-06-07 15:21:44]   Array :  containers.cna.affected
+DEBUG [2024-06-07 15:22:13]         : >> containers.cna.affected
+WARN  [2024-06-07 15:23:39]   array curname:  cpes
+DEBUG [2024-06-07 15:23:39]   Array :  containers.cna.affected.cpes
+DEBUG [2024-06-07 15:23:48]         : >> containers.cna.affected.cpes
+DEBUG [2024-06-07 15:23:48] containers.cna.affected.cpes : found array of strings
+WARN  [2024-06-07 15:23:48]   array curname:  modules
+DEBUG [2024-06-07 15:23:48]   Array :  containers.cna.affected.modules
+DEBUG [2024-06-07 15:23:48]         : >> containers.cna.affected.modules
+DEBUG [2024-06-07 15:23:48] containers.cna.affected.modules : found array of strings
+WARN  [2024-06-07 15:23:48]   array curname:  platforms
+DEBUG [2024-06-07 15:23:48]   Array :  containers.cna.affected.platforms
+DEBUG [2024-06-07 15:23:54]         : >> containers.cna.affected.platforms
+DEBUG [2024-06-07 15:23:54] containers.cna.affected.platforms : found array of strings
+WARN  [2024-06-07 15:23:54]   array curname:  programFiles
+DEBUG [2024-06-07 15:23:54]   Array :  containers.cna.affected.programFiles
+DEBUG [2024-06-07 15:23:55]         : >> containers.cna.affected.programFiles
+DEBUG [2024-06-07 15:23:55] containers.cna.affected.programFiles : found array of strings
+WARN  [2024-06-07 15:23:55]   array curname:  programRoutines
+DEBUG [2024-06-07 15:23:55]   Array :  containers.cna.affected.programRoutines
+DEBUG [2024-06-07 15:23:56]         : >> containers.cna.affected.programRoutines
+WARN  [2024-06-07 15:23:56]   array curname:  versions
+DEBUG [2024-06-07 15:23:56]   Array :  containers.cna.affected.versions
+DEBUG [2024-06-07 15:24:35]         : >> containers.cna.affected.versions
+WARN  [2024-06-07 15:26:57]   array curname:  changes
+DEBUG [2024-06-07 15:26:57]   Array :  containers.cna.affected.versions.changes
+DEBUG [2024-06-07 15:26:58]         : >> containers.cna.affected.versions.changes
+WARN  [2024-06-07 15:26:59]   array curname:  configurations
+DEBUG [2024-06-07 15:26:59]   Array :  containers.cna.configurations
+DEBUG [2024-06-07 15:26:59]         : >> containers.cna.configurations
+WARN  [2024-06-07 15:27:00]   array curname:  supportingMedia
+DEBUG [2024-06-07 15:27:00]   Array :  containers.cna.configurations.supportingMedia
+DEBUG [2024-06-07 15:27:00]         : >> containers.cna.configurations.supportingMedia
+WARN  [2024-06-07 15:27:00]   array curname:  credits
+DEBUG [2024-06-07 15:27:00]   Array :  containers.cna.credits
+DEBUG [2024-06-07 15:27:03]         : >> containers.cna.credits
+WARN  [2024-06-07 15:27:12]   array curname:  descriptions
+DEBUG [2024-06-07 15:27:12]   Array :  containers.cna.descriptions
+DEBUG [2024-06-07 15:27:42]         : >> containers.cna.descriptions
+WARN  [2024-06-07 15:28:40]   array curname:  supportingMedia
+DEBUG [2024-06-07 15:28:40]   Array :  containers.cna.descriptions.supportingMedia
+DEBUG [2024-06-07 15:28:42]         : >> containers.cna.descriptions.supportingMedia
+WARN  [2024-06-07 15:28:45]   array curname:  exploits
+DEBUG [2024-06-07 15:28:45]   Array :  containers.cna.exploits
+DEBUG [2024-06-07 15:28:46]         : >> containers.cna.exploits
+WARN  [2024-06-07 15:28:47]   array curname:  supportingMedia
+DEBUG [2024-06-07 15:28:47]   Array :  containers.cna.exploits.supportingMedia
+DEBUG [2024-06-07 15:28:47]         : >> containers.cna.exploits.supportingMedia
+WARN  [2024-06-07 15:28:47]   array curname:  impacts
+DEBUG [2024-06-07 15:28:47]   Array :  containers.cna.impacts
+DEBUG [2024-06-07 15:28:48]         : >> containers.cna.impacts
+WARN  [2024-06-07 15:28:49]   array curname:  descriptions
+DEBUG [2024-06-07 15:28:49]   Array :  containers.cna.impacts.descriptions
+DEBUG [2024-06-07 15:28:50]         : >> containers.cna.impacts.descriptions
+WARN  [2024-06-07 15:28:52]   array curname:  metrics
+DEBUG [2024-06-07 15:28:52]   Array :  containers.cna.metrics
+DEBUG [2024-06-07 15:28:59]         : >> containers.cna.metrics
+WARN  [2024-06-07 15:29:15]   object curname:  cvssV2_0
+DEBUG [2024-06-07 15:29:15]   Object:  containers.cna.metrics.cvssV2_0
+DEBUG [2024-06-07 15:29:15]         : >> containers.cna.metrics.cvssV2_0
+WARN  [2024-06-07 15:29:16]   object curname:  cvssV3_0
+DEBUG [2024-06-07 15:29:16]   Object:  containers.cna.metrics.cvssV3_0
+DEBUG [2024-06-07 15:29:16]         : >> containers.cna.metrics.cvssV3_0
+WARN  [2024-06-07 15:29:21]   object curname:  cvssV3_1
+DEBUG [2024-06-07 15:29:21]   Object:  containers.cna.metrics.cvssV3_1
+DEBUG [2024-06-07 15:29:21]         : >> containers.cna.metrics.cvssV3_1
+WARN  [2024-06-07 15:29:35]   object curname:  cvssV4_0
+DEBUG [2024-06-07 15:29:35]   Object:  containers.cna.metrics.cvssV4_0
+DEBUG [2024-06-07 15:29:35]         : >> containers.cna.metrics.cvssV4_0
+WARN  [2024-06-07 15:29:35]   object curname:  other
+DEBUG [2024-06-07 15:29:35]   Object:  containers.cna.metrics.other
+DEBUG [2024-06-07 15:29:35]         : >> containers.cna.metrics.other
+WARN  [2024-06-07 15:29:35]   object curname:  content
+DEBUG [2024-06-07 15:29:35]   Object:  containers.cna.metrics.other.content
+DEBUG [2024-06-07 15:29:35]         : >> containers.cna.metrics.other.content
+ERROR [2024-06-07 15:29:36] Multiple data types: containers.cna.metrics.other.content.version : string, number
+WARN  [2024-06-07 15:29:36] string parsing failed: containers.cna.metrics.other.content
+WARN  [2024-06-07 15:29:36]   object curname:  description
+DEBUG [2024-06-07 15:29:36]   Object:  containers.cna.metrics.other.content.description
+DEBUG [2024-06-07 15:29:36]         : >> containers.cna.metrics.other.content.description
+WARN  [2024-06-07 15:29:36]   array curname:  description_data
+DEBUG [2024-06-07 15:29:36]   Array :  containers.cna.metrics.other.content.description.description_data
+DEBUG [2024-06-07 15:29:36]         : >> containers.cna.metrics.other.content.description.description_data
+WARN  [2024-06-07 15:29:36]   array curname:  scenarios
+DEBUG [2024-06-07 15:29:36]   Array :  containers.cna.metrics.scenarios
+DEBUG [2024-06-07 15:29:38]         : >> containers.cna.metrics.scenarios
+WARN  [2024-06-07 15:29:43]   array curname:  problemTypes
+DEBUG [2024-06-07 15:29:43]   Array :  containers.cna.problemTypes
+DEBUG [2024-06-07 15:30:13]         : >> containers.cna.problemTypes
+WARN  [2024-06-07 15:30:41]   array curname:  descriptions
+DEBUG [2024-06-07 15:30:41]   Array :  containers.cna.problemTypes.descriptions
+DEBUG [2024-06-07 15:31:09]         : >> containers.cna.problemTypes.descriptions
+WARN  [2024-06-07 15:32:13]   array curname:  references
+DEBUG [2024-06-07 15:32:13]   Array :  containers.cna.references
+DEBUG [2024-06-07 15:32:42]         : >> containers.cna.references
+WARN  [2024-06-07 15:36:28]   array curname:  tags
+DEBUG [2024-06-07 15:36:28]   Array :  containers.cna.references.tags
+DEBUG [2024-06-07 15:38:02]         : >> containers.cna.references.tags
+DEBUG [2024-06-07 15:38:04] containers.cna.references.tags : found array of strings
+WARN  [2024-06-07 15:38:04]   array curname:  rejectedReasons
+DEBUG [2024-06-07 15:38:04]   Array :  containers.cna.rejectedReasons
+DEBUG [2024-06-07 15:38:09]         : >> containers.cna.rejectedReasons
+WARN  [2024-06-07 15:38:12]   array curname:  supportingMedia
+DEBUG [2024-06-07 15:38:12]   Array :  containers.cna.rejectedReasons.supportingMedia
+DEBUG [2024-06-07 15:38:12]         : >> containers.cna.rejectedReasons.supportingMedia
+WARN  [2024-06-07 15:38:12]   array curname:  replacedBy
+DEBUG [2024-06-07 15:38:12]   Array :  containers.cna.replacedBy
+DEBUG [2024-06-07 15:38:12]         : >> containers.cna.replacedBy
+DEBUG [2024-06-07 15:38:12] containers.cna.replacedBy : found array of strings
+WARN  [2024-06-07 15:38:12]   array curname:  solutions
+DEBUG [2024-06-07 15:38:12]   Array :  containers.cna.solutions
+DEBUG [2024-06-07 15:38:14]         : >> containers.cna.solutions
+WARN  [2024-06-07 15:38:16]   array curname:  supportingMedia
+DEBUG [2024-06-07 15:38:16]   Array :  containers.cna.solutions.supportingMedia
+DEBUG [2024-06-07 15:38:16]         : >> containers.cna.solutions.supportingMedia
+WARN  [2024-06-07 15:38:17]   array curname:  tags
+DEBUG [2024-06-07 15:38:17]   Array :  containers.cna.tags
+DEBUG [2024-06-07 15:38:18]         : >> containers.cna.tags
+DEBUG [2024-06-07 15:38:18] containers.cna.tags : found array of strings
+WARN  [2024-06-07 15:38:18]   array curname:  taxonomyMappings
+DEBUG [2024-06-07 15:38:18]   Array :  containers.cna.taxonomyMappings
+DEBUG [2024-06-07 15:38:18]         : >> containers.cna.taxonomyMappings
+WARN  [2024-06-07 15:38:18]   array curname:  taxonomyRelations
+DEBUG [2024-06-07 15:38:18]   Array :  containers.cna.taxonomyMappings.taxonomyRelations
+DEBUG [2024-06-07 15:38:18]         : >> containers.cna.taxonomyMappings.taxonomyRelations
+WARN  [2024-06-07 15:38:18]   array curname:  timeline
+DEBUG [2024-06-07 15:38:18]   Array :  containers.cna.timeline
+DEBUG [2024-06-07 15:38:19]         : >> containers.cna.timeline
+WARN  [2024-06-07 15:38:24]   array curname:  workarounds
+DEBUG [2024-06-07 15:38:24]   Array :  containers.cna.workarounds
+DEBUG [2024-06-07 15:38:24]         : >> containers.cna.workarounds
+WARN  [2024-06-07 15:38:25]   array curname:  supportingMedia
+DEBUG [2024-06-07 15:38:25]   Array :  containers.cna.workarounds.supportingMedia
+DEBUG [2024-06-07 15:38:25]         : >> containers.cna.workarounds.supportingMedia
+WARN  [2024-06-07 15:38:25]   array curname:  adp
+DEBUG [2024-06-07 15:38:25]   Array :  containers.adp
+DEBUG [2024-06-07 15:38:26]         : >> containers.adp
+WARN  [2024-06-07 15:38:28]   object curname:  providerMetadata
+DEBUG [2024-06-07 15:38:28]   Object:  containers.adp.providerMetadata
+DEBUG [2024-06-07 15:38:28]         : >> containers.adp.providerMetadata
+WARN  [2024-06-07 15:38:30]   array curname:  affected
+DEBUG [2024-06-07 15:38:30]   Array :  containers.adp.affected
+DEBUG [2024-06-07 15:38:30]         : >> containers.adp.affected
+WARN  [2024-06-07 15:38:33]   array curname:  cpes
+DEBUG [2024-06-07 15:38:33]   Array :  containers.adp.affected.cpes
+DEBUG [2024-06-07 15:38:34]         : >> containers.adp.affected.cpes
+DEBUG [2024-06-07 15:38:34] containers.adp.affected.cpes : found array of strings
+WARN  [2024-06-07 15:38:34]   array curname:  versions
+DEBUG [2024-06-07 15:38:34]   Array :  containers.adp.affected.versions
+DEBUG [2024-06-07 15:38:35]         : >> containers.adp.affected.versions
+WARN  [2024-06-07 15:38:37]   array curname:  metrics
+DEBUG [2024-06-07 15:38:37]   Array :  containers.adp.metrics
+DEBUG [2024-06-07 15:38:38]         : >> containers.adp.metrics
+WARN  [2024-06-07 15:38:40]   object curname:  cvssV3_1
+DEBUG [2024-06-07 15:38:40]   Object:  containers.adp.metrics.cvssV3_1
+DEBUG [2024-06-07 15:38:40]         : >> containers.adp.metrics.cvssV3_1
+WARN  [2024-06-07 15:38:41]   object curname:  other
+DEBUG [2024-06-07 15:38:41]   Object:  containers.adp.metrics.other
+DEBUG [2024-06-07 15:38:41]         : >> containers.adp.metrics.other
+WARN  [2024-06-07 15:38:43]   object curname:  content
+DEBUG [2024-06-07 15:38:43]   Object:  containers.adp.metrics.other.content
+DEBUG [2024-06-07 15:38:43]         : >> containers.adp.metrics.other.content
+WARN  [2024-06-07 15:38:45]   array curname:  options
+DEBUG [2024-06-07 15:38:45]   Array :  containers.adp.metrics.other.content.options
+DEBUG [2024-06-07 15:38:46]         : >> containers.adp.metrics.other.content.options
+WARN  [2024-06-07 15:38:52]   array curname:  scenarios
+DEBUG [2024-06-07 15:38:52]   Array :  containers.adp.metrics.scenarios
+DEBUG [2024-06-07 15:38:52]         : >> containers.adp.metrics.scenarios
+WARN  [2024-06-07 15:38:52]   array curname:  problemTypes
+DEBUG [2024-06-07 15:38:52]   Array :  containers.adp.problemTypes
+DEBUG [2024-06-07 15:38:52]         : >> containers.adp.problemTypes
+WARN  [2024-06-07 15:38:52]   array curname:  descriptions
+DEBUG [2024-06-07 15:38:52]   Array :  containers.adp.problemTypes.descriptions
+DEBUG [2024-06-07 15:38:52]         : >> containers.adp.problemTypes.descriptions
+WARN  [2024-06-07 15:38:52]   array curname:  references
+DEBUG [2024-06-07 15:38:52]   Array :  containers.adp.references
+DEBUG [2024-06-07 15:38:52]         : >> containers.adp.references
+WARN  [2024-06-07 15:38:53]   array curname:  tags
+DEBUG [2024-06-07 15:38:53]   Array :  containers.adp.references.tags
+DEBUG [2024-06-07 15:38:53]         : >> containers.adp.references.tags
+DEBUG [2024-06-07 15:38:53] containers.adp.references.tags : found array of strings
+WARN  [2024-06-07 15:38:53]   array curname:  timeline
+DEBUG [2024-06-07 15:38:53]   Array :  containers.adp.timeline
+DEBUG [2024-06-07 15:38:53]         : >> containers.adp.timeline
+WARN  [2024-06-07 15:38:53]   object curname:  cveMetadata
+DEBUG [2024-06-07 15:38:53]   Object:  cveMetadata
+DEBUG [2024-06-07 15:38:53]         : >> cveMetadata
+DEBUG [2024-06-07 15:40:04] completed parsing of the JSON: 50 records found.
+INFO  [2024-06-07 15:40:08] completed
+INFO  [2024-06-07 15:40:08] Time to parse: 1367.4s (~22.79 minutes)

@@ -9,7 +9,6 @@ output:
     toc_float:
         collapsed: false
         smooth_scroll: false
-
 ---
 
 ```{r setup, echo=FALSE}
@@ -96,17 +95,15 @@ lastmod <- as.character(as.Date(max(cves$cveMetadata.datePublished, na.rm = TRUE
 
 ```
 
-
 # Visual Analysis of the CVE List: `r lastmod`
 
-This exploratory analysis is focused on the data completeness and quality of the primary source for CVE data: https://github.com/CVEProject/cvelistV5.  This page is an automated pass through the JSON data. 
+This exploratory analysis is focused on the data completeness and quality of the primary source for CVE data: https://github.com/CVEProject/cvelistV5. This page is an automated pass through the JSON data.
 
-Last data pull was on `r lastmod` and pulled `r comma(totalcve)` CVEs from `r comma(totalcna)` CNAs. 
+Last data pull was on `r lastmod` and pulled `r comma(totalcve)` CVEs from `r comma(totalcna)` CNAs.
 
-Each line in the table below represents a unique combinations of field and JSON type. For example, some fields may show up in the JSON
-as both an array and a string (e.g. `containers.cna.source.defect`) and will therefore show up twice in the listing below. The code will also do it's best to count instances of objects and arrays, but the objects were a lot more difficult, you will notice `NA` in many of the count fields where the JSON type was an object. 
+Each line in the table below represents a unique combinations of field and JSON type. For example, some fields may show up in the JSON as both an array and a string (e.g. `containers.cna.source.defect`) and will therefore show up twice in the listing below. The code will also do it's best to count instances of objects and arrays, but the objects were a lot more difficult, you will notice `NA` in many of the count fields where the JSON type was an object.
 
-Note that the JSON allows for custom fields that start with "x_", but all of those have been removed since most the 5.0 records contain the full version 4 format of the data in `x_legacyV4Record`. This reduced a lot of the processing required. 
+Note that the JSON allows for custom fields that start with "x\_", but all of those have been removed since most the 5.0 records contain the full version 4 format of the data in `x_legacyV4Record`. This reduced a lot of the processing required.
 
 ```{r cache=FALSE}
 #load the varlist generated during collect_json 
@@ -151,7 +148,6 @@ totalcve <- cves |> distinct(cve) |> nrow()
 totalcna <- cves |> distinct(cveMetadata.assignerShortName) |> nrow()
 ```
 
-
 ```{r }
 gtable <- varlist |> 
   full_join(cve_cna_count, by=c("name" = "jsonfield")) |>
@@ -178,7 +174,6 @@ knitr::kable(gtable, format = "html")
 # knitr::include_graphics(rez)
 
 ```
-
 
 ```{r eval=FALSE}
 cves <- read_parquet(here("cache/cveparse/cves.parquet")) %>% 
@@ -240,10 +235,10 @@ toplot <- map_dfr(datestep, function(x) {
   mutate(txt = paste0(gsub("pct", "", cat), "% of CVEs"))
 gg <- ggplot(toplot, aes(date, val, group=txt, color=txt, label=txt)) +
   geomtextpath::geom_textline(text_smoothing=50, size=8/.pt, family=mainfont) +
+  # geom_line() +
   scale_y_continuous("Number of CNAs to reach...", limits=c(0,NA),
                      expand=expansion(mult=c(0,0.02))) +
   scale_x_date("12-month sliding window from Date") +
   theme(legend.position="none")
 gg
 ```
-

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -148,9 +148,8 @@ ul.task-list li input[type="checkbox"] {
 <h1>Problem types</h1>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
-<caption>252,652 CVEs from 337 CNAs as of 2024-06-04</caption>
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>253,014 CVEs from 338 CNAs as of 2024-06-07</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">cat</th>
@@ -161,18 +160,18 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">problemTypes.lang</td>
-<td style="text-align: right;">233769</td>
-<td style="text-align: right;">328</td>
+<td style="text-align: right;">234104</td>
+<td style="text-align: right;">330</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">problemTypes.type</td>
-<td style="text-align: right;">227981</td>
-<td style="text-align: right;">322</td>
+<td style="text-align: right;">228227</td>
+<td style="text-align: right;">324</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">problemTypes.cweId</td>
-<td style="text-align: right;">50954</td>
-<td style="text-align: right;">300</td>
+<td style="text-align: right;">51118</td>
+<td style="text-align: right;">302</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">problemTypes.cweid</td>
@@ -181,8 +180,8 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td style="text-align: left;">problemTypes.description</td>
-<td style="text-align: right;">99256</td>
-<td style="text-align: right;">327</td>
+<td style="text-align: right;">99516</td>
+<td style="text-align: right;">329</td>
 </tr>
 </tbody>
 </table>
@@ -190,13 +189,11 @@ ul.task-list li input[type="checkbox"] {
 
 </div>
 </div>
-</div>
 <section id="type-in-problemtypes" class="level2">
 <h2 class="anchored" data-anchor-id="type-in-problemtypes">“Type” in problemTypes</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>problemType.type values and counts</caption>
 <thead>
 <tr class="header">
@@ -209,20 +206,20 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">text</td>
-<td style="text-align: right;">173354</td>
+<td style="text-align: right;">173430</td>
 <td style="text-align: right;">161</td>
 <td style="text-align: left;">&lt;too many&gt;</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">CWE</td>
-<td style="text-align: right;">51819</td>
-<td style="text-align: right;">299</td>
+<td style="text-align: right;">51987</td>
+<td style="text-align: right;">301</td>
 <td style="text-align: left;">&lt;too many&gt;</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">&lt;undefined&gt;</td>
-<td style="text-align: right;">6322</td>
-<td style="text-align: right;">73</td>
+<td style="text-align: right;">6411</td>
+<td style="text-align: right;">72</td>
 <td style="text-align: left;">&lt;too many&gt;</td>
 </tr>
 <tr class="even">
@@ -233,7 +230,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td style="text-align: left;">cwe</td>
-<td style="text-align: right;">325</td>
+<td style="text-align: right;">327</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: left;">cisco, OX</td>
 </tr>
@@ -303,15 +300,13 @@ ul.task-list li input[type="checkbox"] {
 
 </div>
 </div>
-</div>
 </section>
 <section id="looking-for-cwe-through-regex" class="level2">
 <h2 class="anchored" data-anchor-id="looking-for-cwe-through-regex">Looking for CWE through regex</h2>
 <p>I used a regex “cwe[-_.]\d+” to detect a CWE ID in any of the <code>description</code> or the two <code>cweId</code> and <code>cweid</code> fields. The following table is a count of the CVEs with one or more CWEs found in those fields where the type is specified as shown.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>The elusive CWE ID</caption>
 <thead>
 <tr class="header">
@@ -333,12 +328,12 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td style="text-align: left;">cwe</td>
-<td style="text-align: right;">325</td>
+<td style="text-align: right;">327</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">CWE</td>
-<td style="text-align: right;">51819</td>
+<td style="text-align: right;">51987</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
@@ -389,11 +384,11 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td style="text-align: left;">text</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">173353</td>
+<td style="text-align: right;">173429</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">NA</td>
-<td style="text-align: right;">3193</td>
+<td style="text-align: right;">3282</td>
 <td style="text-align: right;">3129</td>
 </tr>
 </tbody>
@@ -402,12 +397,10 @@ ul.task-list li input[type="checkbox"] {
 
 </div>
 </div>
-</div>
 <p>Because it’s a simple regex we can discover the CWE ID in other places, such as the description. This is limited to the records where a valid CWE field was found.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Where are CWEs being found?</caption>
 <thead>
 <tr class="header">
@@ -423,21 +416,21 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">TRUE</td>
 <td style="text-align: left;">TRUE</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: right;">49249</td>
-<td style="text-align: right;">297</td>
+<td style="text-align: right;">49406</td>
+<td style="text-align: right;">299</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">TRUE</td>
 <td style="text-align: left;">FALSE</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: right;">4415</td>
-<td style="text-align: right;">22</td>
+<td style="text-align: right;">4510</td>
+<td style="text-align: right;">21</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">FALSE</td>
 <td style="text-align: left;">TRUE</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: right;">1705</td>
+<td style="text-align: right;">1712</td>
 <td style="text-align: right;">16</td>
 </tr>
 <tr class="even">
@@ -451,7 +444,6 @@ ul.task-list li input[type="checkbox"] {
 </table>
 
 
-</div>
 </div>
 </div>
 </section>

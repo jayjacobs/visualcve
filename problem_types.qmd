@@ -172,7 +172,7 @@ knitr::kable(toplot2, format = "html",
 
 ## Looking for CWE through regex
 
-I used a regex "cwe[-_.]\\d+" to detect a CWE ID in any of the `description` or the two `cweId` and `cweid` fields. The following table is a count of the CVEs with one or more CWEs found in those fields where the type is specified as shown.
+I used a regex "cwe\[-\_.\]\\d+" to detect a CWE ID in any of the `description` or the two `cweId` and `cweid` fields. The following table is a count of the CVEs with one or more CWEs found in those fields where the type is specified as shown.
 
 ```{r}
 toplot <- cleaned %>% 
@@ -194,7 +194,7 @@ knitr::kable(toplot, format = "html",
 
 ```
 
-Because it's a simple regex we can discover the CWE ID in other places, such as the description.  This is limited to the records where a valid CWE field was found. 
+Because it's a simple regex we can discover the CWE ID in other places, such as the description. This is limited to the records where a valid CWE field was found.
 
 ```{r}
 toplot <- cleaned %>% 
@@ -216,9 +216,6 @@ knitr::kable(toplot, format = "html",
              caption = paste("Where are CWEs being found?"))
 
 ```
-
-
-
 
 ## Record Completeness
 
@@ -367,12 +364,11 @@ cwe_map <- weakness %>% select(toplevel, id, name, status, abstraction) %>%
 # cwe_count
 ```
 
-
 ## Number off CWEs in CVE records
 
-This section is aggregating any identification of CWE ID in any of the three common fields. 
+This section is aggregating any identification of CWE ID in any of the three common fields.
 
-Note that seven CVEs had five (5) unique CWEs in a single CVE record. 
+Note that seven CVEs had five (5) unique CWEs in a single CVE record.
 
 ```{r fig.width=7, fig.height=2}
 toplot <- cleaned %>% 
@@ -403,7 +399,7 @@ gg <- ggplot(toplot, aes(cves, cwes, label=txt)) +
 gg
 ```
 
-CWE's have different level of Abstractions as well as views and categories. CWE recommends only assigning "Base" CWEs to vulnerabilities. 
+CWE's have different level of Abstractions as well as views and categories. CWE recommends only assigning "Base" CWEs to vulnerabilities.
 
 ```{r}
 toplot <- cleaned %>% 
@@ -494,8 +490,7 @@ gg <- ggplot(toplot, aes(pct, txt, label=lab)) +
 gg
 ```
 
-
-We can get a better idea of what these are by using the "Comprehensive Categorization" in category 1400. It maps every CWE up to a one of twenty-two high-level categories. 
+We can get a better idea of what these are by using the "Comprehensive Categorization" in category 1400. It maps every CWE up to a one of twenty-two high-level categories.
 
 ```{r fig.height=6}
 toplot <- cleaned %>% 
@@ -538,5 +533,3 @@ gg
 
 
 ```
-
-  
