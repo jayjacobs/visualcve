@@ -60,7 +60,7 @@ knitr::opts_chunk$set(
   dev = c("png", "cairo_pdf"),
   echo = FALSE,
   fig.retina = 2,
-  fig.width = 7,
+  fig.width = 9,
   fig.height = 3.5
 )
 
@@ -224,11 +224,13 @@ toplot <- map_dfr(datestep, function(x) {
     count(cna, sort=TRUE) %>% 
     mutate(pct = n/sum(n), 
            csum = cumsum(pct), 
+           pct50 = lag(csum) < 0.5,
+           pct60 = lag(csum) < 0.6,
            pct70 = lag(csum) < 0.7,
            pct80 = lag(csum) < 0.8,
            pct90 = lag(csum) < 0.9) %>% 
-    replace_na(list(pct70=TRUE, pct80=TRUE, pct90=TRUE)) %>% 
-    summarize(pct70=sum(pct70), pct80=sum(pct80), pct90=sum(pct90)) %>% 
+    replace_na(list(pct50=TRUE, pct60=TRUE, pct70=TRUE, pct80=TRUE, pct90=TRUE)) %>% 
+    summarize(pct50=sum(pct50), pct60=sum(pct60), pct70=sum(pct70), pct80=sum(pct80), pct90=sum(pct90)) %>% 
     mutate(date = x) 
 }) %>% 
   gather(cat, val, -date) %>%
@@ -237,7 +239,7 @@ gg <- ggplot(toplot, aes(date, val, group=txt, color=txt, label=txt)) +
   geomtextpath::geom_textline(text_smoothing=50, size=8/.pt, family=mainfont) +
   # geom_line() +
   scale_y_continuous("Number of CNAs to reach...", limits=c(0,NA),
-                     expand=expansion(mult=c(0,0.02))) +
+                     expand=expansion(mult=c(0,0.02)), breaks=seq(0,100,10)) +
   scale_x_date("12-month sliding window from Date") +
   theme(legend.position="none")
 gg
