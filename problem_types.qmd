@@ -606,6 +606,7 @@ gg1 <- ggplot(allplot, aes(date, pct, group=src, color=src, label=src)) +
   scale_x_date("CVE published (showing end date of 90-day sliding window)",
                date_breaks = "1 year", date_labels = "%Y") +
   theme(legend.position="none")
+gg1
 ```
 
 
