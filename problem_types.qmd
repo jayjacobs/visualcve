@@ -176,12 +176,11 @@ I used a regex "cwe\[-\_.\]\\d+" to detect a CWE ID in any of the `description` 
 
 ```{r}
 toplot <- cleaned %>% 
-  select(cve, description, lang, type, cweId, cweid) %>% 
+  select(cve, description, lang, type, cweId) %>% 
   mutate(in_desc = str_detect(tolower(description), "cwe[-_.]\\d+"),
-         in_cweId = str_detect(tolower(cweId), "cwe[-_.]\\d+"),
-         in_cweid = str_detect(tolower(cweid), "cwe[-_.]\\d+")) %>% 
-  replace_na(list(in_desc=FALSE, in_cweId=FALSE, in_cweid=FALSE)) %>% 
-  mutate(anycwe = in_desc | in_cweId | in_cweid) %>% 
+         in_cweId = str_detect(tolower(cweId), "cwe[-_.]\\d+")) %>% 
+  replace_na(list(in_desc=FALSE, in_cweId=FALSE)) %>% 
+  mutate(anycwe = in_desc | in_cweId) %>% 
   # filter(anycwe) %>%
   left_join(cvecna, by="cve") %>% 
   summarize(.by=c(type,anycwe), cves = n_distinct(cve)) %>% 
@@ -198,19 +197,17 @@ Because it's a simple regex we can discover the CWE ID in other places, such as 
 
 ```{r}
 toplot <- cleaned %>% 
-  select(cve, description, lang, type, cweId, cweid) %>% 
+  select(cve, description, lang, type, cweId) %>% 
   mutate(in_desc = str_detect(tolower(description), "cwe[-_.]\\d+"),
-         in_cweId = str_detect(tolower(cweId), "cwe[-_.]\\d+"),
-         in_cweid = str_detect(tolower(cweid), "cwe[-_.]\\d+")) %>% 
-  replace_na(list(in_desc=FALSE, in_cweId=FALSE, in_cweid=FALSE)) %>% 
-  mutate(anycwe = in_desc | in_cweId | in_cweid) %>% 
+         in_cweId = str_detect(tolower(cweId), "cwe[-_.]\\d+")) %>% 
+  replace_na(list(in_desc=FALSE, in_cweId=FALSE)) %>% 
+  mutate(anycwe = in_desc | in_cweId) %>% 
   filter(anycwe) %>%
   left_join(cvecna, by="cve") %>% 
-  summarize(.by=c(in_desc, in_cweId, in_cweid), cves = n_distinct(cve), cnas=n_distinct(cna)) %>% 
+  summarize(.by=c(in_desc, in_cweId), cves = n_distinct(cve), cnas=n_distinct(cna)) %>% 
   arrange(-cves, -cnas) %>% 
   rename(`CWE in Description`=in_desc,
-         `CWE in cweId`=in_cweId,
-         `CWE in cweid`=in_cweid)
+         `CWE in cweId`=in_cweId)
 
 knitr::kable(toplot, format = "html", 
              caption = paste("Where are CWEs being found?"))
@@ -240,7 +237,7 @@ toplot <- cleaned %>%
   pivot_wider(id_cols = cve, names_from = cat, values_from = value, values_fill = FALSE) %>% 
   left_join(cvepub, by="cve") %>% 
   replace_na(list(problemTypes.lang = FALSE, problemTypes.type = FALSE, problemTypes.cweId = FALSE, 
-        problemTypes.cweid = FALSE, problemTypes.description = FALSE)) %>% 
+        problemTypes.description = FALSE)) %>% 
   count(lang=problemTypes.lang, type=problemTypes.type, 
         cweId=problemTypes.cweId, 
         description=problemTypes.description, name="count") %>% 
@@ -269,12 +266,11 @@ gg
 
 ```{r eval=FALSE}
 toplot <- cleaned %>% 
-  count(description, lang, type, cweId, cweid, name="instances", sort=TRUE) %>% 
+  count(description, lang, type, cweId, name="instances", sort=TRUE) %>% 
   mutate(in_desc = str_detect(tolower(description), "cwe[-_.]\\d+"),
-         in_cweId = str_detect(tolower(cweId), "cwe[-_.]\\d+"),
-         in_cweid = str_detect(tolower(cweid), "cwe[-_.]\\d+")) %>% 
-  replace_na(list(in_desc=FALSE, in_cweId=FALSE, in_cweid=FALSE)) %>% 
-  mutate(in_cweId = in_cweId | in_cweid) %>% 
+         in_cweId = str_detect(tolower(cweId), "cwe[-_.]\\d+")) %>% 
+  replace_na(list(in_desc=FALSE, in_cweId=FALSE)) %>% 
+  mutate(in_cweId = in_cweId) %>% 
   count(in_desc, in_cweId, wt=instances, sort=TRUE)
 ```
 
@@ -372,13 +368,11 @@ Note that seven CVEs had five (5) unique CWEs in a single CVE record.
 
 ```{r fig.width=7, fig.height=2}
 toplot <- cleaned %>% 
-  select(cve, description, lang, type, cweId, cweid) %>% 
+  select(cve, description, lang, type, cweId) %>% 
   mutate(in_desc = str_extract(tolower(description), "cwe[-_.]\\d+"),
-         in_cweId = str_extract(tolower(cweId), "cwe[-_.]\\d+"),
-         in_cweid = str_extract(tolower(cweid), "cwe[-_.]\\d+")) %>% 
-  filter(!(is.na(in_desc) & is.na(in_cweId) & is.na(in_cweid))) %>% 
+         in_cweId = str_extract(tolower(cweId), "cwe[-_.]\\d+")) %>% 
+  filter(!(is.na(in_desc) & is.na(in_cweId))) %>% 
   mutate(cwe = case_when(!is.na(in_cweId) ~ toupper(in_cweId),
-                         !is.na(in_cweid) ~ toupper(in_cweid),
                          !is.na(in_desc) ~ toupper(in_desc))) %>% 
   filter(!is.na(cwe)) %>% 
   distinct(cve, cwe) %>% 
@@ -403,13 +397,11 @@ CWE's have different level of Abstractions as well as views and categories. CWE 
 
 ```{r}
 toplot <- cleaned %>% 
-  select(cve, description, lang, type, cweId, cweid) %>% 
+  select(cve, description, lang, type, cweId) %>% 
   mutate(in_desc = str_extract(tolower(description), "cwe[-_.]\\d+"),
-         in_cweId = str_extract(tolower(cweId), "cwe[-_.]\\d+"),
-         in_cweid = str_extract(tolower(cweid), "cwe[-_.]\\d+")) %>% 
-  filter(!(is.na(in_desc) & is.na(in_cweId) & is.na(in_cweid))) %>% 
+         in_cweId = str_extract(tolower(cweId), "cwe[-_.]\\d+")) %>% 
+  filter(!(is.na(in_desc) & is.na(in_cweId))) %>% 
   mutate(cwe = case_when(!is.na(in_cweId) ~ toupper(in_cweId),
-                         !is.na(in_cweid) ~ toupper(in_cweid),
                          !is.na(in_desc) ~ toupper(in_desc))) %>% 
   filter(!is.na(cwe)) %>% 
   distinct(cve, cwe) %>% 
@@ -458,13 +450,11 @@ gg1 + gg2 + plot_layout(nrow=1, guides = "collect") &
 
 ```{r fig.height=9}
 toplot <- cleaned %>% 
-  select(cve, description, lang, type, cweId, cweid) %>% 
+  select(cve, description, lang, type, cweId) %>% 
   mutate(in_desc = str_extract(tolower(description), "cwe[-_.]\\d+"),
-         in_cweId = str_extract(tolower(cweId), "cwe[-_.]\\d+"),
-         in_cweid = str_extract(tolower(cweid), "cwe[-_.]\\d+")) %>% 
-  filter(!(is.na(in_desc) & is.na(in_cweId) & is.na(in_cweid))) %>% 
+         in_cweId = str_extract(tolower(cweId), "cwe[-_.]\\d+")) %>% 
+  filter(!(is.na(in_desc) & is.na(in_cweId))) %>% 
   mutate(cwe = case_when(!is.na(in_cweId) ~ toupper(in_cweId),
-                         !is.na(in_cweid) ~ toupper(in_cweid),
                          !is.na(in_desc) ~ toupper(in_desc))) %>% 
   filter(!is.na(cwe)) %>% 
   distinct(cve, cwe) %>% 
@@ -494,13 +484,11 @@ We can get a better idea of what these are by using the "Comprehensive Categoriz
 
 ```{r fig.height=6}
 toplot <- cleaned %>% 
-  select(cve, description, lang, type, cweId, cweid) %>% 
+  select(cve, description, lang, type, cweId) %>% 
   mutate(in_desc = str_extract(tolower(description), "cwe[-_.]\\d+"),
-         in_cweId = str_extract(tolower(cweId), "cwe[-_.]\\d+"),
-         in_cweid = str_extract(tolower(cweid), "cwe[-_.]\\d+")) %>% 
-  filter(!(is.na(in_desc) & is.na(in_cweId) & is.na(in_cweid))) %>% 
+         in_cweId = str_extract(tolower(cweId), "cwe[-_.]\\d+")) %>% 
+  filter(!(is.na(in_desc) & is.na(in_cweId))) %>% 
   mutate(cwe = case_when(!is.na(in_cweId) ~ toupper(in_cweId),
-                         !is.na(in_cweid) ~ toupper(in_cweid),
                          !is.na(in_desc) ~ toupper(in_desc))) %>% 
   filter(!is.na(cwe)) %>% 
   distinct(cve, cwe) %>% 
