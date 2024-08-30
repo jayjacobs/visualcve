@@ -339,6 +339,7 @@ category_relation <- allcwe[[2]] %>%
 
 views <- allcwe[[3]]
 external_ref <- allcwe[[4]]
+cwe_view <- allcwe[[3]]
 
 cwe_map <- weakness %>% select(toplevel, id, name, status, abstraction) %>% 
   bind_rows(category %>% select(toplevel, id, name, status)) %>% 
@@ -521,3 +522,90 @@ gg
 
 
 ```
+
+```{r}
+toplot <- cleaned %>% 
+  select(cve, description, lang, type, cweId) %>% 
+  mutate(in_desc = str_extract(tolower(description), "cwe[-_.]\\d+"),
+         in_cweId = str_extract(tolower(cweId), "cwe[-_.]\\d+")) %>% 
+  filter(!(is.na(in_desc) & is.na(in_cweId))) %>% 
+  mutate(cwe = case_when(!is.na(in_cweId) ~ toupper(in_cweId),
+                         !is.na(in_desc) ~ toupper(in_desc))) %>% 
+  filter(!is.na(cwe)) %>% 
+  distinct(cve, cwe) %>% 
+  mutate(id = gsub("CWE-", "", cwe))
+
+nvdview <- read_csv(here("cache", "1003.csv"), show_col_types = FALSE) %>% 
+  select(id = `CWE-ID`, 
+         name=Name, 
+         abstraction=`Weakness Abstraction`, 
+         related=`Related Weaknesses`) %>% 
+  mutate(id = as.character(id))
+
+toplot1 <- toplot %>% 
+  left_join(nvdview, by=c("id"))
+
+in_cves <- nrow(toplot1)
+in_1003 <- toplot1 %>% filter(is.na(name)) %>% nrow()
+
+pct_in_nvd <- percent(in_1003 / in_cves, 0.1)
+```
+
+Out of the `r comma(in_cves)` CWEs used in the in the CVEs, `r comma(in_1003)` are identified to be part of the CWE View 1003 (the "NVD Slice").  That is `r pct_in_nvd` of the CWEs found in CVEs. 
+
+
+```{r}
+toplot <- cleaned %>% 
+  select(cve, description, lang, type, cweId) %>% 
+  mutate(in_desc = str_extract(tolower(description), "cwe[-_.]\\d+"),
+         in_cweId = str_extract(tolower(cweId), "cwe[-_.]\\d+")) %>% 
+  filter(!(is.na(in_desc) & is.na(in_cweId))) %>% 
+  mutate(cwe = case_when(!is.na(in_cweId) ~ toupper(in_cweId),
+                         !is.na(in_desc) ~ toupper(in_desc))) %>% 
+  filter(!is.na(cwe)) %>% 
+  distinct(cve, cwe) %>% 
+  mutate(id = gsub("CWE-", "", cwe))
+
+fixdate <- read_parquet(here("../fixed_cve_published_dates_2024-08-27.parquet")) %>% 
+  select(cve, realdate=published)
+has_cwe <- cvepub %>% 
+  left_join(fixdate, by="cve") %>% 
+  mutate(published = if_else(!is.na(realdate), realdate, published)) %>% 
+  full_join(cvecna, by="cve") %>% 
+  mutate(cwe = cve %in% toplot$cve) %>% 
+  select(cve, published, cna, cwe)
+  
+
+
+alldates <- seq(as.Date("2017-01-01"), today(), by="2 days")
+
+fullplot <- map_dfr(alldates, function(curdate) {
+  has_cwe %>% 
+    filter(published > (curdate - days(180)),
+           published <= curdate) %>% 
+    summarize(x = sum(cwe), n=n(), pct = x/n, date = curdate)
+})
+
+fullplot2 <- map_dfr(alldates, function(curdate) {
+  has_cwe %>% 
+    filter(cna != "mitre",
+           published > (curdate - days(180)),
+           published <= curdate) %>% 
+    summarize(x = sum(cwe), n=n(), pct = x/n, date = curdate)
+})
+
+allplot <- fullplot %>% mutate(src = "All CNAs") %>% 
+  bind_rows(fullplot2 %>% mutate(src = "Without MITRE"))
+
+gg1 <- ggplot(allplot, aes(date, pct, group=src, color=src, label=src)) + 
+  geom_line(alpha=1/4) +
+  geomtextpath::geom_textpath(text_smoothing=50, vjust=0) +
+  scale_y_continuous("Percent of Published CVEs with any CWE defined", label=label_percent(1),
+                     limits=c(0,1)) +
+  scale_color_manual(values=c("All CNAs"=tab("seablue"), "Without MITRE"=tab("blue"))) +
+  scale_x_date("CVE published (showing end date of 90-day sliding window)",
+               date_breaks = "1 year", date_labels = "%Y") +
+  theme(legend.position="none")
+```
+
+

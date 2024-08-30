@@ -123,6 +123,6 @@
     "href": "problem_types.html#top-cwes",
     "title": "Problem types",
     "section": "top CWEs",
-    "text": "top CWEs\n\n\n\n\n\n\n\n\n\nWe can get a better idea of what these are by using the “Comprehensive Categorization” in category 1400. It maps every CWE up to a one of twenty-two high-level categories."
+    "text": "top CWEs\n\n\n\n\n\n\n\n\n\nWe can get a better idea of what these are by using the “Comprehensive Categorization” in category 1400. It maps every CWE up to a one of twenty-two high-level categories.\n\n\n\n\n\n\n\n\n\nOut of the 62,835 CWEs used in the in the CVEs, 11,988 are identified to be part of the CWE View 1003 (the “NVD Slice”). That is 19.1% of the CWEs found in CVEs."
   }
 ]
