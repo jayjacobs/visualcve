@@ -579,23 +579,16 @@ has_cwe <- cvepub %>%
 
 alldates <- seq(as.Date("2017-01-01"), today(), by="2 days")
 
-fullplot <- map_dfr(alldates, function(curdate) {
-  has_cwe %>% 
-    filter(published > (curdate - days(180)),
-           published <= curdate) %>% 
-    summarize(x = sum(cwe), n=n(), pct = x/n, date = curdate)
+allplot <- map_dfr(alldates, function(curdate) {
+  one <- has_cwe %>% 
+    filter(published > (curdate - days(90)),
+           published <= curdate)
+  one %>% 
+    summarize(x = sum(cwe), n=n(), pct = x/n, date = curdate, src="All CNAs") %>% 
+    bind_rows(one %>% 
+                filter(cna != "mitre") %>% 
+                summarize(x = sum(cwe), n=n(), pct = x/n, date = curdate, src="Without MITRE"))
 })
-
-fullplot2 <- map_dfr(alldates, function(curdate) {
-  has_cwe %>% 
-    filter(cna != "mitre",
-           published > (curdate - days(180)),
-           published <= curdate) %>% 
-    summarize(x = sum(cwe), n=n(), pct = x/n, date = curdate)
-})
-
-allplot <- fullplot %>% mutate(src = "All CNAs") %>% 
-  bind_rows(fullplot2 %>% mutate(src = "Without MITRE"))
 
 gg1 <- ggplot(allplot, aes(date, pct, group=src, color=src, label=src)) + 
   geom_line(alpha=1/4) +
