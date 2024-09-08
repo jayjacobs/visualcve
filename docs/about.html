@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>visualcve</title>
+<title>visualcve - About</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -89,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -109,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">ProblemTypes</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link active" href="./about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -124,306 +124,33 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#affected-defined-with-versions" id="toc-affected-defined-with-versions" class="nav-link active" data-scroll-target="#affected-defined-with-versions">Affected (defined with version(s))</a></li>
-  <li><a href="#affected-cpes" id="toc-affected-cpes" class="nav-link" data-scroll-target="#affected-cpes">Affected: CPEs</a></li>
-  <li><a href="#problem-types-cwe-defined" id="toc-problem-types-cwe-defined" class="nav-link" data-scroll-target="#problem-types-cwe-defined">Problem Types (CWE Defined)</a></li>
-  <li><a href="#references---average-number-of-references-per-cve" id="toc-references---average-number-of-references-per-cve" class="nav-link" data-scroll-target="#references---average-number-of-references-per-cve">References - Average number of references per CVE</a></li>
-  <li><a href="#references-cves-with-3-or-more" id="toc-references-cves-with-3-or-more" class="nav-link" data-scroll-target="#references-cves-with-3-or-more">References: CVES with 3 or more</a></li>
-  <li><a href="#references-top-tags" id="toc-references-top-tags" class="nav-link" data-scroll-target="#references-top-tags">References: Top Tags</a></li>
-  <li><a href="#impacts" id="toc-impacts" class="nav-link" data-scroll-target="#impacts">Impacts</a></li>
-  <li><a href="#metrics" id="toc-metrics" class="nav-link" data-scroll-target="#metrics">Metrics</a></li>
-  <li><a href="#configurations" id="toc-configurations" class="nav-link" data-scroll-target="#configurations">Configurations</a></li>
-  <li><a href="#workarounds" id="toc-workarounds" class="nav-link" data-scroll-target="#workarounds">Workarounds</a></li>
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions">Solutions</a></li>
-  <li><a href="#exploits" id="toc-exploits" class="nav-link" data-scroll-target="#exploits">Exploits</a></li>
-  <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline">Timeline</a></li>
-  <li><a href="#credits" id="toc-credits" class="nav-link" data-scroll-target="#credits">Credits</a></li>
-  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source">Source</a></li>
-  <li><a href="#tags" id="toc-tags" class="nav-link" data-scroll-target="#tags">Tags</a></li>
-  <li><a href="#taxonomy-mappings" id="toc-taxonomy-mappings" class="nav-link" data-scroll-target="#taxonomy-mappings">Taxonomy Mappings</a></li>
-  <li><a href="#everything" id="toc-everything" class="nav-link" data-scroll-target="#everything">Everything</a>
-  <ul class="collapse">
-  <li><a href="#date-consistency" id="toc-date-consistency" class="nav-link" data-scroll-target="#date-consistency">Date Consistency</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-
-
-
-<p>NOTE: So far, this is the only page that attempts to “fix” the 10,000+ CVEs with an incorrect published date and that’s the primary date field used throughout. Some of the charts and graphics may not match with other pages (who incorrectly trust the published date).</p>
-<p>The major sections in a CVE record are:</p>
-<ul>
-<li>metadata - CVE ID, dates, CNA information, etc</li>
-<li>Description and Title - free text information about the vulnerability</li>
-<li>Affected - information to identify entity/entities affected by vulnerability</li>
-<li>Problem Types - CWE information</li>
-<li>References - URLs to external related sources</li>
-<li>impacts</li>
-<li>metrics</li>
-<li>configurations</li>
-<li>workarounds</li>
-<li>solutions</li>
-<li>exploits</li>
-<li>timeline</li>
-<li>credits</li>
-<li>source</li>
-<li>tags</li>
-<li>taxonomy mappings</li>
-<li>x_*</li>
-</ul>
-<p>The following section looks at general completeness and statistics about each section.</p>
-<section id="affected-defined-with-versions" class="level2">
-<h2 class="anchored" data-anchor-id="affected-defined-with-versions">Affected (defined with version(s))</h2>
-<p>Points in the plot are monthly proportions with field, the lines are rolling 90 day windows before the specified time. Showing data with and without “MITRE” listed as the CNA.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="affected-cpes" class="level2">
-<h2 class="anchored" data-anchor-id="affected-cpes">Affected: CPEs</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="problem-types-cwe-defined" class="level2">
-<h2 class="anchored" data-anchor-id="problem-types-cwe-defined">Problem Types (CWE Defined)</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="references---average-number-of-references-per-cve" class="level2">
-<h2 class="anchored" data-anchor-id="references---average-number-of-references-per-cve">References - Average number of references per CVE</h2>
-<p>Note that “average” is using a geometric mean to calculate the average over time.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="references-cves-with-3-or-more" class="level2">
-<h2 class="anchored" data-anchor-id="references-cves-with-3-or-more">References: CVES with 3 or more</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="references-top-tags" class="level2">
-<h2 class="anchored" data-anchor-id="references-top-tags">References: Top Tags</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="impacts" class="level2">
-<h2 class="anchored" data-anchor-id="impacts">Impacts</h2>
-<p>Personally, “attack patterns” and “impact” are two very different things, so I find it strange that CAPEC is specified in the “impact” section.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="metrics" class="level2">
-<h2 class="anchored" data-anchor-id="metrics">Metrics</h2>
-<p>Note that containers.cna.metrics.other is an object with a free text “type” field and an object named “content” which “supports arbitrary JSON”. In the CNA container, it looks like most if not all of the “other” metrics is mostly just a free text description of the outcome or impact.</p>
-<p>Also, not counting the “scenario” field here. As of 2024-09-07, there were 20,282 CVEs with a scenario, but when we remove the scenario of “GENERAL” we are left with 48 CVEs.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="configurations" class="level2">
-<h2 class="anchored" data-anchor-id="configurations">Configurations</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="workarounds" class="level2">
-<h2 class="anchored" data-anchor-id="workarounds">Workarounds</h2>
-<p>Removing obvious non-answers such as “There are no [known|viable|available] workarounds” and others.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="solutions" class="level2">
-<h2 class="anchored" data-anchor-id="solutions">Solutions</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="exploits" class="level2">
-<h2 class="anchored" data-anchor-id="exploits">Exploits</h2>
-<p>Removing non-answers such as “not aware of” and “None publicly available”.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="timeline" class="level2">
-<h2 class="anchored" data-anchor-id="timeline">Timeline</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="credits" class="level2">
-<h2 class="anchored" data-anchor-id="credits">Credits</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="source" class="level2">
-<h2 class="anchored" data-anchor-id="source">Source</h2>
-<p>From the schema:</p>
-<p>“This is the source information (who discovered it, who researched it, etc.) and optionally a chain of CNA information (e.g.&nbsp;the originating CNA and subsequent parent CNAs who have processed it before it arrives at the MITRE root). Must contain: IF this is in the root level it MUST contain a CNA_chain entry, IF this source entry is NOT in the root (e.g.&nbsp;it is part of a vendor statement) then it must contain at least one type of data entry.”,</p>
-<p>But in reality, Cisco is the only CNA using this, and the only value appears to be in the “source.defects” and they all appear to look like “CSCvz91984”, “CSCvz93493”, “CSCvz93504”</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="tags" class="level2">
-<h2 class="anchored" data-anchor-id="tags">Tags</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="taxonomy-mappings" class="level2">
-<h2 class="anchored" data-anchor-id="taxonomy-mappings">Taxonomy Mappings</h2>
-<p>As of 2024-09-07, there are a 2 CVEs from 2023 with ATT&amp;CK mappings…</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="everything" class="level1">
-<h1>Everything</h1>
-<p>This summarizes the last point in all of the line plots above, looking at each value over the last 90 days.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<section id="date-consistency" class="level3">
-<h3 class="anchored" data-anchor-id="date-consistency">Date Consistency</h3>
-<p>This normalizes the various date formats present in the data and compares across the date fields.</p>
-<p>The percent shown is the percent of date values within each date field and not CVE records or across all date values.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">About</h1>
 </div>
 
 
-</section>
-</section>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This is created by Jay Jacobs as a “playground” of sorts to visualize the data currently being published in the CVE List. Reach out or open an issue if you have comments or questions.</p>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

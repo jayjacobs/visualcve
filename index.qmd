@@ -702,8 +702,44 @@ From the schema:
 But in reality, Cisco is the only CNA using this, and the only value appears to be in the "source.defects" and they all appear to look like "CSCvz91984", "CSCvz93493", "CSCvz93504"
 
 ```{r}
-# do_basic_data("containers.cna.source.defects.parquet")
+# rez <- do_basic_data("containers.cna.source.defects.parquet")
 # foo <- read_parquet(here("cache/cveparse/containers.cna.source.defects.parquet"))
+
+rawdata <- read_parquet(here("cache/cveparse/containers.cna.source.defects.parquet")) %>% 
+  select(cve, value=containers.cna.source.defects) %>% 
+  mutate(value = str_squish(value)) %>% 
+  filter(tolower(value) != "n/a",
+         nchar(value) > 4)
+basedata <- rawdata %>% 
+  distinct(cve, value=TRUE) %>% 
+  right_join(cvepub, by="cve") %>% 
+  replace_na(list(value = FALSE))
+allplot <- map_dfr(alldates, function(curdate) {
+  basedata %>% 
+    filter(published > (curdate - days(90)),
+           published <= curdate) %>% 
+    summarize(x=sum(value), n=n(), pct=x/n,
+              date = curdate)
+}) %>%
+  filter(pct > 0)
+
+cve_tally <- cve_tally %>% 
+  bind_rows(allplot %>% filter(date == max(date)) %>% 
+              mutate(src = "Source/Defects") %>% select(src, pct))
+
+# print(rawdata %>% count(value, sort=TRUE))
+
+gg <- ggplot(allplot, aes(date, pct)) +
+  geom_line(color=tab("red")) +
+  geom_area(fill=tab("red"), alpha=1/5) +
+  scale_y_continuous("Percent of CVEs",
+                     label=label_percent(1), breaks=seq(0,1,0.1),
+                     limits=c(0,1), expand=c(0, 0)) +
+  scale_x_date("CVE published", date_breaks = "1 year", date_labels = "%Y", 
+               expand = expansion(mult=c(0,0.06))) +
+  theme(legend.position="none",
+        axis.line = element_line(color="gray50"))
+gg
 
 ```
 

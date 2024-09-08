@@ -124,5 +124,82 @@
     "title": "Everything",
     "section": "Taxonomy Mappings",
     "text": "Taxonomy Mappings\nAs of 2024-09-07, there are a 2 CVEs from 2023 with ATT&CK mappings…"
+  },
+  {
+    "objectID": "metrics.html",
+    "href": "metrics.html",
+    "title": "containers.cna.metrics",
+    "section": "",
+    "text": "261,490 CVEs from 352 CNAs as of 2024-08-29\n\n\nkey\ncves\ncnas\n\n\n\n\nmetrics.format\n22599\n269\n\n\nmetrics.cvssV2_0.accessComplexity\n37\n2\n\n\nmetrics.cvssV2_0.accessVector\n37\n2\n\n\nmetrics.cvssV2_0.authentication\n37\n2\n\n\nmetrics.cvssV2_0.availabilityImpact\n37\n2\n\n\nmetrics.cvssV2_0.baseScore\n4030\n3\n\n\nmetrics.cvssV2_0.confidentialityImpact\n37\n2\n\n\nmetrics.cvssV2_0.integrityImpact\n37\n2\n\n\nmetrics.cvssV2_0.vectorString\n4030\n3\n\n\nmetrics.cvssV2_0.version\n4030\n3\n\n\nmetrics.cvssV3_0.attackComplexity\n11413\n48\n\n\nmetrics.cvssV3_0.attackVector\n11413\n48\n\n\nmetrics.cvssV3_0.availabilityImpact\n11413\n48\n\n\nmetrics.cvssV3_0.baseScore\n16720\n51\n\n\nmetrics.cvssV3_0.baseSeverity\n16720\n51\n\n\nmetrics.cvssV3_0.confidentialityImpact\n11413\n48\n\n\nmetrics.cvssV3_0.exploitCodeMaturity\n2314\n2\n\n\nmetrics.cvssV3_0.integrityImpact\n11413\n48\n\n\nmetrics.cvssV3_0.privilegesRequired\n11413\n48\n\n\nmetrics.cvssV3_0.remediationLevel\n2314\n2\n\n\nmetrics.cvssV3_0.reportConfidence\n2314\n2\n\n\nmetrics.cvssV3_0.scope\n11413\n48\n\n\nmetrics.cvssV3_0.temporalScore\n2314\n2\n\n\nmetrics.cvssV3_0.temporalSeverity\n2314\n2\n\n\nmetrics.cvssV3_0.userInteraction\n11413\n48\n\n\nmetrics.cvssV3_0.vectorString\n16720\n51\n\n\nmetrics.cvssV3_0.version\n16720\n51\n\n\nmetrics.cvssV3_1.attackComplexity\n37302\n282\n\n\nmetrics.cvssV3_1.attackVector\n37302\n282\n\n\nmetrics.cvssV3_1.availabilityImpact\n37302\n282\n\n\nmetrics.cvssV3_1.availabilityRequirement\n877\n3\n\n\nmetrics.cvssV3_1.baseScore\n49439\n287\n\n\nmetrics.cvssV3_1.baseSeverity\n49439\n287\n\n\nmetrics.cvssV3_1.confidentialityImpact\n37302\n282\n\n\nmetrics.cvssV3_1.confidentialityRequirement\n877\n3\n\n\nmetrics.cvssV3_1.environmentalScore\n877\n3\n\n\nmetrics.cvssV3_1.environmentalSeverity\n877\n3\n\n\nmetrics.cvssV3_1.exploitCodeMaturity\n1397\n9\n\n\nmetrics.cvssV3_1.integrityImpact\n37302\n282\n\n\nmetrics.cvssV3_1.integrityRequirement\n877\n3\n\n\nmetrics.cvssV3_1.modifiedAttackComplexity\n877\n3\n\n\nmetrics.cvssV3_1.modifiedAttackVector\n877\n3\n\n\nmetrics.cvssV3_1.modifiedAvailabilityImpact\n877\n3\n\n\nmetrics.cvssV3_1.modifiedConfidentialityImpact\n877\n3\n\n\nmetrics.cvssV3_1.modifiedIntegrityImpact\n877\n3\n\n\nmetrics.cvssV3_1.modifiedPrivilegesRequired\n877\n3\n\n\nmetrics.cvssV3_1.modifiedScope\n877\n3\n\n\nmetrics.cvssV3_1.modifiedUserInteraction\n877\n3\n\n\nmetrics.cvssV3_1.privilegesRequired\n37302\n282\n\n\nmetrics.cvssV3_1.remediationLevel\n1397\n9\n\n\nmetrics.cvssV3_1.reportConfidence\n1397\n9\n\n\nmetrics.cvssV3_1.scope\n37302\n282\n\n\nmetrics.cvssV3_1.temporalScore\n1397\n9\n\n\nmetrics.cvssV3_1.temporalSeverity\n1397\n9\n\n\nmetrics.cvssV3_1.userInteraction\n37302\n282\n\n\nmetrics.cvssV3_1.vectorString\n49439\n287\n\n\nmetrics.cvssV3_1.version\n49439\n287\n\n\nmetrics.cvssV4_0.Automatable\n468\n68\n\n\nmetrics.cvssV4_0.Recovery\n468\n68\n\n\nmetrics.cvssV4_0.Safety\n468\n68\n\n\nmetrics.cvssV4_0.attackComplexity\n529\n70\n\n\nmetrics.cvssV4_0.attackRequirements\n529\n70\n\n\nmetrics.cvssV4_0.attackVector\n529\n70\n\n\nmetrics.cvssV4_0.baseScore\n1544\n73\n\n\nmetrics.cvssV4_0.baseSeverity\n1544\n73\n\n\nmetrics.cvssV4_0.privilegesRequired\n529\n70\n\n\nmetrics.cvssV4_0.providerUrgency\n468\n68\n\n\nmetrics.cvssV4_0.subAvailabilityImpact\n529\n70\n\n\nmetrics.cvssV4_0.subConfidentialityImpact\n529\n70\n\n\nmetrics.cvssV4_0.subIntegrityImpact\n529\n70\n\n\nmetrics.cvssV4_0.userInteraction\n529\n70\n\n\nmetrics.cvssV4_0.valueDensity\n468\n68\n\n\nmetrics.cvssV4_0.vectorString\n1544\n73\n\n\nmetrics.cvssV4_0.version\n1544\n73\n\n\nmetrics.cvssV4_0.vulnAvailabilityImpact\n529\n70\n\n\nmetrics.cvssV4_0.vulnConfidentialityImpact\n529\n70\n\n\nmetrics.cvssV4_0.vulnIntegrityImpact\n529\n70\n\n\nmetrics.cvssV4_0.vulnerabilityResponseEffort\n468\n68\n\n\nmetrics.other.type\n1356\n12\n\n\nmetrics.scenarios.lang\n20090\n260\n\n\nmetrics.scenarios.value\n20090\n260\n\n\n\n\n\n\n\n\n\n\nEach dot in the plot below is a month and is showing the percent of CVEs published in that month that had at least one complete combination of a CVSS vector string and base score published in the CVE record.\n\n\n\n\n\n\n\n\n\n\n\n\nThis looks at the percent of CVEs with at least one valid CVSS record from each CNA and compares against the total number of CVEs from that CNA."
+  },
+  {
+    "objectID": "metrics.html#count-of-cves-and-cnas-use-of-containers.cna.metrics",
+    "href": "metrics.html#count-of-cves-and-cnas-use-of-containers.cna.metrics",
+    "title": "containers.cna.metrics",
+    "section": "",
+    "text": "261,490 CVEs from 352 CNAs as of 2024-08-29\n\n\nkey\ncves\ncnas\n\n\n\n\nmetrics.format\n22599\n269\n\n\nmetrics.cvssV2_0.accessComplexity\n37\n2\n\n\nmetrics.cvssV2_0.accessVector\n37\n2\n\n\nmetrics.cvssV2_0.authentication\n37\n2\n\n\nmetrics.cvssV2_0.availabilityImpact\n37\n2\n\n\nmetrics.cvssV2_0.baseScore\n4030\n3\n\n\nmetrics.cvssV2_0.confidentialityImpact\n37\n2\n\n\nmetrics.cvssV2_0.integrityImpact\n37\n2\n\n\nmetrics.cvssV2_0.vectorString\n4030\n3\n\n\nmetrics.cvssV2_0.version\n4030\n3\n\n\nmetrics.cvssV3_0.attackComplexity\n11413\n48\n\n\nmetrics.cvssV3_0.attackVector\n11413\n48\n\n\nmetrics.cvssV3_0.availabilityImpact\n11413\n48\n\n\nmetrics.cvssV3_0.baseScore\n16720\n51\n\n\nmetrics.cvssV3_0.baseSeverity\n16720\n51\n\n\nmetrics.cvssV3_0.confidentialityImpact\n11413\n48\n\n\nmetrics.cvssV3_0.exploitCodeMaturity\n2314\n2\n\n\nmetrics.cvssV3_0.integrityImpact\n11413\n48\n\n\nmetrics.cvssV3_0.privilegesRequired\n11413\n48\n\n\nmetrics.cvssV3_0.remediationLevel\n2314\n2\n\n\nmetrics.cvssV3_0.reportConfidence\n2314\n2\n\n\nmetrics.cvssV3_0.scope\n11413\n48\n\n\nmetrics.cvssV3_0.temporalScore\n2314\n2\n\n\nmetrics.cvssV3_0.temporalSeverity\n2314\n2\n\n\nmetrics.cvssV3_0.userInteraction\n11413\n48\n\n\nmetrics.cvssV3_0.vectorString\n16720\n51\n\n\nmetrics.cvssV3_0.version\n16720\n51\n\n\nmetrics.cvssV3_1.attackComplexity\n37302\n282\n\n\nmetrics.cvssV3_1.attackVector\n37302\n282\n\n\nmetrics.cvssV3_1.availabilityImpact\n37302\n282\n\n\nmetrics.cvssV3_1.availabilityRequirement\n877\n3\n\n\nmetrics.cvssV3_1.baseScore\n49439\n287\n\n\nmetrics.cvssV3_1.baseSeverity\n49439\n287\n\n\nmetrics.cvssV3_1.confidentialityImpact\n37302\n282\n\n\nmetrics.cvssV3_1.confidentialityRequirement\n877\n3\n\n\nmetrics.cvssV3_1.environmentalScore\n877\n3\n\n\nmetrics.cvssV3_1.environmentalSeverity\n877\n3\n\n\nmetrics.cvssV3_1.exploitCodeMaturity\n1397\n9\n\n\nmetrics.cvssV3_1.integrityImpact\n37302\n282\n\n\nmetrics.cvssV3_1.integrityRequirement\n877\n3\n\n\nmetrics.cvssV3_1.modifiedAttackComplexity\n877\n3\n\n\nmetrics.cvssV3_1.modifiedAttackVector\n877\n3\n\n\nmetrics.cvssV3_1.modifiedAvailabilityImpact\n877\n3\n\n\nmetrics.cvssV3_1.modifiedConfidentialityImpact\n877\n3\n\n\nmetrics.cvssV3_1.modifiedIntegrityImpact\n877\n3\n\n\nmetrics.cvssV3_1.modifiedPrivilegesRequired\n877\n3\n\n\nmetrics.cvssV3_1.modifiedScope\n877\n3\n\n\nmetrics.cvssV3_1.modifiedUserInteraction\n877\n3\n\n\nmetrics.cvssV3_1.privilegesRequired\n37302\n282\n\n\nmetrics.cvssV3_1.remediationLevel\n1397\n9\n\n\nmetrics.cvssV3_1.reportConfidence\n1397\n9\n\n\nmetrics.cvssV3_1.scope\n37302\n282\n\n\nmetrics.cvssV3_1.temporalScore\n1397\n9\n\n\nmetrics.cvssV3_1.temporalSeverity\n1397\n9\n\n\nmetrics.cvssV3_1.userInteraction\n37302\n282\n\n\nmetrics.cvssV3_1.vectorString\n49439\n287\n\n\nmetrics.cvssV3_1.version\n49439\n287\n\n\nmetrics.cvssV4_0.Automatable\n468\n68\n\n\nmetrics.cvssV4_0.Recovery\n468\n68\n\n\nmetrics.cvssV4_0.Safety\n468\n68\n\n\nmetrics.cvssV4_0.attackComplexity\n529\n70\n\n\nmetrics.cvssV4_0.attackRequirements\n529\n70\n\n\nmetrics.cvssV4_0.attackVector\n529\n70\n\n\nmetrics.cvssV4_0.baseScore\n1544\n73\n\n\nmetrics.cvssV4_0.baseSeverity\n1544\n73\n\n\nmetrics.cvssV4_0.privilegesRequired\n529\n70\n\n\nmetrics.cvssV4_0.providerUrgency\n468\n68\n\n\nmetrics.cvssV4_0.subAvailabilityImpact\n529\n70\n\n\nmetrics.cvssV4_0.subConfidentialityImpact\n529\n70\n\n\nmetrics.cvssV4_0.subIntegrityImpact\n529\n70\n\n\nmetrics.cvssV4_0.userInteraction\n529\n70\n\n\nmetrics.cvssV4_0.valueDensity\n468\n68\n\n\nmetrics.cvssV4_0.vectorString\n1544\n73\n\n\nmetrics.cvssV4_0.version\n1544\n73\n\n\nmetrics.cvssV4_0.vulnAvailabilityImpact\n529\n70\n\n\nmetrics.cvssV4_0.vulnConfidentialityImpact\n529\n70\n\n\nmetrics.cvssV4_0.vulnIntegrityImpact\n529\n70\n\n\nmetrics.cvssV4_0.vulnerabilityResponseEffort\n468\n68\n\n\nmetrics.other.type\n1356\n12\n\n\nmetrics.scenarios.lang\n20090\n260\n\n\nmetrics.scenarios.value\n20090\n260"
+  },
+  {
+    "objectID": "metrics.html#percent-of-published-cves-with-cvss-information-by-month",
+    "href": "metrics.html#percent-of-published-cves-with-cvss-information-by-month",
+    "title": "containers.cna.metrics",
+    "section": "",
+    "text": "Each dot in the plot below is a month and is showing the percent of CVEs published in that month that had at least one complete combination of a CVSS vector string and base score published in the CVE record."
+  },
+  {
+    "objectID": "metrics.html#which-cnas-are-published-more-cvss-vectors",
+    "href": "metrics.html#which-cnas-are-published-more-cvss-vectors",
+    "title": "containers.cna.metrics",
+    "section": "",
+    "text": "This looks at the percent of CVEs with at least one valid CVSS record from each CNA and compares against the total number of CVEs from that CNA."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This is created by Jay Jacobs as a “playground” of sorts to visualize the data currently being published in the CVE List. Reach out or open an issue if you have comments or questions."
+  },
+  {
+    "objectID": "problem_types.html",
+    "href": "problem_types.html",
+    "title": "Problem types",
+    "section": "",
+    "text": "262,159 CVEs from 354 CNAs as of 2024-09-07\n\n\ncat\ncves\ncnas\n\n\n\n\nproblemTypes.lang\n241783\n346\n\n\nproblemTypes.type\n235008\n340\n\n\nproblemTypes.cweId\n56338\n321\n\n\nproblemTypes.description\n105907\n345\n\n\n\n\n\n\n\n\n\n\n\n\nproblemType.type values and counts\n\n\ntype\ncves\ncnas\ncna\n\n\n\n\ntext\n174850\n161\n&lt;too many&gt;\n\n\nCWE\n57324\n320\n&lt;too many&gt;\n\n\n&lt;undefined&gt;\n7372\n76\n&lt;too many&gt;\n\n\nImpact\n2580\n1\nmicrosoft\n\n\ncwe\n365\n2\ncisco, OX\n\n\ncvw\n61\n1\nSplunk\n\n\nRCE (Remote Code Execution)\n16\n1\natlassian\n\n\nBASM (Broken Authentication & Session Management)\n2\n1\natlassian\n\n\nInformation Disclosure\n2\n1\natlassian\n\n\nImproper Authorization\n2\n1\natlassian\n\n\nInjection\n2\n1\natlassian\n\n\nStored XSS\n2\n1\natlassian\n\n\nSecurity Misconfiguration\n1\n1\natlassian\n\n\nproblem_type\n1\n1\napple\n\n\nOther\n1\n1\natlassian\n\n\nOpen Redirect\n1\n1\natlassian\n\n\nFile Inclusion\n1\n1\natlassian\n\n\nReflected XSS\n1\n1\natlassian\n\n\n\n\n\n\n\n\n\n\nI used a regex “cwe[-_.]\\d+” to detect a CWE ID in any of the description or the two cweId and cweid fields. The following table is a count of the CVEs with one or more CWEs found in those fields where the type is specified as shown.\n\n\n\nThe elusive CWE ID\n\n\ntype\nCWE Found\nNo CWE\n\n\n\n\nBASM (Broken Authentication & Session Management)\n0\n2\n\n\ncvw\n61\n0\n\n\ncwe\n365\n0\n\n\nCWE\n57324\n0\n\n\nFile Inclusion\n0\n1\n\n\nImpact\n0\n2580\n\n\nImproper Authorization\n0\n2\n\n\nInformation Disclosure\n0\n2\n\n\nInjection\n0\n2\n\n\nOpen Redirect\n0\n1\n\n\nOther\n0\n1\n\n\nproblem_type\n0\n1\n\n\nRCE (Remote Code Execution)\n0\n16\n\n\nReflected XSS\n0\n1\n\n\nSecurity Misconfiguration\n0\n1\n\n\nStored XSS\n0\n2\n\n\ntext\n1\n174849\n\n\nNA\n3797\n3575\n\n\n\n\n\n\n\nBecause it’s a simple regex we can discover the CWE ID in other places, such as the description. This is limited to the records where a valid CWE field was found.\n\n\n\nWhere are CWEs being found?\n\n\nCWE in Description\nCWE in cweId\ncves\ncnas\n\n\n\n\nTRUE\nTRUE\n54358\n318\n\n\nTRUE\nFALSE\n5210\n23\n\n\nFALSE\nTRUE\n1981\n21\n\n\n\n\n\n\n\n\n\n\nShould there always be a “lang” and “type” and “cweId” or what’s the best combination?"
+  },
+  {
+    "objectID": "problem_types.html#type-in-problemtypes",
+    "href": "problem_types.html#type-in-problemtypes",
+    "title": "Problem types",
+    "section": "",
+    "text": "problemType.type values and counts\n\n\ntype\ncves\ncnas\ncna\n\n\n\n\ntext\n174850\n161\n&lt;too many&gt;\n\n\nCWE\n57324\n320\n&lt;too many&gt;\n\n\n&lt;undefined&gt;\n7372\n76\n&lt;too many&gt;\n\n\nImpact\n2580\n1\nmicrosoft\n\n\ncwe\n365\n2\ncisco, OX\n\n\ncvw\n61\n1\nSplunk\n\n\nRCE (Remote Code Execution)\n16\n1\natlassian\n\n\nBASM (Broken Authentication & Session Management)\n2\n1\natlassian\n\n\nInformation Disclosure\n2\n1\natlassian\n\n\nImproper Authorization\n2\n1\natlassian\n\n\nInjection\n2\n1\natlassian\n\n\nStored XSS\n2\n1\natlassian\n\n\nSecurity Misconfiguration\n1\n1\natlassian\n\n\nproblem_type\n1\n1\napple\n\n\nOther\n1\n1\natlassian\n\n\nOpen Redirect\n1\n1\natlassian\n\n\nFile Inclusion\n1\n1\natlassian\n\n\nReflected XSS\n1\n1\natlassian"
+  },
+  {
+    "objectID": "problem_types.html#looking-for-cwe-through-regex",
+    "href": "problem_types.html#looking-for-cwe-through-regex",
+    "title": "Problem types",
+    "section": "",
+    "text": "I used a regex “cwe[-_.]\\d+” to detect a CWE ID in any of the description or the two cweId and cweid fields. The following table is a count of the CVEs with one or more CWEs found in those fields where the type is specified as shown.\n\n\n\nThe elusive CWE ID\n\n\ntype\nCWE Found\nNo CWE\n\n\n\n\nBASM (Broken Authentication & Session Management)\n0\n2\n\n\ncvw\n61\n0\n\n\ncwe\n365\n0\n\n\nCWE\n57324\n0\n\n\nFile Inclusion\n0\n1\n\n\nImpact\n0\n2580\n\n\nImproper Authorization\n0\n2\n\n\nInformation Disclosure\n0\n2\n\n\nInjection\n0\n2\n\n\nOpen Redirect\n0\n1\n\n\nOther\n0\n1\n\n\nproblem_type\n0\n1\n\n\nRCE (Remote Code Execution)\n0\n16\n\n\nReflected XSS\n0\n1\n\n\nSecurity Misconfiguration\n0\n1\n\n\nStored XSS\n0\n2\n\n\ntext\n1\n174849\n\n\nNA\n3797\n3575\n\n\n\n\n\n\n\nBecause it’s a simple regex we can discover the CWE ID in other places, such as the description. This is limited to the records where a valid CWE field was found.\n\n\n\nWhere are CWEs being found?\n\n\nCWE in Description\nCWE in cweId\ncves\ncnas\n\n\n\n\nTRUE\nTRUE\n54358\n318\n\n\nTRUE\nFALSE\n5210\n23\n\n\nFALSE\nTRUE\n1981\n21"
+  },
+  {
+    "objectID": "problem_types.html#record-completeness",
+    "href": "problem_types.html#record-completeness",
+    "title": "Problem types",
+    "section": "",
+    "text": "Should there always be a “lang” and “type” and “cweId” or what’s the best combination?"
+  },
+  {
+    "objectID": "problem_types.html#number-off-cwes-in-cve-records",
+    "href": "problem_types.html#number-off-cwes-in-cve-records",
+    "title": "Problem types",
+    "section": "Number off CWEs in CVE records",
+    "text": "Number off CWEs in CVE records\nThis section is aggregating any identification of CWE ID in any of the three common fields.\nNote that seven CVEs had five (5) unique CWEs in a single CVE record.\n\n\n\n\n\n\n\n\n\nCWE’s have different level of Abstractions as well as views and categories. CWE recommends only assigning “Base” CWEs to vulnerabilities."
+  },
+  {
+    "objectID": "problem_types.html#top-cwes",
+    "href": "problem_types.html#top-cwes",
+    "title": "Problem types",
+    "section": "top CWEs",
+    "text": "top CWEs\n\n\n\n\n\n\n\n\n\nWe can get a better idea of what these are by using the “Comprehensive Categorization” in category 1400. It maps every CWE up to a one of twenty-two high-level categories.\n\n\n\n\n\n\n\n\n\nOut of the 63,306 CWEs used in the in the CVEs, 12,095 are identified to be part of the CWE View 1003 (the “NVD Slice”). That is 19.1% of the CWEs found in CVEs."
   }
 ]
