@@ -1,205 +1,23 @@
 [
   {
+    "objectID": "Playground.html",
+    "href": "Playground.html",
+    "title": "visualcve",
+    "section": "",
+    "text": "::: {#cell-0 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“7fe478fc-4cc9-444c-a2cc-7e19d3d2e79e”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}\ngetpkg &lt;- function(x) {\n  if (!requireNamespace(x, quietly = TRUE)) {\n    install.packages(x)\n  }\n  suppressPackageStartupMessages({\n    suppressWarnings({\n      library(x, character.only=TRUE)\n\n    })\n  })\n}\n\nsuppressPackageStartupMessages({\n  suppressWarnings({\n    getpkg(\"dplyr\")\n    getpkg(\"tibble\")\n    getpkg(\"tidyr\")\n    getpkg(\"readr\")\n    getpkg(\"stringr\")\n    getpkg(\"scales\")\n    getpkg(\"lubridate\")\n    getpkg(\"arrow\")\n    getpkg(\"ggplot2\")\n    getpkg(\"ggrepel\")\n    getpkg(\"patchwork\")\n  })\n})\n\nmainfont &lt;- \"Source Sans Pro\"\ntab &lt;- function (x = c(\"blue\", \"orange\", \"red\", \"seablue\", \"green\", \n                       \"olive\", \"purple\", \"pink\", \"brown\", \"gray\")) {\n  tableau &lt;- c(blue = \"#4E79A7\", orange = \"#F28E2B\", red = \"#E15759\", seablue = \"#76B7B2\", \n               green = \"#59A14F\", olive = \"#EDC948\", purple = \"#B07AA1\", pink = \"#FF9DA7\", \n               brown = \"#9C755F\", gray = \"#BAB0AC\")\n  as.vector(tableau[x])\n}\n\ntheme_set(theme_minimal(base_family=mainfont) +\n            theme(panel.grid = element_line(color=\"gray95\"),\n                  plot.caption = element_text(size=6, face = \"italic\", color=\"gray60\"),\n                  text = element_text(family=mainfont),\n                  legend.title = element_blank(),\n                  legend.position=\"bottom\"))\nupdate_geom_defaults('col', list(fill=tab('blue')))\nupdate_geom_defaults('bar', list(fill=tab('blue')))\nupdate_geom_defaults('text', list(family=mainfont, size=8/.pt))\nupdate_geom_defaults('label', list(family=mainfont, size=8/.pt, label.size=NA))\n# update_geom_defaults('point', list(shape=21, size=2, fill=tab('blue'), color='white'))\nupdate_geom_defaults('point', list(size=0.5, color=tab('blue')))\nupdate_geom_defaults('line', list(color=tab('blue'), size=0.85))\n\nknitr::opts_chunk$set(\n  cache = FALSE,\n  message = FALSE,\n  warning = FALSE, \n  dev = c(\"png\", \"cairo_pdf\"),\n  echo = FALSE,\n  fig.retina = 2,\n  fig.width = 7,\n  fig.height = 3.5\n)\n:::\n::: {#cell-1 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“39b0a771-3d0c-46db-bb75-8508b3546665”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}\n# basedir &lt;- \"/Volumes/empiricalsecurity_databricks_prod/vics/sources/data/cveorg\"\nbasedir &lt;- strftime(now(), \"/Volumes/empiricalsecurity_databricks_prod/vics/sources/data/cveorg/%Y/%m/date=%Y-%m-%d/\")\n\ncvefiles &lt;- tibble(src = list.files(basedir, full.names=TRUE, \n                              recursive=TRUE, pattern=\"parquet\")) %&gt;%\n    mutate(datestr = as.Date(str_extract(src, \"(?&lt;=date\\\\=)\\\\d{4}(-\\\\d{2}){2}\")),\n           datetime = parse_date_time(str_extract(basename(src), \"\\\\d{4}(-\\\\d{2}){5}\"), \"%Y-%m-%d-%H-%M-%S\"),\n           category = str_extract(basename(src), \".*(?=[\\\\-_]{1}\\\\d{4}(-\\\\d{2}){5})\"),\n           slug = str_extract(src, \"(?&lt;=/)[^/]+(?=/\\\\d{4}/\\\\d{2}/)\")) %&gt;% \n    # filter(category == \"full_exploitations\") %&gt;% \n    arrange(desc(datetime)) %&gt;% \n    group_by(category) %&gt;% \n    dplyr::slice(1) %&gt;% \n    ungroup()\n\ncvefiles\n:::\n::: {#cell-2 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“625d5383-7a07-45bd-8fc0-3c58489a4175”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}\nmeta &lt;- read_parquet(cvefiles$src[cvefiles$category == \"cveMetadata\"])\ncount_txt &lt;- meta %&gt;% \n  count(state) %&gt;% \n  mutate(state = tolower(state), \n         n = scales::comma(n)) %&gt;% \n  spread(state, n)\nlast_pub &lt;- max(meta$dateUpdated)\n\ncat(glue::glue(\"Published: {count_txt$published}, Rejected: {count_txt$rejected}, Last Updated: {last_pub} UTC\\n\"))\n:::"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Everything",
+    "title": "visualcve",
     "section": "",
-    "text": "NOTE: So far, this is the only page that attempts to “fix” the 10,000+ CVEs with an incorrect published date and that’s the primary date field used throughout. Some of the charts and graphics may not match with other pages (who incorrectly trust the published date).\nThe major sections in a CVE record are:\nThe following section looks at general completeness and statistics about each section."
+    "text": "Published: 274,736, Rejected: 14,991, Last Updated: 2025-04-13 12:00:14.1 UTC"
   },
   {
-    "objectID": "index.html#affected-defined-with-versions",
-    "href": "index.html#affected-defined-with-versions",
-    "title": "Everything",
-    "section": "Affected (defined with version(s))",
-    "text": "Affected (defined with version(s))\nPoints in the plot are monthly proportions with field, the lines are rolling 90 day windows before the specified time. Showing data with and without “MITRE” listed as the CNA."
-  },
-  {
-    "objectID": "index.html#affected-cpes",
-    "href": "index.html#affected-cpes",
-    "title": "Everything",
-    "section": "Affected: CPEs",
-    "text": "Affected: CPEs"
-  },
-  {
-    "objectID": "index.html#problem-types-cwe-defined",
-    "href": "index.html#problem-types-cwe-defined",
-    "title": "Everything",
-    "section": "Problem Types (CWE Defined)",
-    "text": "Problem Types (CWE Defined)"
-  },
-  {
-    "objectID": "index.html#references---average-number-of-references-per-cve",
-    "href": "index.html#references---average-number-of-references-per-cve",
-    "title": "Everything",
-    "section": "References - Average number of references per CVE",
-    "text": "References - Average number of references per CVE\nNote that “average” is using a geometric mean to calculate the average over time."
-  },
-  {
-    "objectID": "index.html#references-cves-with-3-or-more",
-    "href": "index.html#references-cves-with-3-or-more",
-    "title": "Everything",
-    "section": "References: CVES with 3 or more",
-    "text": "References: CVES with 3 or more"
-  },
-  {
-    "objectID": "index.html#references-top-tags",
-    "href": "index.html#references-top-tags",
-    "title": "Everything",
-    "section": "References: Top Tags",
-    "text": "References: Top Tags"
-  },
-  {
-    "objectID": "index.html#impacts",
-    "href": "index.html#impacts",
-    "title": "Everything",
-    "section": "Impacts",
-    "text": "Impacts\nPersonally, “attack patterns” and “impact” are two very different things, so I find it strange that CAPEC is specified in the “impact” section."
-  },
-  {
-    "objectID": "index.html#metrics",
-    "href": "index.html#metrics",
-    "title": "Everything",
-    "section": "Metrics",
-    "text": "Metrics\nNote that containers.cna.metrics.other is an object with a free text “type” field and an object named “content” which “supports arbitrary JSON”. In the CNA container, it looks like most if not all of the “other” metrics is mostly just a free text description of the outcome or impact.\nAlso, not counting the “scenario” field here. As of 2024-09-07, there were 20,282 CVEs with a scenario, but when we remove the scenario of “GENERAL” we are left with 48 CVEs."
-  },
-  {
-    "objectID": "index.html#configurations",
-    "href": "index.html#configurations",
-    "title": "Everything",
-    "section": "Configurations",
-    "text": "Configurations"
-  },
-  {
-    "objectID": "index.html#workarounds",
-    "href": "index.html#workarounds",
-    "title": "Everything",
-    "section": "Workarounds",
-    "text": "Workarounds\nRemoving obvious non-answers such as “There are no [known|viable|available] workarounds” and others."
-  },
-  {
-    "objectID": "index.html#solutions",
-    "href": "index.html#solutions",
-    "title": "Everything",
-    "section": "Solutions",
-    "text": "Solutions"
-  },
-  {
-    "objectID": "index.html#exploits",
-    "href": "index.html#exploits",
-    "title": "Everything",
-    "section": "Exploits",
-    "text": "Exploits\nRemoving non-answers such as “not aware of” and “None publicly available”."
-  },
-  {
-    "objectID": "index.html#timeline",
-    "href": "index.html#timeline",
-    "title": "Everything",
-    "section": "Timeline",
-    "text": "Timeline"
-  },
-  {
-    "objectID": "index.html#credits",
-    "href": "index.html#credits",
-    "title": "Everything",
-    "section": "Credits",
-    "text": "Credits"
-  },
-  {
-    "objectID": "index.html#source",
-    "href": "index.html#source",
-    "title": "Everything",
-    "section": "Source",
-    "text": "Source\nFrom the schema:\n“This is the source information (who discovered it, who researched it, etc.) and optionally a chain of CNA information (e.g. the originating CNA and subsequent parent CNAs who have processed it before it arrives at the MITRE root). Must contain: IF this is in the root level it MUST contain a CNA_chain entry, IF this source entry is NOT in the root (e.g. it is part of a vendor statement) then it must contain at least one type of data entry.”,\nBut in reality, Cisco is the only CNA using this, and the only value appears to be in the “source.defects” and they all appear to look like “CSCvz91984”, “CSCvz93493”, “CSCvz93504”"
-  },
-  {
-    "objectID": "index.html#tags",
-    "href": "index.html#tags",
-    "title": "Everything",
-    "section": "Tags",
-    "text": "Tags"
-  },
-  {
-    "objectID": "index.html#taxonomy-mappings",
-    "href": "index.html#taxonomy-mappings",
-    "title": "Everything",
-    "section": "Taxonomy Mappings",
-    "text": "Taxonomy Mappings\nAs of 2024-09-07, there are a 2 CVEs from 2023 with ATT&CK mappings…"
-  },
-  {
-    "objectID": "metrics.html",
-    "href": "metrics.html",
-    "title": "containers.cna.metrics",
+    "objectID": "installation.html",
+    "href": "installation.html",
+    "title": "visualcve",
     "section": "",
-    "text": "261,490 CVEs from 352 CNAs as of 2024-08-29\n\n\nkey\ncves\ncnas\n\n\n\n\nmetrics.format\n22599\n269\n\n\nmetrics.cvssV2_0.accessComplexity\n37\n2\n\n\nmetrics.cvssV2_0.accessVector\n37\n2\n\n\nmetrics.cvssV2_0.authentication\n37\n2\n\n\nmetrics.cvssV2_0.availabilityImpact\n37\n2\n\n\nmetrics.cvssV2_0.baseScore\n4030\n3\n\n\nmetrics.cvssV2_0.confidentialityImpact\n37\n2\n\n\nmetrics.cvssV2_0.integrityImpact\n37\n2\n\n\nmetrics.cvssV2_0.vectorString\n4030\n3\n\n\nmetrics.cvssV2_0.version\n4030\n3\n\n\nmetrics.cvssV3_0.attackComplexity\n11413\n48\n\n\nmetrics.cvssV3_0.attackVector\n11413\n48\n\n\nmetrics.cvssV3_0.availabilityImpact\n11413\n48\n\n\nmetrics.cvssV3_0.baseScore\n16720\n51\n\n\nmetrics.cvssV3_0.baseSeverity\n16720\n51\n\n\nmetrics.cvssV3_0.confidentialityImpact\n11413\n48\n\n\nmetrics.cvssV3_0.exploitCodeMaturity\n2314\n2\n\n\nmetrics.cvssV3_0.integrityImpact\n11413\n48\n\n\nmetrics.cvssV3_0.privilegesRequired\n11413\n48\n\n\nmetrics.cvssV3_0.remediationLevel\n2314\n2\n\n\nmetrics.cvssV3_0.reportConfidence\n2314\n2\n\n\nmetrics.cvssV3_0.scope\n11413\n48\n\n\nmetrics.cvssV3_0.temporalScore\n2314\n2\n\n\nmetrics.cvssV3_0.temporalSeverity\n2314\n2\n\n\nmetrics.cvssV3_0.userInteraction\n11413\n48\n\n\nmetrics.cvssV3_0.vectorString\n16720\n51\n\n\nmetrics.cvssV3_0.version\n16720\n51\n\n\nmetrics.cvssV3_1.attackComplexity\n37302\n282\n\n\nmetrics.cvssV3_1.attackVector\n37302\n282\n\n\nmetrics.cvssV3_1.availabilityImpact\n37302\n282\n\n\nmetrics.cvssV3_1.availabilityRequirement\n877\n3\n\n\nmetrics.cvssV3_1.baseScore\n49439\n287\n\n\nmetrics.cvssV3_1.baseSeverity\n49439\n287\n\n\nmetrics.cvssV3_1.confidentialityImpact\n37302\n282\n\n\nmetrics.cvssV3_1.confidentialityRequirement\n877\n3\n\n\nmetrics.cvssV3_1.environmentalScore\n877\n3\n\n\nmetrics.cvssV3_1.environmentalSeverity\n877\n3\n\n\nmetrics.cvssV3_1.exploitCodeMaturity\n1397\n9\n\n\nmetrics.cvssV3_1.integrityImpact\n37302\n282\n\n\nmetrics.cvssV3_1.integrityRequirement\n877\n3\n\n\nmetrics.cvssV3_1.modifiedAttackComplexity\n877\n3\n\n\nmetrics.cvssV3_1.modifiedAttackVector\n877\n3\n\n\nmetrics.cvssV3_1.modifiedAvailabilityImpact\n877\n3\n\n\nmetrics.cvssV3_1.modifiedConfidentialityImpact\n877\n3\n\n\nmetrics.cvssV3_1.modifiedIntegrityImpact\n877\n3\n\n\nmetrics.cvssV3_1.modifiedPrivilegesRequired\n877\n3\n\n\nmetrics.cvssV3_1.modifiedScope\n877\n3\n\n\nmetrics.cvssV3_1.modifiedUserInteraction\n877\n3\n\n\nmetrics.cvssV3_1.privilegesRequired\n37302\n282\n\n\nmetrics.cvssV3_1.remediationLevel\n1397\n9\n\n\nmetrics.cvssV3_1.reportConfidence\n1397\n9\n\n\nmetrics.cvssV3_1.scope\n37302\n282\n\n\nmetrics.cvssV3_1.temporalScore\n1397\n9\n\n\nmetrics.cvssV3_1.temporalSeverity\n1397\n9\n\n\nmetrics.cvssV3_1.userInteraction\n37302\n282\n\n\nmetrics.cvssV3_1.vectorString\n49439\n287\n\n\nmetrics.cvssV3_1.version\n49439\n287\n\n\nmetrics.cvssV4_0.Automatable\n468\n68\n\n\nmetrics.cvssV4_0.Recovery\n468\n68\n\n\nmetrics.cvssV4_0.Safety\n468\n68\n\n\nmetrics.cvssV4_0.attackComplexity\n529\n70\n\n\nmetrics.cvssV4_0.attackRequirements\n529\n70\n\n\nmetrics.cvssV4_0.attackVector\n529\n70\n\n\nmetrics.cvssV4_0.baseScore\n1544\n73\n\n\nmetrics.cvssV4_0.baseSeverity\n1544\n73\n\n\nmetrics.cvssV4_0.privilegesRequired\n529\n70\n\n\nmetrics.cvssV4_0.providerUrgency\n468\n68\n\n\nmetrics.cvssV4_0.subAvailabilityImpact\n529\n70\n\n\nmetrics.cvssV4_0.subConfidentialityImpact\n529\n70\n\n\nmetrics.cvssV4_0.subIntegrityImpact\n529\n70\n\n\nmetrics.cvssV4_0.userInteraction\n529\n70\n\n\nmetrics.cvssV4_0.valueDensity\n468\n68\n\n\nmetrics.cvssV4_0.vectorString\n1544\n73\n\n\nmetrics.cvssV4_0.version\n1544\n73\n\n\nmetrics.cvssV4_0.vulnAvailabilityImpact\n529\n70\n\n\nmetrics.cvssV4_0.vulnConfidentialityImpact\n529\n70\n\n\nmetrics.cvssV4_0.vulnIntegrityImpact\n529\n70\n\n\nmetrics.cvssV4_0.vulnerabilityResponseEffort\n468\n68\n\n\nmetrics.other.type\n1356\n12\n\n\nmetrics.scenarios.lang\n20090\n260\n\n\nmetrics.scenarios.value\n20090\n260\n\n\n\n\n\n\n\n\n\n\nEach dot in the plot below is a month and is showing the percent of CVEs published in that month that had at least one complete combination of a CVSS vector string and base score published in the CVE record.\n\n\n\n\n\n\n\n\n\n\n\n\nThis looks at the percent of CVEs with at least one valid CVSS record from each CNA and compares against the total number of CVEs from that CNA."
-  },
-  {
-    "objectID": "metrics.html#count-of-cves-and-cnas-use-of-containers.cna.metrics",
-    "href": "metrics.html#count-of-cves-and-cnas-use-of-containers.cna.metrics",
-    "title": "containers.cna.metrics",
-    "section": "",
-    "text": "261,490 CVEs from 352 CNAs as of 2024-08-29\n\n\nkey\ncves\ncnas\n\n\n\n\nmetrics.format\n22599\n269\n\n\nmetrics.cvssV2_0.accessComplexity\n37\n2\n\n\nmetrics.cvssV2_0.accessVector\n37\n2\n\n\nmetrics.cvssV2_0.authentication\n37\n2\n\n\nmetrics.cvssV2_0.availabilityImpact\n37\n2\n\n\nmetrics.cvssV2_0.baseScore\n4030\n3\n\n\nmetrics.cvssV2_0.confidentialityImpact\n37\n2\n\n\nmetrics.cvssV2_0.integrityImpact\n37\n2\n\n\nmetrics.cvssV2_0.vectorString\n4030\n3\n\n\nmetrics.cvssV2_0.version\n4030\n3\n\n\nmetrics.cvssV3_0.attackComplexity\n11413\n48\n\n\nmetrics.cvssV3_0.attackVector\n11413\n48\n\n\nmetrics.cvssV3_0.availabilityImpact\n11413\n48\n\n\nmetrics.cvssV3_0.baseScore\n16720\n51\n\n\nmetrics.cvssV3_0.baseSeverity\n16720\n51\n\n\nmetrics.cvssV3_0.confidentialityImpact\n11413\n48\n\n\nmetrics.cvssV3_0.exploitCodeMaturity\n2314\n2\n\n\nmetrics.cvssV3_0.integrityImpact\n11413\n48\n\n\nmetrics.cvssV3_0.privilegesRequired\n11413\n48\n\n\nmetrics.cvssV3_0.remediationLevel\n2314\n2\n\n\nmetrics.cvssV3_0.reportConfidence\n2314\n2\n\n\nmetrics.cvssV3_0.scope\n11413\n48\n\n\nmetrics.cvssV3_0.temporalScore\n2314\n2\n\n\nmetrics.cvssV3_0.temporalSeverity\n2314\n2\n\n\nmetrics.cvssV3_0.userInteraction\n11413\n48\n\n\nmetrics.cvssV3_0.vectorString\n16720\n51\n\n\nmetrics.cvssV3_0.version\n16720\n51\n\n\nmetrics.cvssV3_1.attackComplexity\n37302\n282\n\n\nmetrics.cvssV3_1.attackVector\n37302\n282\n\n\nmetrics.cvssV3_1.availabilityImpact\n37302\n282\n\n\nmetrics.cvssV3_1.availabilityRequirement\n877\n3\n\n\nmetrics.cvssV3_1.baseScore\n49439\n287\n\n\nmetrics.cvssV3_1.baseSeverity\n49439\n287\n\n\nmetrics.cvssV3_1.confidentialityImpact\n37302\n282\n\n\nmetrics.cvssV3_1.confidentialityRequirement\n877\n3\n\n\nmetrics.cvssV3_1.environmentalScore\n877\n3\n\n\nmetrics.cvssV3_1.environmentalSeverity\n877\n3\n\n\nmetrics.cvssV3_1.exploitCodeMaturity\n1397\n9\n\n\nmetrics.cvssV3_1.integrityImpact\n37302\n282\n\n\nmetrics.cvssV3_1.integrityRequirement\n877\n3\n\n\nmetrics.cvssV3_1.modifiedAttackComplexity\n877\n3\n\n\nmetrics.cvssV3_1.modifiedAttackVector\n877\n3\n\n\nmetrics.cvssV3_1.modifiedAvailabilityImpact\n877\n3\n\n\nmetrics.cvssV3_1.modifiedConfidentialityImpact\n877\n3\n\n\nmetrics.cvssV3_1.modifiedIntegrityImpact\n877\n3\n\n\nmetrics.cvssV3_1.modifiedPrivilegesRequired\n877\n3\n\n\nmetrics.cvssV3_1.modifiedScope\n877\n3\n\n\nmetrics.cvssV3_1.modifiedUserInteraction\n877\n3\n\n\nmetrics.cvssV3_1.privilegesRequired\n37302\n282\n\n\nmetrics.cvssV3_1.remediationLevel\n1397\n9\n\n\nmetrics.cvssV3_1.reportConfidence\n1397\n9\n\n\nmetrics.cvssV3_1.scope\n37302\n282\n\n\nmetrics.cvssV3_1.temporalScore\n1397\n9\n\n\nmetrics.cvssV3_1.temporalSeverity\n1397\n9\n\n\nmetrics.cvssV3_1.userInteraction\n37302\n282\n\n\nmetrics.cvssV3_1.vectorString\n49439\n287\n\n\nmetrics.cvssV3_1.version\n49439\n287\n\n\nmetrics.cvssV4_0.Automatable\n468\n68\n\n\nmetrics.cvssV4_0.Recovery\n468\n68\n\n\nmetrics.cvssV4_0.Safety\n468\n68\n\n\nmetrics.cvssV4_0.attackComplexity\n529\n70\n\n\nmetrics.cvssV4_0.attackRequirements\n529\n70\n\n\nmetrics.cvssV4_0.attackVector\n529\n70\n\n\nmetrics.cvssV4_0.baseScore\n1544\n73\n\n\nmetrics.cvssV4_0.baseSeverity\n1544\n73\n\n\nmetrics.cvssV4_0.privilegesRequired\n529\n70\n\n\nmetrics.cvssV4_0.providerUrgency\n468\n68\n\n\nmetrics.cvssV4_0.subAvailabilityImpact\n529\n70\n\n\nmetrics.cvssV4_0.subConfidentialityImpact\n529\n70\n\n\nmetrics.cvssV4_0.subIntegrityImpact\n529\n70\n\n\nmetrics.cvssV4_0.userInteraction\n529\n70\n\n\nmetrics.cvssV4_0.valueDensity\n468\n68\n\n\nmetrics.cvssV4_0.vectorString\n1544\n73\n\n\nmetrics.cvssV4_0.version\n1544\n73\n\n\nmetrics.cvssV4_0.vulnAvailabilityImpact\n529\n70\n\n\nmetrics.cvssV4_0.vulnConfidentialityImpact\n529\n70\n\n\nmetrics.cvssV4_0.vulnIntegrityImpact\n529\n70\n\n\nmetrics.cvssV4_0.vulnerabilityResponseEffort\n468\n68\n\n\nmetrics.other.type\n1356\n12\n\n\nmetrics.scenarios.lang\n20090\n260\n\n\nmetrics.scenarios.value\n20090\n260"
-  },
-  {
-    "objectID": "metrics.html#percent-of-published-cves-with-cvss-information-by-month",
-    "href": "metrics.html#percent-of-published-cves-with-cvss-information-by-month",
-    "title": "containers.cna.metrics",
-    "section": "",
-    "text": "Each dot in the plot below is a month and is showing the percent of CVEs published in that month that had at least one complete combination of a CVSS vector string and base score published in the CVE record."
-  },
-  {
-    "objectID": "metrics.html#which-cnas-are-published-more-cvss-vectors",
-    "href": "metrics.html#which-cnas-are-published-more-cvss-vectors",
-    "title": "containers.cna.metrics",
-    "section": "",
-    "text": "This looks at the percent of CVEs with at least one valid CVSS record from each CNA and compares against the total number of CVEs from that CNA."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "This is created by Jay Jacobs as a “playground” of sorts to visualize the data currently being published in the CVE List. Reach out or open an issue if you have comments or questions."
-  },
-  {
-    "objectID": "problem_types.html",
-    "href": "problem_types.html",
-    "title": "Problem types",
-    "section": "",
-    "text": "262,159 CVEs from 354 CNAs as of 2024-09-07\n\n\ncat\ncves\ncnas\n\n\n\n\nproblemTypes.lang\n241783\n346\n\n\nproblemTypes.type\n235008\n340\n\n\nproblemTypes.cweId\n56338\n321\n\n\nproblemTypes.description\n105907\n345\n\n\n\n\n\n\n\n\n\n\n\n\nproblemType.type values and counts\n\n\ntype\ncves\ncnas\ncna\n\n\n\n\ntext\n174850\n161\n&lt;too many&gt;\n\n\nCWE\n57324\n320\n&lt;too many&gt;\n\n\n&lt;undefined&gt;\n7372\n76\n&lt;too many&gt;\n\n\nImpact\n2580\n1\nmicrosoft\n\n\ncwe\n365\n2\ncisco, OX\n\n\ncvw\n61\n1\nSplunk\n\n\nRCE (Remote Code Execution)\n16\n1\natlassian\n\n\nBASM (Broken Authentication & Session Management)\n2\n1\natlassian\n\n\nInformation Disclosure\n2\n1\natlassian\n\n\nImproper Authorization\n2\n1\natlassian\n\n\nInjection\n2\n1\natlassian\n\n\nStored XSS\n2\n1\natlassian\n\n\nSecurity Misconfiguration\n1\n1\natlassian\n\n\nproblem_type\n1\n1\napple\n\n\nOther\n1\n1\natlassian\n\n\nOpen Redirect\n1\n1\natlassian\n\n\nFile Inclusion\n1\n1\natlassian\n\n\nReflected XSS\n1\n1\natlassian\n\n\n\n\n\n\n\n\n\n\nI used a regex “cwe[-_.]\\d+” to detect a CWE ID in any of the description or the two cweId and cweid fields. The following table is a count of the CVEs with one or more CWEs found in those fields where the type is specified as shown.\n\n\n\nThe elusive CWE ID\n\n\ntype\nCWE Found\nNo CWE\n\n\n\n\nBASM (Broken Authentication & Session Management)\n0\n2\n\n\ncvw\n61\n0\n\n\ncwe\n365\n0\n\n\nCWE\n57324\n0\n\n\nFile Inclusion\n0\n1\n\n\nImpact\n0\n2580\n\n\nImproper Authorization\n0\n2\n\n\nInformation Disclosure\n0\n2\n\n\nInjection\n0\n2\n\n\nOpen Redirect\n0\n1\n\n\nOther\n0\n1\n\n\nproblem_type\n0\n1\n\n\nRCE (Remote Code Execution)\n0\n16\n\n\nReflected XSS\n0\n1\n\n\nSecurity Misconfiguration\n0\n1\n\n\nStored XSS\n0\n2\n\n\ntext\n1\n174849\n\n\nNA\n3797\n3575\n\n\n\n\n\n\n\nBecause it’s a simple regex we can discover the CWE ID in other places, such as the description. This is limited to the records where a valid CWE field was found.\n\n\n\nWhere are CWEs being found?\n\n\nCWE in Description\nCWE in cweId\ncves\ncnas\n\n\n\n\nTRUE\nTRUE\n54358\n318\n\n\nTRUE\nFALSE\n5210\n23\n\n\nFALSE\nTRUE\n1981\n21\n\n\n\n\n\n\n\n\n\n\nShould there always be a “lang” and “type” and “cweId” or what’s the best combination?"
-  },
-  {
-    "objectID": "problem_types.html#type-in-problemtypes",
-    "href": "problem_types.html#type-in-problemtypes",
-    "title": "Problem types",
-    "section": "",
-    "text": "problemType.type values and counts\n\n\ntype\ncves\ncnas\ncna\n\n\n\n\ntext\n174850\n161\n&lt;too many&gt;\n\n\nCWE\n57324\n320\n&lt;too many&gt;\n\n\n&lt;undefined&gt;\n7372\n76\n&lt;too many&gt;\n\n\nImpact\n2580\n1\nmicrosoft\n\n\ncwe\n365\n2\ncisco, OX\n\n\ncvw\n61\n1\nSplunk\n\n\nRCE (Remote Code Execution)\n16\n1\natlassian\n\n\nBASM (Broken Authentication & Session Management)\n2\n1\natlassian\n\n\nInformation Disclosure\n2\n1\natlassian\n\n\nImproper Authorization\n2\n1\natlassian\n\n\nInjection\n2\n1\natlassian\n\n\nStored XSS\n2\n1\natlassian\n\n\nSecurity Misconfiguration\n1\n1\natlassian\n\n\nproblem_type\n1\n1\napple\n\n\nOther\n1\n1\natlassian\n\n\nOpen Redirect\n1\n1\natlassian\n\n\nFile Inclusion\n1\n1\natlassian\n\n\nReflected XSS\n1\n1\natlassian"
-  },
-  {
-    "objectID": "problem_types.html#looking-for-cwe-through-regex",
-    "href": "problem_types.html#looking-for-cwe-through-regex",
-    "title": "Problem types",
-    "section": "",
-    "text": "I used a regex “cwe[-_.]\\d+” to detect a CWE ID in any of the description or the two cweId and cweid fields. The following table is a count of the CVEs with one or more CWEs found in those fields where the type is specified as shown.\n\n\n\nThe elusive CWE ID\n\n\ntype\nCWE Found\nNo CWE\n\n\n\n\nBASM (Broken Authentication & Session Management)\n0\n2\n\n\ncvw\n61\n0\n\n\ncwe\n365\n0\n\n\nCWE\n57324\n0\n\n\nFile Inclusion\n0\n1\n\n\nImpact\n0\n2580\n\n\nImproper Authorization\n0\n2\n\n\nInformation Disclosure\n0\n2\n\n\nInjection\n0\n2\n\n\nOpen Redirect\n0\n1\n\n\nOther\n0\n1\n\n\nproblem_type\n0\n1\n\n\nRCE (Remote Code Execution)\n0\n16\n\n\nReflected XSS\n0\n1\n\n\nSecurity Misconfiguration\n0\n1\n\n\nStored XSS\n0\n2\n\n\ntext\n1\n174849\n\n\nNA\n3797\n3575\n\n\n\n\n\n\n\nBecause it’s a simple regex we can discover the CWE ID in other places, such as the description. This is limited to the records where a valid CWE field was found.\n\n\n\nWhere are CWEs being found?\n\n\nCWE in Description\nCWE in cweId\ncves\ncnas\n\n\n\n\nTRUE\nTRUE\n54358\n318\n\n\nTRUE\nFALSE\n5210\n23\n\n\nFALSE\nTRUE\n1981\n21"
-  },
-  {
-    "objectID": "problem_types.html#record-completeness",
-    "href": "problem_types.html#record-completeness",
-    "title": "Problem types",
-    "section": "",
-    "text": "Should there always be a “lang” and “type” and “cweId” or what’s the best combination?"
-  },
-  {
-    "objectID": "problem_types.html#number-off-cwes-in-cve-records",
-    "href": "problem_types.html#number-off-cwes-in-cve-records",
-    "title": "Problem types",
-    "section": "Number off CWEs in CVE records",
-    "text": "Number off CWEs in CVE records\nThis section is aggregating any identification of CWE ID in any of the three common fields.\nNote that seven CVEs had five (5) unique CWEs in a single CVE record.\n\n\n\n\n\n\n\n\n\nCWE’s have different level of Abstractions as well as views and categories. CWE recommends only assigning “Base” CWEs to vulnerabilities."
-  },
-  {
-    "objectID": "problem_types.html#top-cwes",
-    "href": "problem_types.html#top-cwes",
-    "title": "Problem types",
-    "section": "top CWEs",
-    "text": "top CWEs\n\n\n\n\n\n\n\n\n\nWe can get a better idea of what these are by using the “Comprehensive Categorization” in category 1400. It maps every CWE up to a one of twenty-two high-level categories.\n\n\n\n\n\n\n\n\n\nOut of the 63,306 CWEs used in the in the CVEs, 12,095 are identified to be part of the CWE View 1003 (the “NVD Slice”). That is 19.1% of the CWEs found in CVEs."
+    "text": "::: {#cell-0 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“a19939f4-5473-442e-8b34-7bbc7cf4b097”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}\n#  %sh sudo dpkg -i /Volumes/empiricalsecurity_dev/datascience_dev/ds_volume/cache/quarto-1.6.42-linux-amd64.deb\n\n:::\n::: {#cell-1 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“0fd339c0-9f91-49ac-a7b8-38377dd2e50e”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}\n %sh sudo dpkg -i /Volumes/empiricalsecurity_dev/datascience_dev/ds_volume/cache/quarto-1.6.43-linux-arm64.deb\n:::\n::: {#cell-2 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“6c1dc2d3-bb3d-4904-b35a-46e59785b63b”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}\nload_if &lt;- function(x) {\n  if (!requireNamespace(x, quietly = TRUE)) {\n    install.packages(x)\n  }\n}\ngetpkg &lt;- function(x) {\n  load_if(x)\n  suppressPackageStartupMessages({\n    suppressWarnings({\n      library(x, character.only=TRUE)\n\n    })\n  })\n}\n\nlibrary(rmarkdown)\nlibrary(knitr)\nlibrary(tidyverse)\ngetpkg(\"quarto\")\ngetpkg(\"rvest\")\ngetpkg(\"log4r\")\ngetpkg(\"jsonlite\")\ngetpkg(\"httr\")\ngetpkg(\"ggrepel\")\ngetpkg(\"patchwork\")\ngetpkg(\"here\") #\ngetpkg(\"pandoc\") #\nif(length(pandoc_installed_versions()) == 0) {\n  pandoc_install()\n}\npandoc_activate(pandoc_installed_latest())\n\n:::\n::: {#cell-3 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“86ac33d1-d4f1-4353-936f-d8a4d38e53c4”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}\nquarto_render()\n:::\n::: {#cell-4 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“45bbdd4c-a45c-41aa-935b-f381c1e04c10”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}\n# some old github functions:\n\n# sleep is one of:  T/F for always sleeping or not, or an integer, for \"sleep under these remaining\"\nratelimit &lt;- function(header) {\n  tibble(limit = as.numeric(header$`x-ratelimit-limit`),\n         remaining = as.numeric(header$`x-ratelimit-remaining`), \n         reset = as.numeric(header$`x-ratelimit-reset`)) %&gt;%\n    mutate(now = parse_date_time(header$date, orders = \"%a, %d %b %Y HMS\", tz=\"GMT\"),\n           reset_dt = as_datetime(reset, tz=\"UTC\")) %&gt;% \n    # mutate(reset_dt = if_else(reset_dt &lt; now, add_with_rollback(reset_dt, hours(1)), reset_dt)) %&gt;%\n    mutate(secdiff = as.numeric(difftime(reset_dt, now, units=\"secs\")))\n}\n\ngithub_api &lt;- function(path, config, sleep = Inf, logger = log4r::logger(), method=\"GET\", ...) {\n  url &lt;- modify_url(\"https://api.github.com\", path = path)\n  resp &lt;- NA\n  if(method == \"GET\") {\n    resp &lt;- httr::GET(url, config, ...)\n  } else if (method == \"PUT\") {\n    debug(logger, \"attempting a PUT request\")\n    resp &lt;- httr::PUT(url, config, ...)\n  }\n\n  expect_resp &lt;- ifelse(\"Accept\" %in% names(config$headers), as.vector(config$headers['Accept']), \"application/json\")\n  expect_resp &lt;- ifelse(expect_resp == \"application/vnd.github.cloak-preview\",\n                        \"application/json\", expect_resp)\n  if (httr::http_type(resp) != expect_resp) {\n    warn(logger, paste(\"API did not return expected response type:\", expect_resp))\n    warn(logger, paste(\"API sent back:\", httr::http_type(resp)))\n    # stop(paste(\"API did not return expected response type:\", expect_resp), call. = FALSE)\n  }\n  if(status_code(resp) != 200) {\n    error(logger, sprintf(\"GitHub API request failed [%s] &lt;%s&gt;\", status_code(resp), url))\n    # stop(sprintf(\"GitHub API request failed [%s]\\n&lt;%s&gt;\", status_code(resp), url), call. = FALSE)\n    return(NULL)\n  }\n  parsed &lt;- httr::content(resp, \"text\")\n  if(httr::http_type(resp) == \"application/json\") {\n    parsed &lt;- jsonlite::fromJSON(httr::content(resp, \"text\", encoding = \"UTF-8\"), simplifyVector = FALSE)\n  }\n  curlimits &lt;- ratelimit(resp$headers)\n  if(curlimits$remaining &lt;= 5) {\n    sleeptime &lt;- curlimits$secdiff * 1.05 # add a buffer just to be safe when we're close to the limit\n    info(logger, paste0(\"Almost at reset, setting to remaining time:\", round(sleeptime, 3)))\n  } else {\n    sleeptime &lt;- (curlimits$secdiff / curlimits$remaining) * 0.92  # trying to be more aggressive\n  }\n  if(is.nan(sleeptime) | !is.finite(sleeptime)) sleeptime &lt;- 1\n  if(sleeptime &lt; 0) sleeptime &lt;- 0\n\n  if(sleeptime &gt; 3600) {\n    warn(logger, \"weird Inf Sleep catch triggered:\")\n    warn(logger, paste0(\"  secdiff: \", round(curlimits$secdiff, 3)))\n    warn(logger, paste0(\"  remaining: \", round(curlimits$remaining, 3)))\n    warn(logger, paste0(\"  sleeptime is.finite: \", is.finite(sleeptime)))\n    sleeptime &lt;- curlimits$secdiff * 1.05 # add 5% just to be safe on the last one\n    warn(logger, paste0(\"  sleeptime is padded secdiff: \", round(sleeptime, 3)))\n  }\n\n  sleep_logical &lt;- FALSE\n  if(is.logical(sleep)) {\n    sleep_logical &lt;- sleep\n  } else if (is.integer(sleep)) {\n    sleep_logical &lt;- curlimits$remaining &lt;= sleep\n  }\n\n\n  if(sleep_logical) {\n    debug(logger, paste0(\"  \", curlimits$limit, \"/\", curlimits$remaining, \", reset: \", curlimits$reset_dt,\n                         \", sleeptime: \", round(sleeptime, 3)))\n    Sys.sleep(sleeptime)\n  } else {\n    debug(logger, \"  not sleeping\")\n  }\n\n  structure(\n    list(\n      content = parsed,\n      path = path,\n      response = resp\n    ),\n    class = \"github_api\"\n  )\n}\n\ngh_files &lt;- function(repo, branch=\"master\", config, sleep, logger = log4r::logger()) {\n  curpath &lt;- paste0(\"/repos/\", repo, \"/branches/\", branch)\n  cat(glue::glue(\"gh_files path: {curpath}\\n\"))\n  cur_base &lt;- list()\n  try(cur_base &lt;- github_api(curpath, config=config, sleep=sleep, logger=logger))\n  rez &lt;- tibble()                 \n  if(length(cur_base) &gt; 0) { \n      cat(glue::glue(\"gh_files path: {curpath}\\n\"))\n\n    master_tree_sha &lt;- cur_base$content$commit$commit$tree$sha\n    curpath &lt;- paste0(\"/repos/\", repo, \"/git/trees/\", master_tree_sha)\n    try(cur_base &lt;- github_api(curpath, config=config, sleep=sleep, query=list(recursive=1), logger=logger))\n    rez &lt;- map_dfr(cur_base$content$tree, function(x) {\n      enframe(unlist(x)) %&gt;% spread(name, value)\n    })\n  } \n  rez\n} \n\ngh_commit_file &lt;- function(repo, path, msg, file, config, sleep,  logger = log4r::logger()) {\n  # https://docs.github.com/en/rest/reference/repos#create-or-update-file-contents\n  # set up repo/path to cleanly combine\n  localpath &lt;- gsub(\"^/+\", \"\", path)\n  repo &lt;- gsub(\"/$+\", \"\", repo)\n  repo &lt;- gsub(\"^/+\", \"\", repo)\n  curpath &lt;- paste0(\"/repos/\", repo, \"/contents/\", localpath)\n  levellog(logger, \"INFO\", paste(\"file commit:\", curpath))\n      \n  rawtxt &lt;- readBin(file, \"raw\", file.info(file)[1, \"size\"])\n  levellog(logger, \"INFO\", paste(length(as.integer(rawtxt)), \"bytes,\",\n                                  \"file commit:\", curpath))\n  bodylist &lt;- list(message = msg, content = rawtxt)\n  levellog(logger, \"INFO\", paste(\"getting existing file list\"))\n  curfiles &lt;- gh_files(repo, config=config, sleep=sleep, logger=logger)\n  cursha &lt;- curfiles %&gt;% filter(path == localpath) %&gt;% slice(1) %&gt;% pull(sha)\n  if(length(cursha) &gt; 0) {\n    levellog(logger, \"INFO\", paste(\"attempting to overwrite existing file:\", localpath))\n    bodylist$sha = cursha\n  } else {\n    levellog(logger, \"INFO\", paste(\"attempting to create new file:\", localpath))\n  }\n  body &lt;- toJSON(bodylist, raw = \"base64\", auto_unbox=TRUE)\n\n  try(cur_base &lt;- github_api(curpath, config=config, sleep=sleep, logger=logger,\n                             method=\"PUT\", body = body))\n  cur_base\n}\n\nallfile &lt;- tibble(srcfile = list.files(here::here(\"docs\"), full.names = TRUE, recursive=TRUE)) %&gt;%\n  # filter(mtime &gt;= starttime) %&gt;%  # anything modified after we started the script\n  # or just take everything in there since the notebook cleans it on start up\n  mutate(path = gsub(paste0(here(), \"/\"), \"\", srcfile))\ncat(paste(\"attempting to commit\", nrow(allfile), \"files\\n\"))\n\nallfile\n\n# Authorization: Bearer YOUR-TOKEN\" \\\nconfig &lt;- add_headers(\"Authorization\"=paste(\"Bearer\", Sys.getenv(\"GITHUB_PAT\")),\n                      \"User-Agent\"=\"empirical/updates\")\nlogger &lt;- log4r::logger()\nrepo &lt;- \"jayjacobs/visualcve\"\nfor (i in seq(nrow(allfile))) {\n  cat(paste(\"  --&gt; attempting to push\", allfile$path[i]), \"\\n\")\n  rez &lt;- gh_commit_file(repo, path = allfile$path[i], msg=paste0(\"automatic stats update: \", format(Sys.Date(), \"%Y%m%d\")),\n                        file = allfile$srcfile[i], config=config, sleep=TRUE, logger = logger)\n  if(!is.list(rez)) {\n    cat(paste(\"Response for\", allfile$path[i], \"was unexpected and undefined\\n\"))\n  } else {\n    cat(paste(\"Response for\", allfile$path[i], \"was\", rez$response$status_code), \"\\n\")\n  }\n}\n\ncat(\"EPSS Stats run complete.\\n\")\n# allfile %&gt;% glimpse()\n:::\n::: {#cell-5 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“cd5ad223-ab42-4c60-adc9-f1f4af4b5124”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}\ncat(allfile$srcfile[1], allfile$path[1])\n:::\n::: {#cell-6 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“a4a5ef13-3409-4303-8e6f-5b9fc9ed985f”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}\n# load_if(\"reticulate\")\n\n# library(reticulate)\n\n# source_python(\"read_pickle.py\")\n# pickle_data &lt;- read_pickle_file(\"/Volumes/empiricalsecurity_dev/datascience_dev/ds_volume/etc/cveorg/json_parsing_state.pkl\")\n\n# names(pickle_data)\n:::"
   }
 ]
