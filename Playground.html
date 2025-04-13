@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.43">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>playground – visualcve</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-eeb1650b3f6fb1b4e7244f04fd5a5fb6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">visualcve</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#break-run-everything-up-above" id="toc-break-run-everything-up-above" class="nav-link active" data-scroll-target="#break-run-everything-up-above">Break Run everything up above</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<p>::: {#cell-0 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“7fe478fc-4cc9-444c-a2cc-7e19d3d2e79e”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>getpkg <span class="op">&lt;-</span> function(x) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>requireNamespace(x, quietly <span class="op">=</span> TRUE)) {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    install.packages(x)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  suppressPackageStartupMessages({</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    suppressWarnings({</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      library(x, character.only<span class="op">=</span>TRUE)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>suppressPackageStartupMessages({</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  suppressWarnings({</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"tidyverse"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"stringr"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"scales"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"lubridate"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"arrow"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"ggplot2"</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"ggrepel"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"patchwork"</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># getpkg("vegan")</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>mainfont <span class="op">&lt;-</span> <span class="st">"Source Sans Pro"</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>tab <span class="op">&lt;-</span> function (x <span class="op">=</span> c(<span class="st">"blue"</span>, <span class="st">"orange"</span>, <span class="st">"red"</span>, <span class="st">"seablue"</span>, <span class="st">"green"</span>, </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"olive"</span>, <span class="st">"purple"</span>, <span class="st">"pink"</span>, <span class="st">"brown"</span>, <span class="st">"gray"</span>)) {</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  tableau <span class="op">&lt;-</span> c(blue <span class="op">=</span> <span class="st">"#4E79A7"</span>, orange <span class="op">=</span> <span class="st">"#F28E2B"</span>, red <span class="op">=</span> <span class="st">"#E15759"</span>, seablue <span class="op">=</span> <span class="st">"#76B7B2"</span>, </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>               green <span class="op">=</span> <span class="st">"#59A14F"</span>, olive <span class="op">=</span> <span class="st">"#EDC948"</span>, purple <span class="op">=</span> <span class="st">"#B07AA1"</span>, pink <span class="op">=</span> <span class="st">"#FF9DA7"</span>, </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>               brown <span class="op">=</span> <span class="st">"#9C755F"</span>, gray <span class="op">=</span> <span class="st">"#BAB0AC"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="im">as</span>.vector(tableau[x])</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal(base_family<span class="op">=</span>mainfont) <span class="op">+</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>            theme(panel.grid <span class="op">=</span> element_line(color<span class="op">=</span><span class="st">"gray95"</span>),</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>                  plot.caption <span class="op">=</span> element_text(size<span class="op">=</span><span class="dv">6</span>, face <span class="op">=</span> <span class="st">"italic"</span>, color<span class="op">=</span><span class="st">"gray60"</span>),</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>                  text <span class="op">=</span> element_text(family<span class="op">=</span>mainfont),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>                  legend.title <span class="op">=</span> element_blank(),</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>                  legend.position<span class="op">=</span><span class="st">"bottom"</span>))</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'col'</span>, <span class="bu">list</span>(fill<span class="op">=</span>tab(<span class="st">'blue'</span>)))</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'bar'</span>, <span class="bu">list</span>(fill<span class="op">=</span>tab(<span class="st">'blue'</span>)))</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'text'</span>, <span class="bu">list</span>(family<span class="op">=</span>mainfont, size<span class="op">=</span><span class="dv">8</span><span class="op">/</span>.pt))</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'label'</span>, <span class="bu">list</span>(family<span class="op">=</span>mainfont, size<span class="op">=</span><span class="dv">8</span><span class="op">/</span>.pt, label.size<span class="op">=</span>NA))</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co"># update_geom_defaults('point', list(shape=21, size=2, fill=tab('blue'), color='white'))</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'point'</span>, <span class="bu">list</span>(size<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span>tab(<span class="st">'blue'</span>)))</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'line'</span>, <span class="bu">list</span>(color<span class="op">=</span>tab(<span class="st">'blue'</span>), size<span class="op">=</span><span class="fl">0.85</span>))</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>knitr::opts_chunk$set(</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  cache <span class="op">=</span> FALSE,</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  message <span class="op">=</span> FALSE,</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  warning <span class="op">=</span> FALSE, </span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  dev <span class="op">=</span> c(<span class="st">"png"</span>, <span class="st">"cairo_pdf"</span>),</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  echo <span class="op">=</span> FALSE,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  fig.retina <span class="op">=</span> <span class="dv">2</span>,</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  fig.width <span class="op">=</span> <span class="dv">7</span>,</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  fig.height <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-1 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“39b0a771-3d0c-46db-bb75-8508b3546665”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># basedir &lt;- "/Volumes/empiricalsecurity_databricks_prod/vics/sources/data/cveorg"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>basedir <span class="op">&lt;-</span> strftime(now(), <span class="st">"/Volumes/empiricalsecurity_databricks_prod/vics/sources/data/cveorg/%Y/%m/date=%Y-%m-</span><span class="sc">%d</span><span class="st">/"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>cvefiles <span class="op">&lt;-</span> tibble(src <span class="op">=</span> <span class="bu">list</span>.files(basedir, full.names<span class="op">=</span>TRUE, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                              recursive<span class="op">=</span>TRUE, pattern<span class="op">=</span><span class="st">"parquet"</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    mutate(datestr <span class="op">=</span> <span class="im">as</span>.Date(str_extract(src, <span class="st">"(?&lt;=date</span><span class="ch">\\</span><span class="st">=)</span><span class="ch">\\</span><span class="st">d</span><span class="sc">{4}</span><span class="st">(-</span><span class="ch">\\</span><span class="st">d</span><span class="sc">{2}</span><span class="st">)</span><span class="sc">{2}</span><span class="st">"</span>)),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>           datetime <span class="op">=</span> parse_date_time(str_extract(basename(src), <span class="st">"</span><span class="ch">\\</span><span class="st">d</span><span class="sc">{4}</span><span class="st">(-</span><span class="ch">\\</span><span class="st">d</span><span class="sc">{2}</span><span class="st">)</span><span class="sc">{5}</span><span class="st">"</span>), <span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st">-%H-%M-%S"</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>           category <span class="op">=</span> str_extract(basename(src), <span class="st">".*(?=[</span><span class="ch">\\</span><span class="st">-_]</span><span class="sc">{1}</span><span class="ch">\\</span><span class="st">d</span><span class="sc">{4}</span><span class="st">(-</span><span class="ch">\\</span><span class="st">d</span><span class="sc">{2}</span><span class="st">)</span><span class="sc">{5}</span><span class="st">)"</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>           slug <span class="op">=</span> str_extract(src, <span class="st">"(?&lt;=/)[^/]+(?=/</span><span class="ch">\\</span><span class="st">d</span><span class="sc">{4}</span><span class="st">/</span><span class="ch">\\</span><span class="st">d</span><span class="sc">{2}</span><span class="st">/)"</span>)) <span class="op">%&gt;%</span> </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># filter(category == "full_exploitations") %&gt;% </span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    arrange(desc(datetime)) <span class="op">%&gt;%</span> </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    group_by(category) <span class="op">%&gt;%</span> </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    dplyr::<span class="bu">slice</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    ungroup()</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>cvefiles</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-2 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“625d5383-7a07-45bd-8fc0-3c58489a4175”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>meta <span class="op">&lt;-</span> read_parquet(cvefiles$src[cvefiles$category <span class="op">==</span> <span class="st">"cveMetadata"</span>]) <span class="op">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  rename(cve <span class="op">=</span> `_id`)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>provider <span class="op">&lt;-</span> read_parquet(cvefiles$src[cvefiles$category <span class="op">==</span> <span class="st">"containers_cna_providerMetadata"</span>]) <span class="op">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  rename(cve <span class="op">=</span> `_id`) <span class="op">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  rename(provider_updated <span class="op">=</span> dateUpdated) <span class="op">%&gt;%</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  full_join(meta, by<span class="op">=</span><span class="st">"cve"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>count_txt <span class="op">&lt;-</span> meta <span class="op">%&gt;%</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  count(state) <span class="op">%&gt;%</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  mutate(state <span class="op">=</span> tolower(state), </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>         n <span class="op">=</span> scales::comma(n)) <span class="op">%&gt;%</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  spread(state, n)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>last_pub <span class="op">&lt;-</span> <span class="bu">max</span>(meta$dateUpdated)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>cnamap <span class="op">&lt;-</span> provider <span class="op">%&gt;%</span> </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(state <span class="op">==</span> <span class="st">"PUBLISHED"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  select(cve, shortName, datePublished)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>cat(glue::glue(<span class="st">"Published: {count_txt$published}, Rejected: {count_txt$rejected}, Last Updated: </span><span class="sc">{last_pub}</span><span class="st"> UTC</span><span class="ch">\n</span><span class="st">"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<section id="break-run-everything-up-above" class="level2">
+<h2 class="anchored" data-anchor-id="break-run-everything-up-above">Break Run everything up above</h2>
+<p>::: {#cell-4 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{},“inputWidgets”:{},“nuid”:“366d15e9-8f91-40f2-b062-8e53ed6d8b37”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run all above</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-5 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“07608387-8a83-4ef6-8219-395ec29d123b”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>provider <span class="op">%&gt;%</span> glimpse()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-6 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“57b64373-bc76-4f6b-a82c-a269b7bc89b4”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cnamap <span class="op">%&gt;%</span> glimpse()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-7 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“2b1684b5-4a77-43f9-a44c-5edd6a8354e0”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cutoff &lt;- now() %m-% days(90)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cutoff2 &lt;- now() %m-% days(180)</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>looper <span class="op">&lt;-</span> seq(today(), today() <span class="op">%</span>m<span class="op">-%</span> years(<span class="dv">5</span>), by<span class="op">=</span><span class="st">"-3 day"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>toplot <span class="op">&lt;-</span> map_dfr(looper, function(curdate) {</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  before_date <span class="op">&lt;-</span> curdate <span class="op">%</span>m<span class="op">-%</span> days(<span class="dv">90</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  rez <span class="op">&lt;-</span> provider <span class="op">%&gt;%</span> <span class="bu">filter</span>(state <span class="op">==</span> <span class="st">"PUBLISHED"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">filter</span>(datePublished <span class="op">&gt;=</span> before_date, datePublished <span class="op">&lt;=</span> curdate) <span class="op">%&gt;%</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    count(shortName, sort<span class="op">=</span>TRUE)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  tibble(date <span class="op">=</span> curdate, div <span class="op">=</span> vegan::diversity(rez$n))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-8 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“68cc6bf1-859c-4797-98c3-68cdb3556739”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>length(looper)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-9 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“e69859fa-80f1-473d-b2c6-91f495abdbf6”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ggplot(toplot, aes(date, div)) <span class="op">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  geom_line()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-10 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“2371e916-4b13-416a-b83f-0c2d424b39ec”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># very equal, lot of diversity</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>vegan::diversity(rep(<span class="dv">5</span>, <span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-11 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“a960857a-19db-45a8-961d-0ef143e629c7”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a few folks dominating</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">&lt;-</span> seq(<span class="dv">300</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>stupid <span class="op">&lt;-</span> <span class="bu">round</span>(exp(sample(x, <span class="dv">50</span>)), <span class="dv">0</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>stupid</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>vegan::diversity(stupid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-12 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“6f2a1e15-a99c-4bb3-b774-6a827ef45e35”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cutoff0 <span class="op">&lt;-</span> now()</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>cutoff <span class="op">&lt;-</span> now() <span class="op">%</span>m<span class="op">-%</span> days(<span class="dv">90</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>cutoff2 <span class="op">&lt;-</span> now() <span class="op">%</span>m<span class="op">-%</span> days(<span class="dv">180</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>one <span class="op">&lt;-</span> provider <span class="op">%&gt;%</span> <span class="bu">filter</span>(state <span class="op">==</span> <span class="st">"PUBLISHED"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(datePublished <span class="op">&gt;=</span> cutoff, datePublished <span class="op">&lt;=</span> cutoff0) <span class="op">%&gt;%</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  summarize(x <span class="op">=</span> n_distinct(shortName), cve <span class="op">=</span> n_distinct(cve))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>two <span class="op">&lt;-</span> provider <span class="op">%&gt;%</span> <span class="bu">filter</span>(state <span class="op">==</span> <span class="st">"PUBLISHED"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(datePublished <span class="op">&gt;=</span> cutoff2, datePublished <span class="op">&lt;=</span> cutoff) <span class="op">%&gt;%</span> </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  summarize(x <span class="op">=</span> n_distinct(shortName), cve <span class="op">=</span> n_distinct(cve))</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>cna_change <span class="op">&lt;-</span> (one$x <span class="op">-</span> two$x) <span class="op">/</span> two$x</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>cve_change <span class="op">&lt;-</span> (one$cve <span class="op">-</span> two$cve) <span class="op">/</span> two$cve</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>cat(<span class="st">"cna change:"</span>, percent(cna_change, <span class="fl">0.1</span>), <span class="st">"cve change:"</span>, percent(cve_change, <span class="fl">0.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-13 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“f149e65f-f253-43d7-9014-afb7f1aefc72”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cvefiles <span class="op">%&gt;%</span> select(category) <span class="op">%&gt;%</span> arrange(category) <span class="op">%&gt;%</span> <span class="bu">print</span>(n<span class="op">=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-14 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“26f2b833-496f-49f7-8c20-3b4ceaa46674”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>cwe <span class="op">&lt;-</span> read_parquet(cvefiles$src[cvefiles$category <span class="op">==</span> <span class="st">"containers_cna_problemTypes_descriptions"</span>]) <span class="op">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  rename(cve <span class="op">=</span> `_id`) <span class="op">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(<span class="op">!</span><span class="kw">is</span>.na(cweId)) <span class="op">%&gt;%</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(str_detect(cweId, <span class="st">"CWE-</span><span class="ch">\\</span><span class="st">d+"</span>)) <span class="op">%&gt;%</span> </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  distinct(cve) <span class="op">%&gt;%</span> </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  mutate(cwe <span class="op">=</span> TRUE)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>cwe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-15 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“63d2b849-f5e9-4aa2-bbdd-e88d3e1d4aac”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>allcvss <span class="op">&lt;-</span> cvefiles <span class="op">%&gt;%</span> <span class="bu">filter</span>(str_detect(category, <span class="st">"containers_cna_metrics_cvss"</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>cvss0 <span class="op">&lt;-</span> map_dfr(allcvss$src, function(x) {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  read_parquet(x) <span class="op">%&gt;%</span>   </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    rename(cve <span class="op">=</span> `_id`) <span class="op">%&gt;%</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    select(cve, version)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>}) <span class="op">%&gt;%</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  mutate(version <span class="op">=</span> paste0(<span class="st">"cvss"</span>, version)) <span class="op">%&gt;%</span> </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  mutate(x <span class="op">=</span> TRUE) <span class="op">%&gt;%</span> </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  distinct()</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>cvss <span class="op">&lt;-</span> cvss0 <span class="op">%&gt;%</span> </span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  bind_rows(cvss0 <span class="op">%&gt;%</span> distinct(cve) <span class="op">%&gt;%</span> mutate(version <span class="op">=</span> <span class="st">"cvss"</span>, x <span class="op">=</span> TRUE)) <span class="op">%&gt;%</span> </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  spread(version, x, fill<span class="op">=</span>FALSE) </span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>cvss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-16 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“df0d5f95-60e1-4666-9ee6-4ec24be54614”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 18 containers_cna_affected                                          </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 19 containers_cna_affected_cpe                                      </span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 20 containers_cna_affected_cpeApplicability_nodes                   </span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 21 containers_cna_affected_cpeApplicability_nodes_cpeMatch          </span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 22 containers_cna_affected_cpes                                     </span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 23 containers_cna_affected_modules                                  </span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 24 containers_cna_affected_platforms                                </span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 25 containers_cna_affected_programFiles                             </span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 26 containers_cna_affected_programRoutines                          </span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 27 containers_cna_affected_versions                                 </span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 28 containers_cna_affected_versions_changes                         </span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>cpe <span class="op">&lt;-</span> read_parquet(cvefiles$src[cvefiles$category <span class="op">==</span> <span class="st">"containers_cna_affected_cpe"</span>]) <span class="op">%&gt;%</span> </span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  rename(cve <span class="op">=</span> `_id`) <span class="op">%&gt;%</span> </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(str_detect(cpe, <span class="st">'cpe:2</span><span class="ch">\\</span><span class="st">.3:[aho</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-](:(((</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?)([a-zA-Z0-9</span><span class="ch">\\</span><span class="st">-</span><span class="ch">\\</span><span class="st">._]|(</span><span class="ch">\\\\</span><span class="st">[</span><span class="ch">\\\\\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">?!"#</span><span class="ch">\\</span><span class="st">$%&amp;</span><span class="ch">\'\\</span><span class="st">(</span><span class="ch">\\</span><span class="st">)</span><span class="ch">\\</span><span class="st">+,/:;&lt;=&gt;@</span><span class="ch">\\</span><span class="st">[</span><span class="ch">\\</span><span class="st">]</span><span class="ch">\\</span><span class="st">^`</span><span class="ch">\\</span><span class="st">{</span><span class="ch">\\</span><span class="st">|}~]))+(</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?))|[</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-]))</span><span class="sc">{5}</span><span class="st">(:(([a-zA-Z]{2,3}(-([a-zA-Z]</span><span class="sc">{2}</span><span class="st">|[0-9]</span><span class="sc">{3}</span><span class="st">))?)|[</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-]))(:(((</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?)([a-zA-Z0-9</span><span class="ch">\\</span><span class="st">-</span><span class="ch">\\</span><span class="st">._]|(</span><span class="ch">\\\\</span><span class="st">[</span><span class="ch">\\\\\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">?!"#</span><span class="ch">\\</span><span class="st">$%&amp;</span><span class="ch">\'\\</span><span class="st">(</span><span class="ch">\\</span><span class="st">)</span><span class="ch">\\</span><span class="st">+,/:;&lt;=&gt;@</span><span class="ch">\\</span><span class="st">[</span><span class="ch">\\</span><span class="st">]</span><span class="ch">\\</span><span class="st">^`</span><span class="ch">\\</span><span class="st">{</span><span class="ch">\\</span><span class="st">|}~]))+(</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?))|[</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-]))</span><span class="sc">{4}</span><span class="st">'</span>)) <span class="op">%&gt;%</span> </span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  distinct(cve) <span class="op">%&gt;%</span> </span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  mutate(cpe1 <span class="op">=</span> TRUE)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>cpes <span class="op">&lt;-</span> read_parquet(cvefiles$src[cvefiles$category <span class="op">==</span> <span class="st">"containers_cna_affected_cpes"</span>]) <span class="op">%&gt;%</span> </span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  rename(cve <span class="op">=</span> `_id`) <span class="op">%&gt;%</span> </span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(str_detect(cpes, <span class="st">'cpe:2</span><span class="ch">\\</span><span class="st">.3:[aho</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-](:(((</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?)([a-zA-Z0-9</span><span class="ch">\\</span><span class="st">-</span><span class="ch">\\</span><span class="st">._]|(</span><span class="ch">\\\\</span><span class="st">[</span><span class="ch">\\\\\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">?!"#</span><span class="ch">\\</span><span class="st">$%&amp;</span><span class="ch">\'\\</span><span class="st">(</span><span class="ch">\\</span><span class="st">)</span><span class="ch">\\</span><span class="st">+,/:;&lt;=&gt;@</span><span class="ch">\\</span><span class="st">[</span><span class="ch">\\</span><span class="st">]</span><span class="ch">\\</span><span class="st">^`</span><span class="ch">\\</span><span class="st">{</span><span class="ch">\\</span><span class="st">|}~]))+(</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?))|[</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-]))</span><span class="sc">{5}</span><span class="st">(:(([a-zA-Z]{2,3}(-([a-zA-Z]</span><span class="sc">{2}</span><span class="st">|[0-9]</span><span class="sc">{3}</span><span class="st">))?)|[</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-]))(:(((</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?)([a-zA-Z0-9</span><span class="ch">\\</span><span class="st">-</span><span class="ch">\\</span><span class="st">._]|(</span><span class="ch">\\\\</span><span class="st">[</span><span class="ch">\\\\\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">?!"#</span><span class="ch">\\</span><span class="st">$%&amp;</span><span class="ch">\'\\</span><span class="st">(</span><span class="ch">\\</span><span class="st">)</span><span class="ch">\\</span><span class="st">+,/:;&lt;=&gt;@</span><span class="ch">\\</span><span class="st">[</span><span class="ch">\\</span><span class="st">]</span><span class="ch">\\</span><span class="st">^`</span><span class="ch">\\</span><span class="st">{</span><span class="ch">\\</span><span class="st">|}~]))+(</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?))|[</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-]))</span><span class="sc">{4}</span><span class="st">'</span>)) <span class="op">%&gt;%</span> </span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  distinct(cve) <span class="op">%&gt;%</span> </span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  mutate(cpes <span class="op">=</span> TRUE)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>cpe2 <span class="op">&lt;-</span> read_parquet(cvefiles$src[cvefiles$category <span class="op">==</span> <span class="st">"containers_cna_affected_cpeApplicability_nodes"</span>]) <span class="op">%&gt;%</span> </span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>  rename(cve <span class="op">=</span> `_id`)</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>cpe3 <span class="op">&lt;-</span> read_parquet(cvefiles$src[cvefiles$category <span class="op">==</span> <span class="st">"containers_cna_affected_cpeApplicability_nodes_cpeMatch"</span>]) <span class="op">%&gt;%</span> </span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>  rename(cve <span class="op">=</span> `_id`) <span class="op">%&gt;%</span> </span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  right_join(cpe2, by<span class="op">=</span>c(<span class="st">"cve"</span>, <span class="st">"affected_id"</span>, <span class="st">"cpeApplicability_id"</span>, <span class="st">"nodes_id"</span>)) <span class="op">%&gt;%</span> </span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(str_detect(criteria, <span class="st">'cpe:2</span><span class="ch">\\</span><span class="st">.3:[aho</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-](:(((</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?)([a-zA-Z0-9</span><span class="ch">\\</span><span class="st">-</span><span class="ch">\\</span><span class="st">._]|(</span><span class="ch">\\\\</span><span class="st">[</span><span class="ch">\\\\\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">?!"#</span><span class="ch">\\</span><span class="st">$%&amp;</span><span class="ch">\'\\</span><span class="st">(</span><span class="ch">\\</span><span class="st">)</span><span class="ch">\\</span><span class="st">+,/:;&lt;=&gt;@</span><span class="ch">\\</span><span class="st">[</span><span class="ch">\\</span><span class="st">]</span><span class="ch">\\</span><span class="st">^`</span><span class="ch">\\</span><span class="st">{</span><span class="ch">\\</span><span class="st">|}~]))+(</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?))|[</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-]))</span><span class="sc">{5}</span><span class="st">(:(([a-zA-Z]{2,3}(-([a-zA-Z]</span><span class="sc">{2}</span><span class="st">|[0-9]</span><span class="sc">{3}</span><span class="st">))?)|[</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-]))(:(((</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?)([a-zA-Z0-9</span><span class="ch">\\</span><span class="st">-</span><span class="ch">\\</span><span class="st">._]|(</span><span class="ch">\\\\</span><span class="st">[</span><span class="ch">\\\\\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">?!"#</span><span class="ch">\\</span><span class="st">$%&amp;</span><span class="ch">\'\\</span><span class="st">(</span><span class="ch">\\</span><span class="st">)</span><span class="ch">\\</span><span class="st">+,/:;&lt;=&gt;@</span><span class="ch">\\</span><span class="st">[</span><span class="ch">\\</span><span class="st">]</span><span class="ch">\\</span><span class="st">^`</span><span class="ch">\\</span><span class="st">{</span><span class="ch">\\</span><span class="st">|}~]))+(</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?))|[</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-]))</span><span class="sc">{4}</span><span class="st">'</span>)) <span class="op">%&gt;%</span> </span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>  distinct(cve) <span class="op">%&gt;%</span> </span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>  mutate(cpe2 <span class="op">=</span> TRUE)</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co"># affected </span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>empty_version <span class="op">&lt;-</span> c(<span class="st">"n/a"</span>, <span class="st">"unspecified"</span>, <span class="st">"0"</span>)</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>empty_lessthan <span class="op">&lt;-</span> c(<span class="st">"*"</span>, <span class="st">"None"</span>, <span class="st">"latest"</span>)</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>versions <span class="op">&lt;-</span> read_parquet(cvefiles$src[cvefiles$category <span class="op">==</span> <span class="st">"containers_cna_affected_versions"</span>]) <span class="op">%&gt;%</span> </span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>  rename(cve <span class="op">=</span> `_id`) <span class="op">%&gt;%</span> </span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>  mutate(version <span class="op">=</span> ifelse(tolower(version) <span class="op">%</span><span class="kw">in</span><span class="op">%</span> empty_version, NA_character_, version)) <span class="op">%&gt;%</span> </span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>  mutate(lessThanOrEqual <span class="op">=</span> ifelse(tolower(lessThanOrEqual) <span class="op">%</span><span class="kw">in</span><span class="op">%</span> empty_lessthan, NA_character_, lessThanOrEqual)) <span class="op">%&gt;%</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(<span class="op">!</span>(<span class="kw">is</span>.na(version) <span class="op">&amp;</span> <span class="kw">is</span>.na(lessThanOrEqual))) <span class="op">%&gt;%</span> </span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>  distinct(cve) <span class="op">%&gt;%</span> </span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>  mutate(version <span class="op">=</span> TRUE)</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>affected0 <span class="op">&lt;-</span> read_parquet(cvefiles$src[cvefiles$category <span class="op">==</span> <span class="st">"containers_cna_affected"</span>]) <span class="op">%&gt;%</span> </span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>  rename(cve <span class="op">=</span> `_id`) <span class="op">%&gt;%</span> </span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>  mutate(product <span class="op">=</span> ifelse(tolower(product) <span class="op">%</span><span class="kw">in</span><span class="op">%</span> c(<span class="st">"n/a"</span>, <span class="st">"unknown"</span>, <span class="st">"notfound"</span>), </span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>                          NA_character_, product)) <span class="op">%&gt;%</span> </span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>  mutate(vendor <span class="op">=</span> ifelse(tolower(vendor) <span class="op">%</span><span class="kw">in</span><span class="op">%</span> c(<span class="st">"n/a"</span>, <span class="st">"unknown"</span>, <span class="st">"notfound"</span>), </span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>                         NA_character_, vendor)) <span class="op">%&gt;%</span></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>  pivot_longer(cols<span class="op">=-</span>c(<span class="st">"affected_id"</span>, <span class="st">"cve"</span>), names_to <span class="op">=</span> <span class="st">"cat"</span>, values_to <span class="op">=</span> <span class="st">"val"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(<span class="op">!</span><span class="kw">is</span>.na(val)) <span class="op">%&gt;%</span></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>  summarize(.by<span class="op">=</span>cve, pv <span class="op">=</span> <span class="bu">all</span>(c(<span class="st">"product"</span>, <span class="st">"vendor"</span>) <span class="op">%</span><span class="kw">in</span><span class="op">%</span> cat),</span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>            other <span class="op">=</span> <span class="bu">any</span>(c(<span class="st">"packageName"</span>, <span class="st">"collectionURL"</span>, <span class="st">"repo"</span>) <span class="op">%</span><span class="kw">in</span><span class="op">%</span> cat)) <span class="op">%&gt;%</span> </span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>  full_join(versions, by<span class="op">=</span><span class="st">"cve"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>  replace_na(<span class="bu">list</span>(pv <span class="op">=</span> FALSE, other <span class="op">=</span> FALSE, version <span class="op">=</span> FALSE)) <span class="op">%&gt;%</span> </span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>  mutate(vpv <span class="op">=</span> pv <span class="op">&amp;</span> version) <span class="op">%&gt;%</span> </span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>  select(cve, vpv, purl_repo<span class="op">=</span>other)</span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>allcpe <span class="op">&lt;-</span> cpe <span class="op">%&gt;%</span> </span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>  full_join(cpes, by<span class="op">=</span><span class="st">"cve"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>  full_join(cpe3, by<span class="op">=</span><span class="st">"cve"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>  replace_na(<span class="bu">list</span>(cpe1 <span class="op">=</span> FALSE, cpe2 <span class="op">=</span> FALSE, cpes <span class="op">=</span> FALSE)) <span class="op">%&gt;%</span> </span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>  mutate(cpe <span class="op">=</span> cpe1 <span class="op">|</span> cpe2 <span class="op">|</span> cpes) <span class="op">%&gt;%</span> </span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>  select(cve, cpe)</span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>affected <span class="op">&lt;-</span> affected0 <span class="op">%&gt;%</span> </span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a>  full_join(allcpe, by<span class="op">=</span><span class="st">"cve"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a>  replace_na(<span class="bu">list</span>(vpv <span class="op">=</span> FALSE, purl_repo <span class="op">=</span> FALSE, cpe <span class="op">=</span> FALSE)) <span class="op">%&gt;%</span> </span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a>  mutate(any_version <span class="op">=</span> vpv <span class="op">|</span> purl_repo <span class="op">|</span> cpe)</span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a>affected</span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-17 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“a6e26f0f-2ff4-4ea7-9094-15b50c3ce6d8”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>allflags <span class="op">&lt;-</span> affected <span class="op">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  full_join(cvss, by<span class="op">=</span><span class="st">"cve"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  full_join(cwe, by<span class="op">=</span><span class="st">"cve"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  full_join(cnamap, by<span class="op">=</span><span class="st">"cve"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  replace_na(<span class="bu">list</span>(vpv <span class="op">=</span> FALSE, purl_repo <span class="op">=</span> FALSE, cpe <span class="op">=</span> FALSE, any_version <span class="op">=</span> FALSE,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                  cvss <span class="op">=</span> FALSE, cvss2<span class="fl">.0</span> <span class="op">=</span> FALSE, cvss3<span class="fl">.0</span> <span class="op">=</span> FALSE, cvss3<span class="fl">.1</span> <span class="op">=</span> FALSE, </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                  cvss4<span class="fl">.0</span> <span class="op">=</span> FALSE, cwe <span class="op">=</span> FALSE)) <span class="op">%&gt;%</span> </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  select(cve, date <span class="op">=</span> datePublished, cna<span class="op">=</span>shortName, product<span class="op">=</span>any_version, cvss, cwe) <span class="op">%&gt;%</span> </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  mutate(complete <span class="op">=</span> product <span class="op">&amp;</span> cvss <span class="op">&amp;</span> cwe)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>looper <span class="op">&lt;-</span> seq(today(), today() <span class="op">%</span>m<span class="op">-%</span> years(<span class="dv">5</span>), by<span class="op">=</span><span class="st">"-3 day"</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>toplot <span class="op">&lt;-</span> map_dfr(looper, function(curdate) {</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  before_date <span class="op">&lt;-</span> curdate <span class="op">%</span>m<span class="op">-%</span> days(<span class="dv">90</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  rez0 <span class="op">&lt;-</span> allflags <span class="op">%&gt;%</span> </span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">filter</span>(date <span class="op">&gt;=</span> before_date, date <span class="op">&lt;=</span> curdate) <span class="op">%&gt;%</span> </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    select(<span class="op">-</span>date)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  rez <span class="op">&lt;-</span> rez0 <span class="op">%&gt;%</span> </span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    select(<span class="op">-</span>cna) <span class="op">%&gt;%</span> </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    gather(cat, val, <span class="op">-</span>cve) <span class="op">%&gt;%</span> </span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    summarize(.by<span class="op">=</span>cat, x <span class="op">=</span> <span class="bu">sum</span>(val), n <span class="op">=</span> n(), pct <span class="op">=</span> x<span class="op">/</span>n, date <span class="op">=</span> curdate, grp<span class="op">=</span><span class="st">"With MITRE"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    bind_rows(rez0 <span class="op">%&gt;%</span> <span class="bu">filter</span>(cna <span class="op">!=</span> <span class="st">"mitre"</span>) <span class="op">%&gt;%</span> select(<span class="op">-</span>cna) <span class="op">%&gt;%</span> </span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>                gather(cat, val, <span class="op">-</span>cve) <span class="op">%&gt;%</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>                summarize(.by<span class="op">=</span>cat, x <span class="op">=</span> <span class="bu">sum</span>(val), n <span class="op">=</span> n(), pct <span class="op">=</span> x<span class="op">/</span>n, date <span class="op">=</span> curdate, grp<span class="op">=</span><span class="st">"Without MITRE"</span>))</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>  rez</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>}) <span class="op">%&gt;%</span> </span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>  mutate(cat <span class="op">=</span> case_when(cat <span class="op">==</span> <span class="st">"product"</span> <span class="op">~</span> <span class="st">"Product Identified"</span>,</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>                         cat <span class="op">==</span> <span class="st">"cvss"</span> <span class="op">~</span> <span class="st">"CVSS (any version)"</span>,</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>                         cat <span class="op">==</span> <span class="st">"cwe"</span> <span class="op">~</span> <span class="st">"CWE"</span>,</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>                         cat <span class="op">==</span> <span class="st">"complete"</span> <span class="op">~</span> <span class="st">"Complete (Prod+CVSS+CWE)"</span>)) <span class="op">%&gt;%</span> </span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>  mutate(cat <span class="op">=</span> factor(cat, levels<span class="op">=</span>c(<span class="st">"Complete (Prod+CVSS+CWE)"</span>, <span class="st">"CWE"</span>, <span class="st">"CVSS (any version)"</span>, <span class="st">"Product Identified"</span>), ordered<span class="op">=</span>TRUE)) <span class="op">%&gt;%</span> </span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(grp <span class="op">==</span> <span class="st">"Without MITRE"</span>)</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>lbls <span class="op">&lt;-</span> toplot <span class="op">%&gt;%</span> <span class="bu">filter</span>(date <span class="op">==</span> <span class="bu">max</span>(date))</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot(toplot, aes(date, pct, label=percent(pct, 0.1))) +</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="co">#   facet_wrap(~cat, ncol=1) +</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_text_repel(data=lbls, size=8/.pt) +</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_line(color=tab("blue")) +</span></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="co">#   scale_y_continuous(expand=expansion(mult=c(0,0.04)), limits=c(0,1), label=label_percent(1)) +</span></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="co">#   scale_x_date(expand=expansion(mult=c(0,0.04))) +</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="co">#   theme(strip.background = element_rect(fill="#E9F1E8"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-18 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“95dd92b1-00b1-44c9-a910-81a3e8dda829”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>toplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-19 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“0a3d014c-5482-476d-8d75-d795ae4e6b86”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>options(<span class="bu">repr</span>.plot.width<span class="op">=</span><span class="dv">800</span>, <span class="bu">repr</span>.plot.height<span class="op">=</span><span class="dv">400</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>tab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-20 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“26be1ed6-03e6-4864-9e1f-696060eb2462”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ggplot(toplot, aes(date, pct, label<span class="op">=</span>percent(pct, <span class="fl">0.1</span>))) <span class="op">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  facet_wrap(<span class="op">~</span>cat, nrow<span class="op">=</span><span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_vline(xintercept=min(toplot$date), linewith=0.25, color="gray30") +</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  geom_hline(yintercept<span class="op">=</span><span class="dv">0</span>, linewidth<span class="op">=</span><span class="fl">0.25</span>, color<span class="op">=</span><span class="st">"gray30"</span>) <span class="op">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  geom_point(color<span class="op">=</span>tab(<span class="st">"seablue"</span>), size<span class="op">=</span><span class="fl">0.25</span>) <span class="op">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  geom_text_repel(data<span class="op">=</span>lbls, size<span class="op">=</span><span class="dv">8</span><span class="op">/</span>.pt) <span class="op">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  scale_y_continuous(<span class="st">"Percent of CVEs Published"</span>, breaks<span class="op">=</span>seq(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.2</span>), </span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    expand<span class="op">=</span>expansion(mult<span class="op">=</span>c(<span class="dv">0</span>,<span class="fl">0.04</span>)), limits<span class="op">=</span>c(<span class="dv">0</span>,<span class="dv">1</span>), label<span class="op">=</span>label_percent(<span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  scale_x_date(<span class="st">"Sliding 90 day window of CVE Publications"</span>, expand<span class="op">=</span>expansion(mult<span class="op">=</span>c(<span class="dv">0</span>,<span class="fl">0.04</span>)),</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>              date_breaks<span class="op">=</span><span class="st">"1 year"</span>, date_labels<span class="op">=</span><span class="st">"'%y"</span>) <span class="op">+</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  theme(strip.background <span class="op">=</span> element_rect(fill<span class="op">=</span><span class="st">"#dae3f2"</span>, color<span class="op">=</span>NA),</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>        panel.grid.major <span class="op">=</span> element_line(color<span class="op">=</span><span class="st">"gray94"</span>, linewidth<span class="op">=</span><span class="fl">0.25</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-21 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“0b178a5e-223d-4b3c-9a14-2d7e2e450293”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>paste(colnames(cvss), collapse <span class="op">=</span> <span class="st">" = FALSE, "</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-22 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“4e7e9758-4f08-41a6-bc7a-0cac5b46c298”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cpes <span class="op">&lt;-</span> read_parquet(cvefiles$src[cvefiles$category <span class="op">==</span> <span class="st">"containers_cna_affected_cpes"</span>]) <span class="op">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  rename(cve <span class="op">=</span> `_id`) <span class="op">%&gt;%</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(str_detect(cpes, <span class="st">'cpe:2</span><span class="ch">\\</span><span class="st">.3:[aho</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-](:(((</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?)([a-zA-Z0-9</span><span class="ch">\\</span><span class="st">-</span><span class="ch">\\</span><span class="st">._]|(</span><span class="ch">\\\\</span><span class="st">[</span><span class="ch">\\\\\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">?!"#</span><span class="ch">\\</span><span class="st">$%&amp;</span><span class="ch">\'\\</span><span class="st">(</span><span class="ch">\\</span><span class="st">)</span><span class="ch">\\</span><span class="st">+,/:;&lt;=&gt;@</span><span class="ch">\\</span><span class="st">[</span><span class="ch">\\</span><span class="st">]</span><span class="ch">\\</span><span class="st">^`</span><span class="ch">\\</span><span class="st">{</span><span class="ch">\\</span><span class="st">|}~]))+(</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?))|[</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-]))</span><span class="sc">{5}</span><span class="st">(:(([a-zA-Z]{2,3}(-([a-zA-Z]</span><span class="sc">{2}</span><span class="st">|[0-9]</span><span class="sc">{3}</span><span class="st">))?)|[</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-]))(:(((</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?)([a-zA-Z0-9</span><span class="ch">\\</span><span class="st">-</span><span class="ch">\\</span><span class="st">._]|(</span><span class="ch">\\\\</span><span class="st">[</span><span class="ch">\\\\\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">?!"#</span><span class="ch">\\</span><span class="st">$%&amp;</span><span class="ch">\'\\</span><span class="st">(</span><span class="ch">\\</span><span class="st">)</span><span class="ch">\\</span><span class="st">+,/:;&lt;=&gt;@</span><span class="ch">\\</span><span class="st">[</span><span class="ch">\\</span><span class="st">]</span><span class="ch">\\</span><span class="st">^`</span><span class="ch">\\</span><span class="st">{</span><span class="ch">\\</span><span class="st">|}~]))+(</span><span class="ch">\\</span><span class="st">?*|</span><span class="ch">\\</span><span class="st">*?))|[</span><span class="ch">\\</span><span class="st">*</span><span class="ch">\\</span><span class="st">-]))</span><span class="sc">{4}</span><span class="st">'</span>)) <span class="op">%&gt;%</span> </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  distinct(cve) <span class="op">%&gt;%</span> </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  mutate(cpes <span class="op">=</span> TRUE)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>cpes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-24 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“e2010bca-f94c-496d-9c39-fb7f881e13ea”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>empty_version <span class="op">&lt;-</span> c(<span class="st">"n/a"</span>, <span class="st">"unspecified"</span>, <span class="st">"0"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>empty_lessthan <span class="op">&lt;-</span> c(<span class="st">"*"</span>, <span class="st">"None"</span>, <span class="st">"latest"</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>versions <span class="op">&lt;-</span> read_parquet(cvefiles$src[cvefiles$category <span class="op">==</span> <span class="st">"containers_cna_affected_versions"</span>]) <span class="op">%&gt;%</span> </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  rename(cve <span class="op">=</span> `_id`) <span class="op">%&gt;%</span> </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  mutate(version <span class="op">=</span> ifelse(tolower(version) <span class="op">%</span><span class="kw">in</span><span class="op">%</span> empty_version, NA_character_, version)) <span class="op">%&gt;%</span> </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  mutate(lessThanOrEqual <span class="op">=</span> ifelse(tolower(lessThanOrEqual) <span class="op">%</span><span class="kw">in</span><span class="op">%</span> empty_lessthan, NA_character_, lessThanOrEqual)) <span class="op">%&gt;%</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(<span class="op">!</span>(<span class="kw">is</span>.na(version) <span class="op">&amp;</span> <span class="kw">is</span>.na(lessThanOrEqual))) <span class="op">%&gt;%</span> </span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  distinct(cve) <span class="op">%&gt;%</span> </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  mutate(version <span class="op">=</span> TRUE)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>affected <span class="op">&lt;-</span> read_parquet(cvefiles$src[cvefiles$category <span class="op">==</span> <span class="st">"containers_cna_affected"</span>]) <span class="op">%&gt;%</span> </span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  rename(cve <span class="op">=</span> `_id`) <span class="op">%&gt;%</span> </span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  mutate(product <span class="op">=</span> ifelse(tolower(product) <span class="op">%</span><span class="kw">in</span><span class="op">%</span> c(<span class="st">"n/a"</span>, <span class="st">"unknown"</span>, <span class="st">"notfound"</span>), </span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>                          NA_character_, product)) <span class="op">%&gt;%</span> </span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  mutate(vendor <span class="op">=</span> ifelse(tolower(vendor) <span class="op">%</span><span class="kw">in</span><span class="op">%</span> c(<span class="st">"n/a"</span>, <span class="st">"unknown"</span>, <span class="st">"notfound"</span>), </span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>                         NA_character_, vendor)) <span class="op">%&gt;%</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  pivot_longer(cols<span class="op">=-</span>c(<span class="st">"affected_id"</span>, <span class="st">"cve"</span>), names_to <span class="op">=</span> <span class="st">"cat"</span>, values_to <span class="op">=</span> <span class="st">"val"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(<span class="op">!</span><span class="kw">is</span>.na(val)) <span class="op">%&gt;%</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  summarize(.by<span class="op">=</span>cve, pv <span class="op">=</span> <span class="bu">all</span>(c(<span class="st">"product"</span>, <span class="st">"vendor"</span>) <span class="op">%</span><span class="kw">in</span><span class="op">%</span> cat),</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>            other <span class="op">=</span> <span class="bu">any</span>(c(<span class="st">"packageName"</span>, <span class="st">"collectionURL"</span>, <span class="st">"repo"</span>) <span class="op">%</span><span class="kw">in</span><span class="op">%</span> cat)) <span class="op">%&gt;%</span> </span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  full_join(versions, by<span class="op">=</span><span class="st">"cve"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>  replace_na(<span class="bu">list</span>(pv <span class="op">=</span> FALSE, other <span class="op">=</span> FALSE, version <span class="op">=</span> FALSE)) <span class="op">%&gt;%</span> </span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>  mutate(vpv <span class="op">=</span> pv <span class="op">&amp;</span> version) <span class="op">%&gt;%</span> </span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>  select(cve, vpv, purl_repo<span class="op">=</span>other)</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>affected</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
