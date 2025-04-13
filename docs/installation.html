@@ -221,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    warn(logger, paste(<span class="st">"API sent back:"</span>, httr::http_type(resp)))</span>
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># stop(paste("API did not return expected response type:", expect_resp), call. = FALSE)</span></span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(status_code(resp) <span class="op">!=</span> <span class="dv">200</span>) {</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="op">!</span> (status_code(resp) <span class="op">%</span><span class="kw">in</span><span class="op">%</span> c(<span class="dv">200</span>, <span class="dv">201</span>))) {</span>
 <span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    error(logger, sprintf(<span class="st">"GitHub API request failed [</span><span class="sc">%s</span><span class="st">] &lt;</span><span class="sc">%s</span><span class="st">&gt;"</span>, status_code(resp), url))</span>
 <span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># stop(sprintf("GitHub API request failed [%s]\n&lt;%s&gt;", status_code(resp), url), call. = FALSE)</span></span>
 <span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(NULL)</span>
