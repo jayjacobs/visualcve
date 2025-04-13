@@ -160,53 +160,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>suppressPackageStartupMessages({</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  suppressWarnings({</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"dplyr"</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"tibble"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"tidyr"</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"readr"</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"stringr"</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"scales"</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"lubridate"</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"arrow"</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"ggplot2"</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"ggrepel"</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"patchwork"</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>mainfont <span class="op">&lt;-</span> <span class="st">"Source Sans Pro"</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>tab <span class="op">&lt;-</span> function (x <span class="op">=</span> c(<span class="st">"blue"</span>, <span class="st">"orange"</span>, <span class="st">"red"</span>, <span class="st">"seablue"</span>, <span class="st">"green"</span>, </span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"olive"</span>, <span class="st">"purple"</span>, <span class="st">"pink"</span>, <span class="st">"brown"</span>, <span class="st">"gray"</span>)) {</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  tableau <span class="op">&lt;-</span> c(blue <span class="op">=</span> <span class="st">"#4E79A7"</span>, orange <span class="op">=</span> <span class="st">"#F28E2B"</span>, red <span class="op">=</span> <span class="st">"#E15759"</span>, seablue <span class="op">=</span> <span class="st">"#76B7B2"</span>, </span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>               green <span class="op">=</span> <span class="st">"#59A14F"</span>, olive <span class="op">=</span> <span class="st">"#EDC948"</span>, purple <span class="op">=</span> <span class="st">"#B07AA1"</span>, pink <span class="op">=</span> <span class="st">"#FF9DA7"</span>, </span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>               brown <span class="op">=</span> <span class="st">"#9C755F"</span>, gray <span class="op">=</span> <span class="st">"#BAB0AC"</span>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="im">as</span>.vector(tableau[x])</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal(base_family<span class="op">=</span>mainfont) <span class="op">+</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>            theme(panel.grid <span class="op">=</span> element_line(color<span class="op">=</span><span class="st">"gray95"</span>),</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>                  plot.caption <span class="op">=</span> element_text(size<span class="op">=</span><span class="dv">6</span>, face <span class="op">=</span> <span class="st">"italic"</span>, color<span class="op">=</span><span class="st">"gray60"</span>),</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>                  text <span class="op">=</span> element_text(family<span class="op">=</span>mainfont),</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>                  legend.title <span class="op">=</span> element_blank(),</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>                  legend.position<span class="op">=</span><span class="st">"bottom"</span>))</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'col'</span>, <span class="bu">list</span>(fill<span class="op">=</span>tab(<span class="st">'blue'</span>)))</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'bar'</span>, <span class="bu">list</span>(fill<span class="op">=</span>tab(<span class="st">'blue'</span>)))</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'text'</span>, <span class="bu">list</span>(family<span class="op">=</span>mainfont, size<span class="op">=</span><span class="dv">8</span><span class="op">/</span>.pt))</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'label'</span>, <span class="bu">list</span>(family<span class="op">=</span>mainfont, size<span class="op">=</span><span class="dv">8</span><span class="op">/</span>.pt, label.size<span class="op">=</span>NA))</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co"># update_geom_defaults('point', list(shape=21, size=2, fill=tab('blue'), color='white'))</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'point'</span>, <span class="bu">list</span>(size<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span>tab(<span class="st">'blue'</span>)))</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'line'</span>, <span class="bu">list</span>(color<span class="op">=</span>tab(<span class="st">'blue'</span>), size<span class="op">=</span><span class="fl">0.85</span>))</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>knitr::opts_chunk$set(</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  cache <span class="op">=</span> FALSE,</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  message <span class="op">=</span> FALSE,</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  warning <span class="op">=</span> FALSE, </span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  dev <span class="op">=</span> c(<span class="st">"png"</span>, <span class="st">"cairo_pdf"</span>),</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  echo <span class="op">=</span> FALSE,</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  fig.retina <span class="op">=</span> <span class="dv">2</span>,</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  fig.width <span class="op">=</span> <span class="dv">7</span>,</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>  fig.height <span class="op">=</span> <span class="fl">3.5</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"tidyverse"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"stringr"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"scales"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"lubridate"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"arrow"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"ggplot2"</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"ggrepel"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"patchwork"</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    getpkg(<span class="st">"vegan"</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>mainfont <span class="op">&lt;-</span> <span class="st">"Source Sans Pro"</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>tab <span class="op">&lt;-</span> function (x <span class="op">=</span> c(<span class="st">"blue"</span>, <span class="st">"orange"</span>, <span class="st">"red"</span>, <span class="st">"seablue"</span>, <span class="st">"green"</span>, </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"olive"</span>, <span class="st">"purple"</span>, <span class="st">"pink"</span>, <span class="st">"brown"</span>, <span class="st">"gray"</span>)) {</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  tableau <span class="op">&lt;-</span> c(blue <span class="op">=</span> <span class="st">"#4E79A7"</span>, orange <span class="op">=</span> <span class="st">"#F28E2B"</span>, red <span class="op">=</span> <span class="st">"#E15759"</span>, seablue <span class="op">=</span> <span class="st">"#76B7B2"</span>, </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>               green <span class="op">=</span> <span class="st">"#59A14F"</span>, olive <span class="op">=</span> <span class="st">"#EDC948"</span>, purple <span class="op">=</span> <span class="st">"#B07AA1"</span>, pink <span class="op">=</span> <span class="st">"#FF9DA7"</span>, </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>               brown <span class="op">=</span> <span class="st">"#9C755F"</span>, gray <span class="op">=</span> <span class="st">"#BAB0AC"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="im">as</span>.vector(tableau[x])</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>theme_set(theme_minimal(base_family<span class="op">=</span>mainfont) <span class="op">+</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>            theme(panel.grid <span class="op">=</span> element_line(color<span class="op">=</span><span class="st">"gray95"</span>),</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>                  plot.caption <span class="op">=</span> element_text(size<span class="op">=</span><span class="dv">6</span>, face <span class="op">=</span> <span class="st">"italic"</span>, color<span class="op">=</span><span class="st">"gray60"</span>),</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>                  text <span class="op">=</span> element_text(family<span class="op">=</span>mainfont),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>                  legend.title <span class="op">=</span> element_blank(),</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>                  legend.position<span class="op">=</span><span class="st">"bottom"</span>))</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'col'</span>, <span class="bu">list</span>(fill<span class="op">=</span>tab(<span class="st">'blue'</span>)))</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'bar'</span>, <span class="bu">list</span>(fill<span class="op">=</span>tab(<span class="st">'blue'</span>)))</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'text'</span>, <span class="bu">list</span>(family<span class="op">=</span>mainfont, size<span class="op">=</span><span class="dv">8</span><span class="op">/</span>.pt))</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'label'</span>, <span class="bu">list</span>(family<span class="op">=</span>mainfont, size<span class="op">=</span><span class="dv">8</span><span class="op">/</span>.pt, label.size<span class="op">=</span>NA))</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co"># update_geom_defaults('point', list(shape=21, size=2, fill=tab('blue'), color='white'))</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'point'</span>, <span class="bu">list</span>(size<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span>tab(<span class="st">'blue'</span>)))</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>update_geom_defaults(<span class="st">'line'</span>, <span class="bu">list</span>(color<span class="op">=</span>tab(<span class="st">'blue'</span>), size<span class="op">=</span><span class="fl">0.85</span>))</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>knitr::opts_chunk$set(</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  cache <span class="op">=</span> FALSE,</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  message <span class="op">=</span> FALSE,</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  warning <span class="op">=</span> FALSE, </span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  dev <span class="op">=</span> c(<span class="st">"png"</span>, <span class="st">"cairo_pdf"</span>),</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  echo <span class="op">=</span> FALSE,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  fig.retina <span class="op">=</span> <span class="dv">2</span>,</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  fig.width <span class="op">=</span> <span class="dv">7</span>,</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  fig.height <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>:::</p>
 <p>::: {#cell-1 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“39b0a771-3d0c-46db-bb75-8508b3546665”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># basedir &lt;- "/Volumes/empiricalsecurity_databricks_prod/vics/sources/data/cveorg"</span></span>
@@ -227,15 +225,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>cvefiles</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>:::</p>
 <p>::: {#cell-2 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“625d5383-7a07-45bd-8fc0-3c58489a4175”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>meta <span class="op">&lt;-</span> read_parquet(cvefiles$src[cvefiles$category <span class="op">==</span> <span class="st">"cveMetadata"</span>])</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>count_txt <span class="op">&lt;-</span> meta <span class="op">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  count(state) <span class="op">%&gt;%</span> </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  mutate(state <span class="op">=</span> tolower(state), </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>         n <span class="op">=</span> scales::comma(n)) <span class="op">%&gt;%</span> </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  spread(state, n)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>last_pub <span class="op">&lt;-</span> <span class="bu">max</span>(meta$dateUpdated)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>cat(glue::glue(<span class="st">"Published: {count_txt$published}, Rejected: {count_txt$rejected}, Last Updated: </span><span class="sc">{last_pub}</span><span class="st"> UTC</span><span class="ch">\n</span><span class="st">"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>meta <span class="op">&lt;-</span> read_parquet(cvefiles$src[cvefiles$category <span class="op">==</span> <span class="st">"cveMetadata"</span>]) <span class="op">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  rename(cve <span class="op">=</span> `_id`)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>provider <span class="op">&lt;-</span> read_parquet(cvefiles$src[cvefiles$category <span class="op">==</span> <span class="st">"containers_cna_providerMetadata"</span>]) <span class="op">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  rename(cve <span class="op">=</span> `_id`) <span class="op">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  rename(provider_updated <span class="op">=</span> dateUpdated) <span class="op">%&gt;%</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  full_join(meta, by<span class="op">=</span><span class="st">"cve"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>count_txt <span class="op">&lt;-</span> meta <span class="op">%&gt;%</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  count(state) <span class="op">%&gt;%</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  mutate(state <span class="op">=</span> tolower(state), </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>         n <span class="op">=</span> scales::comma(n)) <span class="op">%&gt;%</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  spread(state, n)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>last_pub <span class="op">&lt;-</span> <span class="bu">max</span>(meta$dateUpdated)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>cat(glue::glue(<span class="st">"Published: {count_txt$published}, Rejected: {count_txt$rejected}, Last Updated: </span><span class="sc">{last_pub}</span><span class="st"> UTC</span><span class="ch">\n</span><span class="st">"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-3 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“07608387-8a83-4ef6-8219-395ec29d123b”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>provider <span class="op">%&gt;%</span> glimpse()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-4 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“2b1684b5-4a77-43f9-a44c-5edd6a8354e0”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cutoff &lt;- now() %m-% days(90)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cutoff2 &lt;- now() %m-% days(180)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>looper <span class="op">&lt;-</span> seq(today(), today() <span class="op">%</span>m<span class="op">-%</span> years(<span class="dv">5</span>), by<span class="op">=</span><span class="st">"-3 day"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>toplot <span class="op">&lt;-</span> map_dfr(looper, function(curdate) {</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  before_date <span class="op">&lt;-</span> curdate <span class="op">%</span>m<span class="op">-%</span> days(<span class="dv">90</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  rez <span class="op">&lt;-</span> provider <span class="op">%&gt;%</span> <span class="bu">filter</span>(state <span class="op">==</span> <span class="st">"PUBLISHED"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">filter</span>(datePublished <span class="op">&gt;=</span> before_date, datePublished <span class="op">&lt;=</span> curdate) <span class="op">%&gt;%</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    count(shortName, sort<span class="op">=</span>TRUE)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  tibble(date <span class="op">=</span> curdate, div <span class="op">=</span> vegan::diversity(rez$n))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-5 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“68cc6bf1-859c-4797-98c3-68cdb3556739”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>length(looper)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-6 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“e69859fa-80f1-473d-b2c6-91f495abdbf6”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ggplot(toplot, aes(date, div)) <span class="op">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  geom_line()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-7 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“2371e916-4b13-416a-b83f-0c2d424b39ec”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># very equal, lot of diversity</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>vegan::diversity(rep(<span class="dv">5</span>, <span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-8 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“a960857a-19db-45a8-961d-0ef143e629c7”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a few folks dominating</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">&lt;-</span> seq(<span class="dv">300</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>stupid <span class="op">&lt;-</span> <span class="bu">round</span>(exp(sample(x, <span class="dv">50</span>)), <span class="dv">0</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>stupid</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>vegan::diversity(stupid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>::: {#cell-9 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“6f2a1e15-a99c-4bb3-b774-6a827ef45e35”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cutoff0 <span class="op">&lt;-</span> now()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>cutoff <span class="op">&lt;-</span> now() <span class="op">%</span>m<span class="op">-%</span> days(<span class="dv">90</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>cutoff2 <span class="op">&lt;-</span> now() <span class="op">%</span>m<span class="op">-%</span> days(<span class="dv">180</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>one <span class="op">&lt;-</span> provider <span class="op">%&gt;%</span> <span class="bu">filter</span>(state <span class="op">==</span> <span class="st">"PUBLISHED"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(datePublished <span class="op">&gt;=</span> cutoff, datePublished <span class="op">&lt;=</span> cutoff0) <span class="op">%&gt;%</span> </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  summarize(x <span class="op">=</span> n_distinct(shortName), cve <span class="op">=</span> n_distinct(cve))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>two <span class="op">&lt;-</span> provider <span class="op">%&gt;%</span> <span class="bu">filter</span>(state <span class="op">==</span> <span class="st">"PUBLISHED"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(datePublished <span class="op">&gt;=</span> cutoff2, datePublished <span class="op">&lt;=</span> cutoff) <span class="op">%&gt;%</span> </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  summarize(x <span class="op">=</span> n_distinct(shortName), cve <span class="op">=</span> n_distinct(cve))</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>cna_change <span class="op">&lt;-</span> (one$x <span class="op">-</span> two$x) <span class="op">/</span> two$x</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>cve_change <span class="op">&lt;-</span> (one$cve <span class="op">-</span> two$cve) <span class="op">/</span> two$cve</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>cat(<span class="st">"cna change:"</span>, percent(cna_change, <span class="fl">0.1</span>), <span class="st">"cve change:"</span>, percent(cve_change, <span class="fl">0.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>:::</p>
 
 
