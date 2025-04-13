@@ -185,9 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>::: {#cell-2 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“86ac33d1-d4f1-4353-936f-d8a4d38e53c4”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>quarto_render()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>:::</p>
-<p>[91mERROR: TypeError: Invalid argument (os error 22): remove ‘/Workspace/Repos/.internal/b216b2f4b0_commits/9c00be66e3b8a17c7fd2db0135db5fca02f16385/docs’</p>
-<p>Stack trace: <br> at Object.removeSync (ext:deno_fs/30_fs.js:250:3) <br> at safeRemoveSync (file:///opt/quarto/bin/quarto.js:2303:14) <br> at removeIfExists (file:///opt/quarto/bin/quarto.js:4867:9)<br> at renderProject (file:///opt/quarto/bin/quarto.js:85948:17)<br> at eventLoopTick (ext:core/01_core.js:175:7) <br> at async Command.actionHandler (file:///opt/quarto/bin/quarto.js:90653:32) <br> at async Command.execute (file:///opt/quarto/bin/quarto.js:8111:13) <br> at async Command.parseCommand (file:///opt/quarto/bin/quarto.js:8001:20) <br> at async quarto (file:///opt/quarto/bin/quarto.js:126631:9) <br> at async file:///opt/quarto/bin/quarto.js:126658:9[39m<br></p>
-<p>::: {#cell-4 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“45bbdd4c-a45c-41aa-935b-f381c1e04c10”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<p>::: {#cell-3 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“45bbdd4c-a45c-41aa-935b-f381c1e04c10”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># some old github functions:</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># sleep is one of:  T/F for always sleeping or not, or an integer, for "sleep under these remaining"</span></span>
@@ -328,28 +326,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>  mutate(path <span class="op">=</span> gsub(paste0(outdir, <span class="st">"/"</span>), <span class="st">""</span>, srcfile))</span>
 <span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>levellog(logger, <span class="st">"INFO"</span>, paste(<span class="st">"Commiting"</span>, nrow(allfile), <span class="st">"files"</span>))</span>
 <span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>allfile</span>
-<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a><span class="co"># Authorization: Bearer YOUR-TOKEN" \</span></span>
-<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>config <span class="op">&lt;-</span> add_headers(<span class="st">"Authorization"</span><span class="op">=</span>paste(<span class="st">"Bearer"</span>, Sys.getenv(<span class="st">"GITHUB_PAT"</span>)),</span>
-<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"User-Agent"</span><span class="op">=</span><span class="st">"empirical/updates"</span>)</span>
-<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a>logger <span class="op">&lt;-</span> log4r::logger()</span>
-<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>repo <span class="op">&lt;-</span> <span class="st">"jayjacobs/visualcve"</span></span>
-<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="kw">in</span> seq(nrow(allfile))) {</span>
-<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>  levellog(logger, <span class="st">"INFO"</span>, paste(<span class="st">"  --&gt; attempting to push"</span>, allfile$path[i]))</span>
-<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>  rez <span class="op">&lt;-</span> gh_commit_file(repo, path <span class="op">=</span> allfile$path[i], msg<span class="op">=</span>paste0(<span class="st">"automatic stats update: "</span>, <span class="bu">format</span>(Sys.Date(), <span class="st">"%Y%m</span><span class="sc">%d</span><span class="st">"</span>)),</span>
-<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>                        <span class="bu">file</span> <span class="op">=</span> allfile$srcfile[i], config<span class="op">=</span>config, sleep<span class="op">=</span>TRUE, logger <span class="op">=</span> logger)</span>
-<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="op">!</span><span class="kw">is</span>.<span class="bu">list</span>(rez)) {</span>
-<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>    levellog(logger, <span class="st">"INFO"</span>, paste(<span class="st">"Response for"</span>, allfile$path[i], <span class="st">"was unexpected and undefined"</span>))</span>
-<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>    levellog(logger, <span class="st">"INFO"</span>, paste(<span class="st">"Response for"</span>, allfile$path[i], <span class="st">"was"</span>, rez$response$status_code))</span>
-<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a>cat(<span class="st">"All files completed.</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a><span class="co"># allfile %&gt;% glimpse()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="co"># Authorization: Bearer YOUR-TOKEN" \</span></span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a>config <span class="op">&lt;-</span> add_headers(<span class="st">"Authorization"</span><span class="op">=</span>paste(<span class="st">"Bearer"</span>, Sys.getenv(<span class="st">"GITHUB_PAT"</span>)),</span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"User-Agent"</span><span class="op">=</span><span class="st">"empirical/updates"</span>)</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>logger <span class="op">&lt;-</span> log4r::logger()</span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a>repo <span class="op">&lt;-</span> <span class="st">"jayjacobs/visualcve"</span></span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="kw">in</span> seq(nrow(allfile))) {</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>  levellog(logger, <span class="st">"INFO"</span>, paste(<span class="st">"  --&gt; attempting to push"</span>, allfile$path[i]))</span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>  rez <span class="op">&lt;-</span> gh_commit_file(repo, path <span class="op">=</span> allfile$path[i], msg<span class="op">=</span>paste0(<span class="st">"automatic stats update: "</span>, <span class="bu">format</span>(Sys.Date(), <span class="st">"%Y%m</span><span class="sc">%d</span><span class="st">"</span>)),</span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>                        <span class="bu">file</span> <span class="op">=</span> allfile$srcfile[i], config<span class="op">=</span>config, sleep<span class="op">=</span>TRUE, logger <span class="op">=</span> logger)</span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="op">!</span><span class="kw">is</span>.<span class="bu">list</span>(rez)) {</span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>    levellog(logger, <span class="st">"INFO"</span>, paste(<span class="st">"Response for"</span>, allfile$path[i], <span class="st">"was unexpected and undefined"</span>))</span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>    levellog(logger, <span class="st">"INFO"</span>, paste(<span class="st">"Response for"</span>, allfile$path[i], <span class="st">"was"</span>, rez$response$status_code))</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>cat(<span class="st">"All files completed.</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a><span class="co"># allfile %&gt;% glimpse()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>:::</p>
-<p>::: {#cell-5 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“a4a5ef13-3409-4303-8e6f-5b9fc9ed985f”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
+<p>::: {#cell-4 .cell application/vnd.databricks.v1+cell=‘{“cellMetadata”:{“byteLimit”:2048000,“rowLimit”:10000},“inputWidgets”:{},“nuid”:“a4a5ef13-3409-4303-8e6f-5b9fc9ed985f”,“showTitle”:false,“tableResultSettingsMap”:{},“title”:““}’ execution_count=0}</p>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load_if("reticulate")</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># library(reticulate)</span></span>
